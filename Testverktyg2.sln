@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminApp", "AdminApp\AdminApp.csproj", "{56904FEA-0919-4BE3-B923-67517BC79F16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentApp", "StudentApp\StudentApp.csproj", "{FF82E334-0BF6-49C0-A62B-ACAA1FAFC042}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testverktyg", "Testverktyg\Testverktyg.csproj", "{6E4C8AE5-431A-4A57-B539-9299F7087264}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56904FEA-0919-4BE3-B923-67517BC79F16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56904FEA-0919-4BE3-B923-67517BC79F16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56904FEA-0919-4BE3-B923-67517BC79F16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56904FEA-0919-4BE3-B923-67517BC79F16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF82E334-0BF6-49C0-A62B-ACAA1FAFC042}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF82E334-0BF6-49C0-A62B-ACAA1FAFC042}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF82E334-0BF6-49C0-A62B-ACAA1FAFC042}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF82E334-0BF6-49C0-A62B-ACAA1FAFC042}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E4C8AE5-431A-4A57-B539-9299F7087264}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E4C8AE5-431A-4A57-B539-9299F7087264}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E4C8AE5-431A-4A57-B539-9299F7087264}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E4C8AE5-431A-4A57-B539-9299F7087264}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
