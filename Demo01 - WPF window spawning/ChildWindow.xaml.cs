@@ -10,18 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Demo01___WPF_window_spawning {
-    public partial class MainWindow : Window {
-        public MainWindow() {
+    public partial class ChildWindow : Window {
+        private Window window { get; }
+        public ChildWindow(Window w) {
             InitializeComponent();
+            window = w;
+            window.IsEnabled = false;
         }
 
-        private void btn_SpawnWindow_Click(object sender, RoutedEventArgs e) {
-            ChildWindow window = new ChildWindow(this);
-            window.Show();
+        private void win_CloseWindow_Closed(object sender, EventArgs e) {
+            window.IsEnabled = true;
         }
     }
 }
