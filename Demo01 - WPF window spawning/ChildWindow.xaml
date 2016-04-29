@@ -9,7 +9,7 @@
         Closed="win_CloseWindow_Closed">
     <Grid>
         <Label Content="Hello child window"
-               FontSize="36" FontWeight="Bold"
+               FontSize="18" FontWeight="Bold"
                HorizontalAlignment="Center"
                VerticalAlignment="Center" />
     </Grid>
