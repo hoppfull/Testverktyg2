@@ -1,0 +1,23 @@
+﻿<Window x:Class="Demo03___SPA_with_user_controls.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demo03___SPA_with_user_controls"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <!--#region MainPage-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <local:PageOne x:Name="pg_PageOne" Visibility="Visible" />
+        <local:PageTwo x:Name="pg_PageTwo" Visibility="Collapsed" />
+        <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Content="Page 1" Margin="5,0" Click="btn_Page1_Click" />
+            <Button Content="Page 2" Margin="5,0" Click="btn_Page2_Click" />
+        </StackPanel>
+        <!--#endregion MainPage-->
+    </Grid>
+</Window>

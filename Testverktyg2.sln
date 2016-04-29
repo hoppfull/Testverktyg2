@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo01 - WPF window spawnin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo02 - Nested datatemplates", "Demo02 - Nested datatemplates\Demo02 - Nested datatemplates.csproj", "{689DC806-D5A1-4E8D-9269-BDC84BA31CDF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo03 - SPA with user controls", "Demo03 - SPA with user controls\Demo03 - SPA with user controls.csproj", "{9F43A590-CAED-4747-AE96-33F9A8464BF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{689DC806-D5A1-4E8D-9269-BDC84BA31CDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{689DC806-D5A1-4E8D-9269-BDC84BA31CDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{689DC806-D5A1-4E8D-9269-BDC84BA31CDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F43A590-CAED-4747-AE96-33F9A8464BF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F43A590-CAED-4747-AE96-33F9A8464BF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F43A590-CAED-4747-AE96-33F9A8464BF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F43A590-CAED-4747-AE96-33F9A8464BF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
