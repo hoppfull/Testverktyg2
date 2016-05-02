@@ -16,5 +16,10 @@ namespace Testverktyg.Model {
         public int Score { get; set; }
         public QuestionType QuestionType { get; set; }
         public IList<Answer> Answers { get; set; }
+        public Question(QuestionType questionType, string text = "", int score = 1) {
+            Text = text;
+            Score = score;
+            QuestionType = questionType;
+        }
     }
 }

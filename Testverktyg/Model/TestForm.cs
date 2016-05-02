@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Testverktyg.Model {
     public class TestForm {
@@ -15,7 +12,14 @@ namespace Testverktyg.Model {
         public DateTime StartDate { get; set; }
         public DateTime FinishedDate { get; set; }
         public DateTime FinalDate { get; set; }
-        public IList<AnsweredQuestion> AnsweredQuestion { get; set; }
+        public TestDefinition TestDefinition { get; set; }
+        public IList<AnsweredQuestion> AnsweredQuestions { get; set; }
+        public TestForm(int timeLimit, DateTime finalDate, TestDefinition testDefinition) {
+            TimeLimit = timeLimit;
+            FinalDate = finalDate;
+            TestDefinition = testDefinition;
+            IsCompleted = false;
+        }
     }
 }
 
