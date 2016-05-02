@@ -4,8 +4,10 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Testverktyg.Model;
 
 namespace Testverktyg.Context {
-    class TestverktygContext : DbContext {
+    public class TestverktygContext : DbContext {
+        public DbSet<AdminAccount> AdminAccounts { get; set; }
     }
 }

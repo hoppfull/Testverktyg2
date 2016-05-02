@@ -5,6 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Testverktyg.Model {
-    class AnsweredQuestion {
+    public class AnsweredQuestion {
     }
 }

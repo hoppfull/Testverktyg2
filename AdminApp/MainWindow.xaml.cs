@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Testverktyg;
+using Testverktyg.Model;
+using Testverktyg.Context;
 
 namespace AdminApp {
     public partial class MainWindow : Window {
@@ -21,8 +23,9 @@ namespace AdminApp {
             InitializeComponent();
             Console.WriteLine("hello world!");
             
-            using (var db = new MyDatabase()) {
-                db.MyTables.Add(new MyTable { Text = "hoppsan" });
+            using (var db = new TestverktygContext()) {
+                //db.MyTables.Add(new MyTable { Text = "hoppsan" });
+                //db.AdminAccounts.Add(new AdminAccount("Kalle", "mail", "abs"));
 
                 db.SaveChanges();
             }
