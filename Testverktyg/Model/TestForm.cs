@@ -19,6 +19,9 @@ namespace Testverktyg.Model {
             FinalDate = finalDate;
             TestDefinition = testDefinition;
             IsCompleted = false;
+            AnsweredQuestions = new List<AnsweredQuestion>();
+            StartDate = new DateTime(2016,01,01);
+            FinishedDate = new DateTime(2016, 01, 01);
         }
     }
 }

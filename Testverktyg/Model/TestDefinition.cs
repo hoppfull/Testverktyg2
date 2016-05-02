@@ -22,6 +22,7 @@ namespace Testverktyg.Model {
             TestDefinitionState = TestDefinitionState.Created;
             IsNotRemoved = true;
             MaxScore = 0;
+            Questions = new List<Question>();
         }
     }
 }

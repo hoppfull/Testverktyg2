@@ -20,6 +20,7 @@ namespace Testverktyg.Model {
             Text = text;
             Score = score;
             QuestionType = questionType;
+            Answers = new List<Answer>();
         }
     }
 }
