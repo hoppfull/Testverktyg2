@@ -5,11 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Testverktyg.Model {
-    public class StudentAccount {
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public bool IsNotRemoved { get; set; }
+    public class StudentAccount : AbstractUser {
         public IList<TestForm> TestForms { get; set; }
+        public StudentAccount(string name, string email, string password):base(name, email, password) {
+        }
     }
 }

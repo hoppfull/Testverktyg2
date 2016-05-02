@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Testverktyg.Model {
     public class AnsweredQuestion {
+        [Key]
+        public int Id { get; set; }
+        public IList<Answer> Answers { get; set; }
+        public Question Question { get; set; }
     }
 }

@@ -24,8 +24,18 @@ namespace AdminApp {
             Console.WriteLine("hello world!");
             
             using (var db = new TestverktygContext()) {
-                //db.MyTables.Add(new MyTable { Text = "hoppsan" });
                 //db.AdminAccounts.Add(new AdminAccount("Kalle", "mail", "abs"));
+                //db.StudentAccounts.Add(new StudentAccount("a", "b", "c"));
+                //db.TeacherAccounts.Add(new TeacherAccount("x", "y", "z"));
+                //db.TeacherAccounts.Add(new TeacherAccount("u", "v", "w"));
+                //db.Questions.Add(new Question {
+                //    Text = "whatevs", Score = 5, QuestionType = QuestionType.Ranked
+                //});
+                //db.Questions.Add(new Question {
+                //    Text = "tjena",
+                //    Score = 3,
+                //    QuestionType = QuestionType.Ranked
+                //});
 
                 db.SaveChanges();
             }
