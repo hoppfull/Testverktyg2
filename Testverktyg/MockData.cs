@@ -385,41 +385,12 @@ namespace Testverktyg
             question22.Answers.Add(new Answer("2", 2));
             question22.Answers.Add(new Answer("1", 3));
 
-            //Add Questions to test
-            test1.Questions.Add(question1);
-            test1.Questions.Add(question3);
-            test1.Questions.Add(question5);
-            test1.Questions.Add(question7);
-
-            test2.Questions.Add(question2);
-            test2.Questions.Add(question4);
-            test2.Questions.Add(question6);
-            test2.Questions.Add(question8);
-
-            test3.Questions.Add(question9);
-            test3.Questions.Add(question11);
-            test3.Questions.Add(question13);
-            test3.Questions.Add(question15);
-
-            test4.Questions.Add(question10);
-            test4.Questions.Add(question12);
-            test4.Questions.Add(question14);
-            test4.Questions.Add(question16);
-
-            test5.Questions.Add(question17);
-            test5.Questions.Add(question19);
-            test5.Questions.Add(question21);
-            test5.Questions.Add(question23);
-
-            test6.Questions.Add(question18);
-            test6.Questions.Add(question20);
-            test6.Questions.Add(question22);
-            test6.Questions.Add(question24);
-
             //Add Tests to Users
             teacher1.TestDefinitions.Add(test1);
+            teacher1.TestDefinitions.Add(test2);
             teacher1.TestDefinitions.Add(test6);
             teacher2.TestDefinitions.Add(test3);
+            teacher2.TestDefinitions.Add(test4);
             teacher2.TestDefinitions.Add(test5);
 
             admin1.TestDefinitions.Add(test2);
@@ -438,6 +409,19 @@ namespace Testverktyg
             stud1.TestForms.Add(testForms11);
             stud2.TestForms.Add(testForms12);
 
+            var list = new List<TestDefinition> { test1, test2, test3, test4, test5, test6 };
+            int local = 0;
+
+            foreach (var test in list)
+            {
+
+            foreach (var question in test.Questions)
+            {
+                local += question.Score;
+            }
+                test.MaxScore = local;
+                local = 0;
+            }
 
             //Add to Database
             using (var db = new TestverktygContext())
