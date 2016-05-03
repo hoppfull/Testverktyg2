@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using Testverktyg;
 using Testverktyg.Model;
 using Testverktyg.Context;
+using Testverktyg.Repository;
 
 namespace AdminApp {
     public partial class MainWindow : Window {
@@ -28,10 +29,23 @@ namespace AdminApp {
             //    db.StudentAccounts.Add(new StudentAccount("a", "b", "c"));
             //    db.TeacherAccounts.Add(new TeacherAccount("x", "y", "z"));
             //    db.TeacherAccounts.Add(new TeacherAccount("u", "v", "w"));
+            //db.Set<AdminAccount>().Add(new AdminAccount("Kalle", "mail", "abs"));
 
-            //    db.SaveChanges();
+            //db.SaveChanges();
             //}
-            MockData.Reset();
+            //MockData.Reset();
+
+            var x = new AdminAccount {
+                Name = "a",
+                Email = "b",
+                Password = "c",
+                IsNotRemoved = true
+            };
+            Repository<AdminAccount>.Instance.Add(x);
+
+            x.Name = "hej";
+
+            //Repository<AdminAccount>.Instance.Update(x);
         }
     }
 }
