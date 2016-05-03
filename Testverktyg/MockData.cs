@@ -24,10 +24,13 @@ namespace Testverktyg
             //Create Users
             var stud1 = new StudentAccount("Student1", "Student1", "a");
             var stud2 = new StudentAccount("Student2", "Student2", "a");
+            var stud3 = new StudentAccount("Student3", "Student3", "a") { IsNotRemoved = false };
             var admin1 = new AdminAccount("Admin1", "Admin1", "a");
             var admin2 = new AdminAccount("Admin2", "Admin2", "a");
+            var admin3 = new AdminAccount("Admin3", "Admin3", "a") { IsNotRemoved = false };
             var teacher1 = new TeacherAccount("Teacher1", "Teacher1", "a");
             var teacher2 = new TeacherAccount("Teacher2", "Teacher2", "a");
+            var teacher3 = new TeacherAccount("Teacher3", "Teacher3", "a") { IsNotRemoved = false };
 
             //Create Subject
             var sub1 = new Subject("Initial");
@@ -388,13 +391,10 @@ namespace Testverktyg
             //Add Tests to Users
             teacher1.TestDefinitions.Add(test1);
             teacher1.TestDefinitions.Add(test2);
-            teacher1.TestDefinitions.Add(test6);
+            teacher3.TestDefinitions.Add(test6);
             teacher2.TestDefinitions.Add(test3);
             teacher2.TestDefinitions.Add(test4);
-            teacher2.TestDefinitions.Add(test5);
-
-            admin1.TestDefinitions.Add(test2);
-            admin2.TestDefinitions.Add(test4);
+            teacher3.TestDefinitions.Add(test5);
 
             stud1.TestForms.Add(testForms1);
             stud2.TestForms.Add(testForms2);
@@ -406,8 +406,8 @@ namespace Testverktyg
             stud2.TestForms.Add(testForms8);
             stud1.TestForms.Add(testForms9);
             stud2.TestForms.Add(testForms10);
-            stud1.TestForms.Add(testForms11);
-            stud2.TestForms.Add(testForms12);
+            stud3.TestForms.Add(testForms11);
+            stud3.TestForms.Add(testForms12);
 
             var list = new List<TestDefinition> { test1, test2, test3, test4, test5, test6 };
             int local = 0;

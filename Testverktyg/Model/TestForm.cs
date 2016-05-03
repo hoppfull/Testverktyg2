@@ -9,8 +9,8 @@ namespace Testverktyg.Model {
         public int Score { get; set; }
         public bool IsCompleted { get; set; }
         public int TimeLimit { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime FinishedDate { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? FinishedDate { get; set; }
         public DateTime FinalDate { get; set; }
         public TestDefinition TestDefinition { get; set; }
         public IList<AnsweredQuestion> AnsweredQuestions { get; set; }
@@ -20,8 +20,6 @@ namespace Testverktyg.Model {
             TestDefinition = testDefinition;
             IsCompleted = false;
             AnsweredQuestions = new List<AnsweredQuestion>();
-            StartDate = new DateTime(2016,01,01);
-            FinishedDate = new DateTime(2016, 01, 01);
         }
     }
 }
