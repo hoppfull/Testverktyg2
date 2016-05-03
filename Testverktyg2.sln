@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo02 - Nested datatemplat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo03 - SPA with user controls", "Demo03 - SPA with user controls\Demo03 - SPA with user controls.csproj", "{9F43A590-CAED-4747-AE96-33F9A8464BF8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo04 - AppResources", "Demo04 - AppResources\Demo04 - AppResources.csproj", "{3531622C-4632-49FD-96C4-B08B9B32FC71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{9F43A590-CAED-4747-AE96-33F9A8464BF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F43A590-CAED-4747-AE96-33F9A8464BF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F43A590-CAED-4747-AE96-33F9A8464BF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3531622C-4632-49FD-96C4-B08B9B32FC71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3531622C-4632-49FD-96C4-B08B9B32FC71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3531622C-4632-49FD-96C4-B08B9B32FC71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3531622C-4632-49FD-96C4-B08B9B32FC71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
