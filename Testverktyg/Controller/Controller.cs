@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Testverktyg.Model;
-using Testverktyg.Context;
+using Testverktyg.Repository;
 
 namespace Testverktyg.Controller {
     static public class Controller {
@@ -20,7 +18,8 @@ namespace Testverktyg.Controller {
             return true;
         }
 
-        public static bool DeleteTestDefinition(string name) {
+        public static bool DeleteTestDefinition(TestDefinition testDefinition) {
+            // if validated, do not delete, only set IsNotRemoved = false
             return true;
         }
 
@@ -67,8 +66,13 @@ namespace Testverktyg.Controller {
                 return true;
         }
 
-        public static bool UpdateEmail(StudentAccount selectedStudentAccount, string email) {
-            // hint: mylist.Exists(x => x.Email == email);
+        public static bool UpdateEmail(AbstractUser user, string email) {
+            // hint, check if exists: mylist.Exists(x => x.Email == email);
+            // Hint:
+            //user.Email = email;
+            //if(user is StudentAccount) {
+            //    Repository.Repository<StudentAccount>.Instance.Update(user as StudentAccount);
+            //}
             return true;
         }
 
@@ -76,11 +80,17 @@ namespace Testverktyg.Controller {
             return true;
         }
 
-        public static bool UpdatePassword(string password) {
+        public static bool UpdatePassword(AbstractUser user, string password) {
+            // Hint:
+            //user.Password = password;
+            //if(user is StudentAccount) {
+            //    Repository.Repository<StudentAccount>.Instance.Update(user as StudentAccount);
+            //}
             return true;
         }
 
-        public static bool IsUserEmailValid(string email) {
+        public static bool IsUserNameValid(string name) {
+            // Check if name makes sense... if you like... or whatever
             return true;
         }
     }
