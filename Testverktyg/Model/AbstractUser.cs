@@ -1,6 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace Testverktyg.Model {
+    public enum UserType {
+        Admin, Student, Teacher
+    }
     public abstract class AbstractUser {
         [Key]
         public int Id { get; set; }
@@ -8,12 +11,5 @@ namespace Testverktyg.Model {
         public string Email { get; set; }
         public string Password { get; set; }
         public bool IsNotRemoved { get; set; }
-
-        public AbstractUser(string name, string email, string password) {
-            Name = name;
-            Email = email;
-            Password = password;
-            IsNotRemoved = true;
-        }
     }
 }
