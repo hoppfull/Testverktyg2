@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Testverktyg.Model;
 using Testverktyg.Repository;
@@ -63,7 +64,8 @@ namespace Testverktyg.Controller {
         }
 
         public static bool IsEmailValid(string email) {
-                return true;
+
+            return new EmailAddressAttribute().IsValid(email);
         }
 
         public static bool UpdateEmail(AbstractUser user, string email) {

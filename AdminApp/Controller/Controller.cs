@@ -37,7 +37,18 @@ namespace AdminApp.Controller {
         }
 
         public static string GenerateNewPassword() {
-            return null;
+
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var stringChars = new char[8];
+            var rng = new Random();
+
+            for (int i = 0; i < stringChars.Length; i++)
+            {
+                stringChars[i] = chars[rng.Next(chars.Length)];
+            }
+
+            var password = new string(stringChars);
+            return password;
         }
     }
 }

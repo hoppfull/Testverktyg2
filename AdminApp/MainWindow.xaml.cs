@@ -22,8 +22,8 @@ namespace AdminApp {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
-            Console.WriteLine("hello world!");
-
+            Console.WriteLine(Controller.Controller.GenerateNewPassword());
+            Console.WriteLine();
             MockData.Reset();
 
         }
