@@ -24,28 +24,8 @@ namespace AdminApp {
             InitializeComponent();
             Console.WriteLine("hello world!");
 
-            //using (var db = new TestverktygContext()) {
-            //    db.AdminAccounts.Add(new AdminAccount("Kalle", "mail", "abs"));
-            //    db.StudentAccounts.Add(new StudentAccount("a", "b", "c"));
-            //    db.TeacherAccounts.Add(new TeacherAccount("x", "y", "z"));
-            //    db.TeacherAccounts.Add(new TeacherAccount("u", "v", "w"));
-            //db.Set<AdminAccount>().Add(new AdminAccount("Kalle", "mail", "abs"));
+            MockData.Reset();
 
-            //db.SaveChanges();
-            //}
-            //MockData.Reset();
-
-            var x = new AdminAccount {
-                Name = "a",
-                Email = "b",
-                Password = "c",
-                IsNotRemoved = true
-            };
-            Repository<AdminAccount>.Instance.Add(x);
-
-            x.Name = "hej";
-
-            //Repository<AdminAccount>.Instance.Update(x);
         }
     }
 }

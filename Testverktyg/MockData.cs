@@ -22,15 +22,15 @@ namespace Testverktyg
             // TODO: you know what to do... (>_>) (<_<) ... I know...
 
             //Create Users
-            var stud1 = new StudentAccount("Student1", "Student1", "a");
-            var stud2 = new StudentAccount("Student2", "Student2", "a");
-            var stud3 = new StudentAccount("Student3", "Student3", "a") { IsNotRemoved = false };
-            var admin1 = new AdminAccount("Admin1", "Admin1", "a");
-            var admin2 = new AdminAccount("Admin2", "Admin2", "a");
-            var admin3 = new AdminAccount("Admin3", "Admin3", "a") { IsNotRemoved = false };
-            var teacher1 = new TeacherAccount("Teacher1", "Teacher1", "a");
-            var teacher2 = new TeacherAccount("Teacher2", "Teacher2", "a");
-            var teacher3 = new TeacherAccount("Teacher3", "Teacher3", "a") { IsNotRemoved = false };
+            var stud1 = new StudentAccount {Name = "Student1" , Email = "Student1", Password = "a", TestForms = new List<TestForm>() };
+            var stud2 = new StudentAccount { Name = "Student2", Email = "Student2", Password = "a", TestForms = new List<TestForm>() };
+            var stud3 = new StudentAccount { Name = "Student3", Email = "", Password = "a", TestForms = new List<TestForm>() };
+            var admin1 = new AdminAccount { Name = "Admin1", Email = "Admin1", Password = "a", };
+            var admin2 = new AdminAccount { Name = "Admin2", Email = "Admin2", Password = "a", };
+            var admin3 = new AdminAccount { Name = "Admin3", Email = "Admin3", Password = "a", IsNotRemoved = false };
+            var teacher1 = new TeacherAccount { Name = "Teacher1", Email = "Teacher1", Password = "a", TestDefinitions = new List<TestDefinition>() };
+            var teacher2 = new TeacherAccount { Name = "Teacher2", Email = "Teacher2", Password = "a", TestDefinitions = new List<TestDefinition>() };
+            var teacher3 = new TeacherAccount { Name = "Teacher3", Email = "Teacher3", Password = "a", TestDefinitions = new List<TestDefinition>(), IsNotRemoved = false };
 
             //Create Subject
             var sub1 = new Subject("Initial");
