@@ -1,6 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace Testverktyg.Model {
+    public enum UserType {
+        Admin, Student, Teacher
+    }
     public abstract class AbstractUser {
         [Key]
         public int Id { get; set; }

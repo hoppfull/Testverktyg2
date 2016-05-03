@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Testverktyg.Model {
+    public enum GradeType {
+        G, VG, IG
+    }
     public class TestForm {
         [Key]
         public int Id { get; set; }
