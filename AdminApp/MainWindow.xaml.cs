@@ -22,8 +22,10 @@ namespace AdminApp {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
-            MockData.Reset();
+            Console.WriteLine(8/2);
+            //MockData.Reset();
             Console.WriteLine(Testverktyg.Controller.Controller.GetTestDefinitionAuthorName(Repository<TestDefinition>.Instance.Get(3)));
+
         }
     }
 }

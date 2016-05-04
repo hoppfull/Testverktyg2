@@ -23,13 +23,12 @@ namespace Testverktyg.Controller
         
         public static bool IsTestDefinitionNameValid(string name)
         {
+            //Check if exist
+
             return true;
         }
 
-        public static bool TestDefinitionNameExists(string name)
-        {
-            return true;
-        }
+
 
         public static bool DeleteTestDefinition(TestDefinition testDefinition)
         {
@@ -76,14 +75,47 @@ namespace Testverktyg.Controller
 
         public static Tuple<int, int, int, int, int, int, int> CalcStatistics(IList<Tuple<string, GradeType, int, int>> result)
         {
-            //Tuple tup = new Tuple<int, int, int, int, int, int, int>;
-
+            int totPoints = 0;
+            int totTime = 0;
+            int G =0;
+            int IG = 0;
+            int VG = 0;
+            int median;
+            List<int> listofpoints = new List<int>();
             foreach (var item in result)
             {
-                //item.
+                totPoints += item.Item3;
+                listofpoints.Add(item.Item3);
+                totTime += item.Item4;
+                switch (item.Item2)
+                {
+                    case GradeType.G:
+                        G++;
+                        break;
+                    case GradeType.IG:
+                        IG++;
+                        break;
+                    case GradeType.VG:
+                        VG++;
+                        break;
+                    default:
+                        break;
+                }
             }
+            listofpoints.Sort();
+            if (listofpoints.Count % 2 == 0)
+            {
+                int x = listofpoints.Count / 2;
+                median = listofpoints[x] + listofpoints[x + 1] / 2;
+            }
+            else
+            {
+                median = listofpoints[listofpoints.Count/2+1];
+            }
+            int avgPoints  = totPoints / result.Count();
+            int avgTime = totTime / result.Count();
 
-            return null;
+            return Tuple.Create(avgPoints, avgTime, median, G, IG, VG, result.Count);
         }
 
         public static string GetTestDefinitionAuthorName(TestDefinition testDefinition)
