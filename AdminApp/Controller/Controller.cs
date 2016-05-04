@@ -7,76 +7,148 @@ using System.Threading.Tasks;
 using Testverktyg.Model;
 using Testverktyg.Repository;
 
-namespace AdminApp.Controller {
-    public class Controller {
+namespace AdminApp.Controller
+{
+    public class Controller
+    {
 
         private static Random rng = new Random();
 
-        public static Subject CreateSubject(string name) {
+        public static Subject CreateSubject(string name)
+        {
+
+            if (IsSubjectValid(name))
+            {
+                var subject = new Subject(name);
+                Repository<Subject>.Instance.Add(subject);
+                return subject;
+            }
             return null;
         }
 
-        public static bool SubjectExists(string name) {
+        public static bool IsSubjectValid(string name)
+        {
             return true;
         }
 
-        public static bool IsSubjectValid(string name) {
-            return true;
-        }
+        public static AbstractUser CreateUser(string name, string email, UserType userType)
+        {
 
-        public static AbstractUser CreateUser(string name, string email, UserType userType) {
-            // return null if operation fails
-            // client code must check if result is null
+            if (userType == UserType.Student)
+            {
+                var user = new StudentAccount();
+                user.Name = name;
+                user.Email = email;
+                user.TestForms = new List<TestForm>();
+                Repository<StudentAccount>.Instance.Add(user as StudentAccount);
+
+
+            }
+            else if (userType == UserType.Admin)
+            {
+                var user = new AdminAccount();
+                user.Name = name;
+                user.Email = email;
+                Repository<AdminAccount>.Instance.Add(user as AdminAccount);
+
+            }
+            else if (userType == UserType.Teacher)
+            {
+                var user = new TeacherAccount();
+                user.Name = name;
+                user.Email = email;
+                user.TestDefinitions = new List<TestDefinition>();
+                Repository<TeacherAccount>.Instance.Add(user as TeacherAccount);
+
+            }
+
             return null;
         }
 
-        public static bool DeleteUser(AbstractUser user) {
-            // if last admin, don't delete else, remove from DB
-            // if student has testforms, only set IsNotRemoved = false, else delete from DB
-            // if teacher has testdefinitions, only set IsNotRemoved = false, else delete from DB
-            return true;
-        }
-
-        public static string ResetPassword(AbstractUser user) {
-
-            user.Password = GenerateNewPassword();
+        public static bool DeleteUser(AbstractUser user)
+        {
 
             if (user is StudentAccount)
             {
-                Repository<StudentAccount>.Instance.Update(user as StudentAccount);
-                return user.Password;
+                StudentAccount suser = (StudentAccount)user;
+                if (suser.TestForms.Count() < 0)
+                {
+                    suser.IsNotRemoved = false;
+                    return true;
 
+                }
+                else
+                {
+                    Repository<StudentAccount>.Instance.Delete(suser);
+                    return true;
+                }
             }
             else if (user is AdminAccount)
             {
-                Repository<AdminAccount>.Instance.Update(user as AdminAccount);
-                return user.Password;
+                //Admin ska inte kunna deleta sig själv
+                AdminAccount auser = (AdminAccount)user;
 
+                Repository<AdminAccount>.Instance.Delete(auser);
 
             }
             else if (user is TeacherAccount)
             {
-                Repository<TeacherAccount>.Instance.Update(user as TeacherAccount);
-                return user.Password;
-
-            }
-
-            return null;
+                TeacherAccount tuser = (TeacherAccount)user;
+                if (tuser.TestDefinitions.Count() < 0)
+                {
+                    tuser.IsNotRemoved = false;
+                    return true;
+                }
+                else
+                {
+                    Repository<TeacherAccount>.Instance.Delete(tuser);
+                }
+            }       
+                    return true;
         }
 
-        public static string GenerateNewPassword() {
+        public static string ResetPassword(AbstractUser user)
+{
 
-            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            var stringChars = new char[6];
-            
-            for (int i = 0; i < stringChars.Length; i++)
-            {
-                stringChars[i] = chars[rng.Next(chars.Length)];
-        
-            }
+    user.Password = GenerateNewPassword();
 
-            var password = new string(stringChars);
-            return password;
-        }
+    if (user is StudentAccount)
+    {
+        Repository<StudentAccount>.Instance.Update(user as StudentAccount);
+        return user.Password;
+
+    }
+    else if (user is AdminAccount)
+    {
+        Repository<AdminAccount>.Instance.Update(user as AdminAccount);
+        return user.Password;
+
+
+    }
+    else if (user is TeacherAccount)
+    {
+        Repository<TeacherAccount>.Instance.Update(user as TeacherAccount);
+        return user.Password;
+
+    }
+
+    return null;
+}
+
+public static string GenerateNewPassword()
+{
+
+    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var stringChars = new char[6];
+
+    for (int i = 0; i < stringChars.Length; i++)
+    {
+        stringChars[i] = chars[rng.Next(chars.Length)];
+
+    }
+
+    var password = new string(stringChars);
+    return password;
+}
     }
 }
