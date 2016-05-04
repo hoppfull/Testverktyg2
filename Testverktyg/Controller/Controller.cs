@@ -142,7 +142,7 @@ namespace Testverktyg.Controller
 
             foreach (var item in studentAccounts)
             {
-                item.TestForms.Add(new TestForm(time, finalDate, testDefinition));
+                item.TestForms.Add(new TestForm { TimeLimit = time, FinalDate = finalDate, TestDefinition = testDefinition});
                 Repository.Repository<StudentAccount>.Instance.Update(item);
             }
 

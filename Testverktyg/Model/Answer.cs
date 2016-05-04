@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Testverktyg.Model {
     public class Answer {
@@ -6,9 +7,8 @@ namespace Testverktyg.Model {
         public int Id { get; set; }
         public string Text { get; set; }
         public int CheckedOrRanked { get; set; }
-        public Answer(string text, int checkedOrRanked) {
-            Text = text;
-            CheckedOrRanked = checkedOrRanked;
-        }
+        public int QuestionId { get; set; }
+        [ForeignKey("QuestionId")]
+        public Question Question { get; set; }
     }
 }
