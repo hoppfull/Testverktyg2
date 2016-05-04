@@ -20,8 +20,7 @@
                 <ColumnDefinition Width="0.15*" />
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource Key_lbl_Header}" Content="Login"/>
-            <!--<TextBox Grid.Row="2" Grid.Column="1" x:Name="txb_LoginEmail" TextChanged="txb_LoginEmail_TextChangeds" />-->
-            
+
             <TextBox Grid.Column="1" Grid.Row="1" Style="{StaticResource Key_tbx_AdminAppLoginEmail}" FontSize="16" VerticalContentAlignment="Center" x:Name="tbx_AdminAppLoginEmail" Margin="5" Padding="5,0,0,0" />
             <TextBlock Style="{StaticResource Key_tbl_AdminAppEmailPlaceholder}" Grid.Column="1" Grid.Row="1" FontSize="16" IsHitTestVisible="False" Text="Email address" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="#FFB1DAEE">
             </TextBlock>
