@@ -22,9 +22,13 @@ namespace AdminApp {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
-            Console.WriteLine(Controller.Controller.GenerateNewPassword());
-            MockData.Reset();
+            //Console.WriteLine(Controller.Controller.GenerateNewPassword());
+            //MockData.Reset();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
+        }
+
+        private void btn_Login_Click(object sender, RoutedEventArgs e) {
+
         }
     }
 }
