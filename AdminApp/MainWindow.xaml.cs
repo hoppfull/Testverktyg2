@@ -33,13 +33,13 @@ namespace AdminApp {
 
             switch (ViewController.Login(this, tbx_LoginEmail.Text, tbx_LoginPassword.Text)) {
                 case ViewController.LoginResponse.InvalidUser:
-                    tbl_LoginWarning.Text = "No such user exists!";
+                    tbl_LoginWarning.Text = "Ingen sådan användare existerar!";
                     break;
                 case ViewController.LoginResponse.InvalidPassword:
-                    tbl_LoginWarning.Text = "Invalid password!";
+                    tbl_LoginWarning.Text = "Felaktigt lösenord!";
                     break;
                 case ViewController.LoginResponse.Success:
-                    tbl_LoginWarning.Text = "Logging in...";
+                    tbl_LoginWarning.Text = "Loggar in...";
                     break;
             }
         }
