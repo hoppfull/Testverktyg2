@@ -17,6 +17,7 @@ using Testverktyg;
 using Testverktyg.Model;
 using Testverktyg.Context;
 using Testverktyg.Repository;
+using AdminApp.Controller;
 
 namespace AdminApp {
     public partial class MainWindow : Window {
@@ -28,7 +29,23 @@ namespace AdminApp {
         }
 
         private void btn_Login_Click(object sender, RoutedEventArgs e) {
+            tbl_LoginWarning.Visibility = Visibility.Visible;
 
+            switch (ViewController.Login(this, tbx_LoginEmail.Text, tbx_LoginPassword.Text)) {
+                case ViewController.LoginResponse.InvalidUser:
+                    tbl_LoginWarning.Text = "No such user exists!";
+                    break;
+                case ViewController.LoginResponse.InvalidPassword:
+                    tbl_LoginWarning.Text = "Invalid password!";
+                    break;
+                case ViewController.LoginResponse.Success:
+                    tbl_LoginWarning.Text = "Logging in...";
+                    break;
+            }
+        }
+
+        private void tbx_LoginField_TextChanged(object sender, TextChangedEventArgs e) {
+            tbl_LoginWarning.Visibility = Visibility.Collapsed;
         }
     }
 }
