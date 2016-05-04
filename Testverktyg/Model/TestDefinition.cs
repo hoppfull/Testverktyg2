@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Testverktyg.Model {
     public enum TestDefinitionState {
@@ -15,5 +16,8 @@ namespace Testverktyg.Model {
         public TestDefinitionState TestDefinitionState { get; set; }
         public bool IsNotRemoved { get; set; }
         public IList<Question> Questions { get; set; }
+        public int TeacherAccountId { get; set; }
+        [ForeignKey("TeacherAccountId")]
+        public TeacherAccount TeacherAccount { get; set; }
     }
 }

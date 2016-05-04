@@ -14,13 +14,13 @@ namespace Testverktyg.Controller
     {
         public static bool CreateTest(string name, Subject subject)
         {
-            var testdefinition = new TestDefinition {Title = name, Subject = subject,TestDefinitionState = TestDefinitionState.Created, Paragraph = "" };
+            var testdefinition = new TestDefinition { Title = name, Subject = subject, TestDefinitionState = TestDefinitionState.Created, Paragraph = "" };
 
             Repository<TestDefinition>.Instance.Add(testdefinition);
             return true;
         }
 
-        
+
         public static bool IsTestDefinitionNameValid(string name)
         {
             return true;
@@ -88,18 +88,7 @@ namespace Testverktyg.Controller
 
         public static string GetTestDefinitionAuthorName(TestDefinition testDefinition)
         {
-
-            using (var db = new TestverktygContext())
-            {
-                List<TeacherAccount> list = new List<TeacherAccount>();
-                foreach (var item in Repository<TeacherAccount>.Instance.GetAll())
-                {
-                    TeacherAccount t = db.TeacherAccounts.Where(x => x.Id == item.Id).Include(x => x.TestDefinitions).First();
-                    list.Add(t);
-                }
-                return list.First(x => x.TestDefinitions.Any(y => y.Id == testDefinition.Id)).Name;
-            }
-            
+            return Repository<TeacherAccount>.Instance.Get(testDefinition.TeacherAccountId).Name;
         }
 
         public static bool ValidateTestDefinition(TestDefinition testDefinition, IList<StudentAccount> studentAccounts, int time, DateTime finalDate)

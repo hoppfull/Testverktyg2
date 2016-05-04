@@ -23,6 +23,7 @@ namespace AdminApp {
         public MainWindow() {
             InitializeComponent();
             MockData.Reset();
+            Console.WriteLine(Testverktyg.Controller.Controller.GetTestDefinitionAuthorName(Repository<TestDefinition>.Instance.Get(1)));
             Console.WriteLine(Testverktyg.Controller.Controller.GetTestDefinitionAuthorName(Repository<TestDefinition>.Instance.Get(3)));
         }
     }
