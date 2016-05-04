@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="0.7*" />
                 <ColumnDefinition Width="0.15*" />
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource Key_lbl_Header}" Content="Login"/>
+            <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource Key_lbl_Header}" Content="Logga in"/>
 
             <TextBox x:Name="tbx_LoginEmail"
                      Grid.Column="1" Grid.Row="1"
@@ -27,7 +27,7 @@
                      TextChanged="tbx_LoginField_TextChanged" />
             <TextBlock Grid.Column="1" Grid.Row="1"
                        Style="{StaticResource Key_tbl_EmailPlaceholder}"
-                       Text="Email address">
+                       Text="Emailaddress">
             </TextBlock>
 
             <TextBox x:Name="tbx_LoginPassword"
@@ -36,7 +36,7 @@
                      TextChanged="tbx_LoginField_TextChanged" />
             <TextBlock Grid.Column="1" Grid.Row="2"
                        Style="{StaticResource Key_tbl_PasswordPlaceholder}"
-                       Text="Password">
+                       Text="Lösenord">
             </TextBlock>
             
             <StackPanel Grid.Column="1" Grid.Row="3" Margin="10">
@@ -45,12 +45,12 @@
                            FontSize="16"
                            Margin="0,0,0,10"
                            Foreground="{StaticResource color_Warning}"
-                           Text="Loading..."/>
+                           Text="Laddar..."/>
 
                 <Button Height="Auto"
                         VerticalAlignment="Top"
                         HorizontalAlignment="Center"
-                        Content="Login"
+                        Content="Logga in"
                         Click="btn_Login_Click"/>
 
             </StackPanel>
