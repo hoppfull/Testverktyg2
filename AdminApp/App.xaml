@@ -4,24 +4,40 @@
              xmlns:local="clr-namespace:AdminApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        
+        <SolidColorBrush x:Key="color_LightLightMain" Color="#D2E8F3" />
+        <SolidColorBrush x:Key="color_MidLightMain" Color="#B1DAEE" />
+        <SolidColorBrush x:Key="color_NormalLightMain" Color="#7EBBD9" />
+        <SolidColorBrush x:Key="color_NormalDarkMain" Color="#569DC0" />
+        <SolidColorBrush x:Key="color_MidDarkMain" Color="#3680A4" />
+        <SolidColorBrush x:Key="color_DarkDarkMain" Color="#1D6D93" />
+        <SolidColorBrush x:Key="color_Warning" Color="Orange" />
+
         <Style x:Key="Key_lbl_Header" TargetType="Label">
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontSize" Value="26" />
             <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="Foreground" Value="#B1DAEE" />
+            <Setter Property="Foreground" Value="{StaticResource color_LightLightMain}" />
         </Style>
 
-        <Style x:Key="Key_tbx_AdminAppLoginEmail" TargetType="TextBox">
-            <Setter Property="Foreground" Value="#1D6D93" />
-            <Setter Property="Background" Value="#7EBBD9" />
-        </Style>
-        <Style x:Key="Key_tbx_AdminAppLoginPassword" TargetType="TextBox">
-            <Setter Property="Foreground" Value="#1D6D93" />
-            <Setter Property="Background" Value="#7EBBD9" />
+        <Style x:Key="Key_tbx_LoginField" TargetType="TextBox">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="5,0,0,0" />
+            <Setter Property="Foreground" Value="{StaticResource color_DarkDarkMain}" />
+            <Setter Property="Background" Value="{StaticResource color_NormalLightMain}" />
         </Style>
 
-        <Style x:Key="Key_tbl_AdminAppEmailPlaceholder" TargetType="TextBlock">
+        <Style x:Key="Key_tbl_AdminAppPlaceholderBase" TargetType="TextBlock">
+            <Setter Property="Margin" Value="12,0,0,0" />
+            <Setter Property="Foreground" Value="{StaticResource color_MidLightMain}" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+
+        <Style x:Key="Key_tbl_EmailPlaceholder" TargetType="TextBlock" BasedOn="{StaticResource Key_tbl_AdminAppPlaceholderBase}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Text, ElementName=tbx_AdminAppLoginEmail}" Value="">
@@ -30,7 +46,7 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="Key_tbl_AdminAppPasswordPlaceholder" TargetType="TextBlock">
+        <Style x:Key="Key_tbl_PasswordPlaceholder" TargetType="TextBlock" BasedOn="{StaticResource Key_tbl_AdminAppPlaceholderBase}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Text, ElementName=tbx_AdminAppLoginPassword}" Value="">
@@ -40,8 +56,23 @@
         </Style>
 
         <Style TargetType="Button">
-            <Setter Property="Foreground" Value="#B1DAEE" />
-            <Setter Property="Background" Value="#1D6D93" />
+            <Setter Property="Foreground" Value="{StaticResource color_LightLightMain}" />
+            <Setter Property="Background" Value="{StaticResource color_DarkDarkMain}" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Padding="10,5" Background="{TemplateBinding Background}">
+                            <ContentPresenter/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource color_MidDarkMain}" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </Application.Resources>
 </Application>

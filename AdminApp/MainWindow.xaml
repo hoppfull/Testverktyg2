@@ -21,44 +21,34 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource Key_lbl_Header}" Content="Login"/>
 
-            <TextBox x:Name="tbx_AdminAppLoginEmail"
+            <TextBox x:Name="tbx_LoginEmail"
                      Grid.Column="1" Grid.Row="1"
-                     Style="{StaticResource Key_tbx_AdminAppLoginEmail}" FontSize="16"
-                     VerticalContentAlignment="Center" 
-                     Margin="5" Padding="5,0,0,0" />
+                     Style="{StaticResource Key_tbx_LoginField}" />
             <TextBlock Grid.Column="1" Grid.Row="1"
-                       Style="{StaticResource Key_tbl_AdminAppEmailPlaceholder}" FontSize="16"
-                       IsHitTestVisible="False"
-                       Text="Email address"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Left"
-                       Margin="10,0,0,0"
-                       Foreground="#FFB1DAEE">
+                       Style="{StaticResource Key_tbl_EmailPlaceholder}"
+                       Text="Email address">
             </TextBlock>
 
-            <TextBox x:Name="tbx_AdminAppLoginPassword"
+            <TextBox x:Name="tbx_LoginPassword"
                      Grid.Column="1" Grid.Row="2"
-                     Style="{StaticResource Key_tbx_AdminAppLoginPassword}" FontSize="16"
-                     VerticalContentAlignment="Center"
-                     Margin="5" Padding="5,0,0,0" />
+                     Style="{StaticResource Key_tbx_LoginField}" />
             <TextBlock Grid.Column="1" Grid.Row="2"
-                       Style="{StaticResource Key_tbl_AdminAppPasswordPlaceholder}" FontSize="16"
-                       IsHitTestVisible="False"
-                       Text="Password"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Left"
-                       Margin="10,0,0,0"
-                       Foreground="#FFB1DAEE">
+                       Style="{StaticResource Key_tbl_PasswordPlaceholder}"
+                       Text="Password">
             </TextBlock>
             
             <StackPanel Grid.Column="1" Grid.Row="3" Margin="10">
-                <TextBlock x:Name="tbl_AdminAppLoginWarning" Visibility="Collapsed" FontSize="16" Foreground="Coral"
-                       Text="Oops! Something went wrong! Try again..."/>
+                <TextBlock x:Name="tbl_LoginWarning"
+                           Visibility="Visible"
+                           FontSize="16"
+                           Margin="0,0,0,10"
+                           Foreground="{StaticResource color_Warning}"
+                           Text="Oops! Something went wrong! Try again..."/>
 
-                <Button Height="Auto" FontSize="16"
+                <Button Height="Auto"
                         VerticalAlignment="Top"
                         HorizontalAlignment="Center"
-                        Padding="10,5,10,5" Content="Login"
+                        Content="Login"
                         Click="btn_Login_Click"/>
 
             </StackPanel>
