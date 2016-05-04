@@ -10,7 +10,14 @@
         <SolidColorBrush x:Key="color_NormalDarkMain" Color="#FF2D94C7" />
         <SolidColorBrush x:Key="color_MidDarkMain" Color="#34708D" />
         <SolidColorBrush x:Key="color_DarkDarkMain" Color="#1C536D" />
+        <SolidColorBrush x:Key="color_LowDarkMain" Color="#FF376378" />
         <SolidColorBrush x:Key="color_Warning" Color="Orange" />
+
+        <Style x:Key="Key_lvw_Base" TargetType="ListView">
+            <Setter Property="BorderThickness" Value="1,1,0,1" />
+            <Setter Property="BorderBrush" Value="{StaticResource color_DarkDarkMain}" />
+            <Setter Property="Background" Value="{StaticResource color_LowDarkMain}" />
+        </Style>
 
         <Style x:Key="Key_lbl_Header" TargetType="Label">
             <Setter Property="FontWeight" Value="Bold" />
@@ -81,12 +88,12 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Name="aButton" Padding="10,5" Background="{TemplateBinding Background}">
+                        <Border Name="btn_Template" Padding="10,5" Background="{TemplateBinding Background}">
                             <ContentPresenter/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="aButton" Property="Opacity" Value="0.4" />
+                                <Setter TargetName="btn_Template" Property="Opacity" Value="0.4" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -134,17 +141,49 @@
                                 <Setter TargetName="Border" Property="Background" Value="{StaticResource color_NormalDarkMain}" />
                                 <Setter TargetName="Border" Property="BorderThickness" Value="1,1,1,0" />
                                 <Setter TargetName="Border" Property="Opacity" Value="1" />
-
                             </Trigger>
-                            <!--<Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="Border" Property="Background" Value="{StaticResource DisabledBackgroundBrush}" />
-                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource DisabledBorderBrush}" />
-                                <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}" />
-                            </Trigger>-->
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="ListViewItemOptionStyle" TargetType="ListViewItem">
+            <Setter Property="Background" Value="{StaticResource color_MidDarkMain}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                        <Border x:Name="Bd" BorderBrush="{StaticResource color_DarkDarkMain}" BorderThickness="1,0,0,1" 
+                                Margin="1,2"
+                            Background="{TemplateBinding Background}" 
+                            Padding="{TemplateBinding Padding}" 
+                            SnapsToDevicePixels="True">
+                            <ContentPresenter 
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{StaticResource color_MidLightMain}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected" Value="True" />
+                    </MultiTrigger.Conditions>
+                    <MultiTrigger.Setters>
+                        <Setter Property="Background" Value="{StaticResource color_DarkDarkMain}" />
+                        <Setter Property="BorderBrush" Value="{StaticResource color_MidDarkMain}" />
+                        <Setter Property="Foreground" Value="{StaticResource color_LightLightMain}" />
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+
     </Application.Resources>
 </Application>

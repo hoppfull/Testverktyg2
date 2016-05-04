@@ -19,30 +19,30 @@
                         <Grid Background="{StaticResource color_NormalDarkMain}">
                             <Grid Margin="25">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="0.06*" />
-                                    <RowDefinition Height="0.30*" />
-                                    <RowDefinition Height="0.1*" />
-                                    <RowDefinition Height="0.08*" />
-                                    <RowDefinition Height="0.30*" />
-                                    <RowDefinition Height="0.1*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="5*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="5*" />
+                                    <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
 
                                 <Label Grid.Row="0" VerticalAlignment="Top" Content="Ämnen" Style="{StaticResource Key_lbl_Header2}"/>
-                                
-                                <ScrollViewer Grid.Row="1">
-                                    <StackPanel>
-                                        <ListView x:Name="lvw_Subjects" Background="{StaticResource color_MidDarkMain}">
-                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
-                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
-                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
-                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
-                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
-                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
-                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
-                                        </ListView>
-                                    </StackPanel>
-                                </ScrollViewer>
-                                
+
+                                <Grid Grid.Row="1">
+                                    <ListView x:Name="lvw_Subjects" Style="{StaticResource Key_lvw_Base}" SelectionMode="Single"
+                                              ItemContainerStyle="{StaticResource ListViewItemOptionStyle}" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD1" />
+                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD2" />
+                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD3" />
+                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD4" />
+                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD5" />
+                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD6" />
+                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD7" />
+                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD8" />
+                                    </ListView>
+                                </Grid>
+
                                 <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Orientation="Horizontal">
                                     <Button Content="Lägg till" Click="btn_AddSubject_Click" />
                                     <Button Margin="10,0" Content="Ta bort" Click="btn_RemoveSubject_Click" IsEnabled="False" />
@@ -52,19 +52,19 @@
 
                                 <Label Grid.Row="3" Content="Prov" Style="{StaticResource Key_lbl_Header2}" />
 
-                                <ScrollViewer Grid.Row="4">
-                                    <StackPanel>
-                                        <ListView x:Name="lvw_TestDefinitions" Background="{StaticResource color_MidDarkMain}">
-                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
-                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
-                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
-                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
-                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
-                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
-                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
-                                        </ListView>
-                                    </StackPanel>
-                                </ScrollViewer>
+                                <Grid Grid.Row="4">
+                                    <ListView x:Name="lvw_TestDefinitions" Style="{StaticResource Key_lvw_Base}" SelectionMode="Single"
+                                              ItemContainerStyle="{StaticResource ListViewItemOptionStyle}" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD1" />
+                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD2" />
+                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD3" />
+                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD4" />
+                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD5" />
+                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD6" />
+                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD7" />
+                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD8" />
+                                    </ListView>
+                                </Grid>
 
                                 <StackPanel Grid.Row="5" VerticalAlignment="Bottom" Orientation="Horizontal">
                                     <Button Content="Granska prov" Click="btn_InspectTestDefinition_Click" IsEnabled="False" />
