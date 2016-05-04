@@ -23,7 +23,6 @@ namespace AdminApp {
         public MainWindow() {
             InitializeComponent();
             Console.WriteLine(Controller.Controller.GenerateNewPassword());
-            Console.WriteLine();
             MockData.Reset();
 
         }

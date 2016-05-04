@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdminApp.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,10 @@ using System.Threading.Tasks;
 using Testverktyg.Model;
 
 namespace AdminApp.Controller {
-    class Controller {
+    public class Controller {
+
+        private static Random rng = new Random();
+
         public static Subject CreateSubject(string name) {
             return null;
         }
@@ -39,12 +43,12 @@ namespace AdminApp.Controller {
         public static string GenerateNewPassword() {
 
             var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            var stringChars = new char[8];
-            var rng = new Random();
-
+            var stringChars = new char[6];
+            
             for (int i = 0; i < stringChars.Length; i++)
             {
                 stringChars[i] = chars[rng.Next(chars.Length)];
+        
             }
 
             var password = new string(stringChars);
