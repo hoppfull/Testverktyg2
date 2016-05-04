@@ -16,10 +16,9 @@ namespace Testverktyg.Controller
         {
             if (IsTestDefinitionNameValid(name))
             {
-            var testdefinition = new TestDefinition { Title = name, Subject = subject, TestDefinitionState = TestDefinitionState.Created, Paragraph = "" };
-            Repository<TestDefinition>.Instance.Add(testdefinition);
-            return true;
-
+                var testdefinition = new TestDefinition { Title = name, Subject = subject, TestDefinitionState = TestDefinitionState.Created, Paragraph = "" };
+                Repository<TestDefinition>.Instance.Add(testdefinition);
+                return true;
             }
             else
             {
@@ -81,7 +80,22 @@ namespace Testverktyg.Controller
         public static IList<Tuple<string, GradeType, int, int>> GetResults(IList<TestForm> testForms)
         {
             //Rickard
-            // Get student related to each testform
+            string name;
+            int testTime = 0;
+            int testScore = 0;
+            GradeType grade = GradeType.IG;
+            Tuple<string, GradeType, int, int> tup;
+            IList<Tuple<string, GradeType, int, int>> list = new List<Tuple<string, GradeType, int, int>>();
+
+            foreach (var item in testForms)
+            {
+                name = Repository<StudentAccount>.Instance.Get(item.StudentAccountId).Name;
+                grade = CalcGrade(item);
+                testTime = //startdate - finisheddate
+                testScore = item.Score;
+                tup = Tuple.Create(name, grade, testScore, testTime);
+                list.Add(tup);
+            }
             // return studentname * grade * time * score
             return null;
         }
@@ -90,7 +104,7 @@ namespace Testverktyg.Controller
         {
             int totPoints = 0;
             int totTime = 0;
-            int G =0;
+            int G = 0;
             int IG = 0;
             int VG = 0;
             int median;
@@ -123,9 +137,9 @@ namespace Testverktyg.Controller
             }
             else
             {
-                median = listofpoints[listofpoints.Count/2+1];
+                median = listofpoints[listofpoints.Count / 2 + 1];
             }
-            int avgPoints  = totPoints / result.Count();
+            int avgPoints = totPoints / result.Count();
             int avgTime = totTime / result.Count();
 
             return Tuple.Create(avgPoints, avgTime, median, G, IG, VG, result.Count);
@@ -142,7 +156,7 @@ namespace Testverktyg.Controller
 
             foreach (var item in studentAccounts)
             {
-                item.TestForms.Add(new TestForm { TimeLimit = time, FinalDate = finalDate, TestDefinition = testDefinition});
+                item.TestForms.Add(new TestForm { TimeLimit = time, FinalDate = finalDate, TestDefinition = testDefinition });
                 Repository.Repository<StudentAccount>.Instance.Update(item);
             }
 
@@ -237,6 +251,11 @@ namespace Testverktyg.Controller
         public static bool IsUserNameValid(string name)
         {
             return !string.IsNullOrWhiteSpace(name);
+        }
+
+        public static GradeType CalcGrade(TestForm testform)
+        {
+            return GradeType.G;
         }
     }
 }
