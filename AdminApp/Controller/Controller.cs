@@ -16,13 +16,9 @@ namespace AdminApp.Controller {
             return null;
         }
 
-        public static bool SubjectExists(string name) {
-            IList<Subject> repo = Repository<Subject>.Instance.GetAll();
-            return repo.Any(x => x.Name == name);
-        }
-
         public static bool IsSubjectValid(string name) {
-            return true;
+            IList<Subject> subjects = Repository<Subject>.Instance.GetAll();
+            return !(subjects.Any(x => x.Name == name) || String.IsNullOrWhiteSpace(name)); //Check if name exists in db and if it's not empty
         }
 
         public static AbstractUser CreateUser(string name, string email, UserType userType) {
