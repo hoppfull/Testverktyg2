@@ -19,7 +19,7 @@ namespace AdminApp.Controller
 
             if (IsSubjectValid(name))
             {
-                var subject = new Subject(name);
+                var subject = new Subject { Name = name };
                 Repository<Subject>.Instance.Add(subject);
                 return subject;
             }
@@ -28,9 +28,9 @@ namespace AdminApp.Controller
 
         public static bool IsSubjectValid(string name)
         {
-            return true;
+            IList<Subject> subjects = Repository<Subject>.Instance.GetAll();
+            return !(subjects.Any(x => x.Name == name) || String.IsNullOrWhiteSpace(name)); //Check if name exists in db and if it's not empty
         }
-
         public static AbstractUser CreateUser(string name, string email, UserType userType)
         {
 
@@ -61,10 +61,8 @@ namespace AdminApp.Controller
                 Repository<TeacherAccount>.Instance.Add(user as TeacherAccount);
 
             }
-
             return null;
         }
-
         public static bool DeleteUser(AbstractUser user)
         {
 

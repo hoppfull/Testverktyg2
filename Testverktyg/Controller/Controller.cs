@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
@@ -118,8 +119,15 @@ namespace Testverktyg.Controller
         public static bool IsEmailValid(string email)
         {
 
-            return new EmailAddressAttribute().IsValid(email);
-
+            if (!new EmailAddressAttribute().IsValid(email))
+            {
+                return false;
+            }
+            List<string> emails = new List<string>();
+            foreach (var item in Repository.Repository<AdminAccount>.Instance.GetAll()) { emails.Add(item.Email); }
+            foreach (var item in Repository.Repository<StudentAccount>.Instance.GetAll()) { emails.Add(item.Email); }
+            foreach (var item in Repository.Repository<TeacherAccount>.Instance.GetAll()) { emails.Add(item.Email); }
+            return !(emails.Any(x => x == email));
         }
 
         public static bool UpdateEmail(AbstractUser user, string email)

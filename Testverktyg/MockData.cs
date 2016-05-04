@@ -33,8 +33,8 @@ namespace Testverktyg
             var teacher3 = new TeacherAccount { Name = "Teacher3", Email = "Teacher3", Password = "a", TestDefinitions = new List<TestDefinition>(), IsNotRemoved = true };
 
             //Create Subject
-            var sub1 = new Subject("Initial");
-            var sub2 = new Subject("SystemUtvecklare");
+            var sub1 = new Subject { Name = "Initial" };
+            var sub2 = new Subject { Name = "SystemUtvecklare" };
 
             //Create TestDefinition
             var test1 = new TestDefinition {Title = "DatabasProv", Subject = sub1, Paragraph ="1",TestDefinitionState = TestDefinitionState.Created, Questions = new List<Question>()};
@@ -451,11 +451,13 @@ namespace Testverktyg
                 //Add Users
                 db.StudentAccounts.Add(stud1);
                 db.StudentAccounts.Add(stud2);
+                db.StudentAccounts.Add(stud3);
                 db.TeacherAccounts.Add(teacher1);
                 db.TeacherAccounts.Add(teacher2);
                 db.TeacherAccounts.Add(teacher3);
                 db.AdminAccounts.Add(admin1);
                 db.AdminAccounts.Add(admin2);
+                db.AdminAccounts.Add(admin3);
 
                 //Add AnswerQuestions
 

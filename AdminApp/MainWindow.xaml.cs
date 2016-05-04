@@ -23,16 +23,6 @@ namespace AdminApp {
         public MainWindow() {
             InitializeComponent();
             MockData.Reset();
-
-            using (var db = new TestverktygContext())
-            {
-                TeacherAccount t = db.TeacherAccounts.Where(x => x.Id == 1).Include(x => x.TestDefinitions).First();
-                Console.WriteLine(t.TestDefinitions.Count);
-                //Console.WriteLine(Repository<TeacherAccount>.Instance.GetAll()[0]);
-            }
-
-            
-
         }
     }
 }
