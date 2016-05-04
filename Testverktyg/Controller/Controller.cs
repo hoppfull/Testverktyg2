@@ -91,10 +91,15 @@ namespace Testverktyg.Controller
 
             using (var db = new TestverktygContext())
             {
-                TeacherAccount t = db.TeacherAccounts.Where(x => x.Id == 1).Include(x => x.TestDefinitions).First();
-
+                List<TeacherAccount> list = new List<TeacherAccount>();
+                foreach (var item in Repository<TeacherAccount>.Instance.GetAll())
+                {
+                    TeacherAccount t = db.TeacherAccounts.Where(x => x.Id == item.Id).Include(x => x.TestDefinitions).First();
+                    list.Add(t);
+                }
+                return list.First(x => x.TestDefinitions.Any(y => y.Id == testDefinition.Id)).Name;
             }
-            return null;
+            
         }
 
         public static bool ValidateTestDefinition(TestDefinition testDefinition, IList<StudentAccount> studentAccounts, int time, DateTime finalDate)

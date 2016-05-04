@@ -41,6 +41,7 @@ namespace AdminApp.Controller
                 user.Email = email;
                 user.TestForms = new List<TestForm>();
                 Repository<StudentAccount>.Instance.Add(user as StudentAccount);
+                return user as AbstractUser;
 
 
             }
@@ -50,7 +51,7 @@ namespace AdminApp.Controller
                 user.Name = name;
                 user.Email = email;
                 Repository<AdminAccount>.Instance.Add(user as AdminAccount);
-
+                return user as AbstractUser;
             }
             else if (userType == UserType.Teacher)
             {
@@ -59,9 +60,12 @@ namespace AdminApp.Controller
                 user.Email = email;
                 user.TestDefinitions = new List<TestDefinition>();
                 Repository<TeacherAccount>.Instance.Add(user as TeacherAccount);
-
+                return user as AbstractUser;
             }
+            else
+            {
             return null;
+            }
         }
         public static bool DeleteUser(AbstractUser user)
         {
