@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Testverktyg.Model;
+using Testverktyg.Repository;
 
 namespace AdminApp.Controller {
     public class Controller {
@@ -37,6 +38,29 @@ namespace AdminApp.Controller {
         }
 
         public static string ResetPassword(AbstractUser user) {
+
+            user.Password = GenerateNewPassword();
+
+            if (user is StudentAccount)
+            {
+                Repository<StudentAccount>.Instance.Update(user as StudentAccount);
+                return user.Password;
+
+            }
+            else if (user is AdminAccount)
+            {
+                Repository<AdminAccount>.Instance.Update(user as AdminAccount);
+                return user.Password;
+
+
+            }
+            else if (user is TeacherAccount)
+            {
+                Repository<TeacherAccount>.Instance.Update(user as TeacherAccount);
+                return user.Password;
+
+            }
+
             return null;
         }
 
