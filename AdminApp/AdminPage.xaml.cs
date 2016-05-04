@@ -21,5 +21,25 @@ namespace AdminApp {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             UserAccount = userAccount;
         }
+
+        private void btn_EditSubject_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_RemoveSubject_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_AddSubject_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_InspectTestDefinition_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
