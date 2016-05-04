@@ -24,6 +24,14 @@ namespace AdminApp {
             InitializeComponent();
             Console.WriteLine(Controller.Controller.GenerateNewPassword());
             MockData.Reset();
+            //Console.WriteLine(Testverktyg.Controller.Controller.GetTestDefinitionAuthorName(Repository<TestDefinition>.Instance.Get(2)));
+            using (var db = new TestverktygContext())
+            {
+                TeacherAccount t = db.TeacherAccounts.Where(x => x.Id == 1).Include(x => x.TestDefinitions).First();
+                Console.WriteLine(t.TestDefinitions.Count);
+                //Console.WriteLine(Repository<TeacherAccount>.Instance.GetAll()[0]);
+            }
+                
         }
     }
 }

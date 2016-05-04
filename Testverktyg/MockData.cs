@@ -452,10 +452,13 @@ namespace Testverktyg
                 //Add Users
                 db.StudentAccounts.Add(stud1);
                 db.StudentAccounts.Add(stud2);
+                db.StudentAccounts.Add(stud3);
                 db.TeacherAccounts.Add(teacher1);
                 db.TeacherAccounts.Add(teacher2);
+                db.TeacherAccounts.Add(teacher3);
                 db.AdminAccounts.Add(admin1);
                 db.AdminAccounts.Add(admin2);
+                db.AdminAccounts.Add(admin3);
 
                 //Add AnswerQuestions
 
