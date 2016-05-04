@@ -24,7 +24,14 @@ namespace AdminApp {
             InitializeComponent();
             Console.WriteLine(Controller.Controller.GenerateNewPassword());
             MockData.Reset();
-
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
+
+        //private void txb_LoginEmail_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    txb_LoginEmail.Foreground = txb_LoginEmail.Text == ""
+        //        ? new Brush(Colors.Gray)
+        //        : new Brush(Colors.Black);
+        //}
     }
 }

@@ -5,8 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AdminApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Login" Height="390" Width="500" ResizeMode="NoResize">
     <Grid>
-        
+        <Grid Background="#569DC0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.15*" />
+                <ColumnDefinition Width="0.7*" />
+                <ColumnDefinition Width="0.15*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource Key_lbl_Header}" Content="Login"/>
+            <!--<TextBox Grid.Row="2" Grid.Column="1" x:Name="txb_LoginEmail" TextChanged="txb_LoginEmail_TextChangeds" />-->
+            
+            <TextBox Grid.Column="1" Grid.Row="1" Style="{StaticResource Key_tbx_AdminAppLoginEmail}" FontSize="16" VerticalContentAlignment="Center" x:Name="tbx_AdminAppLoginEmail" Margin="5" Padding="5,0,0,0" />
+            <TextBlock Style="{StaticResource Key_tbl_AdminAppEmailPlaceholder}" Grid.Column="1" Grid.Row="1" FontSize="16" IsHitTestVisible="False" Text="Email address" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="#FFB1DAEE">
+            </TextBlock>
+
+            <TextBox Grid.Column="1" Grid.Row="2" Style="{StaticResource Key_tbx_AdminAppLoginPassword}" FontSize="16" VerticalContentAlignment="Center" x:Name="tbx_AdminAppLoginPassword" Margin="5" Padding="5,0,0,0" />
+            <TextBlock Style="{StaticResource Key_tbl_AdminAppPasswordPlaceholder}" Grid.Column="1" Grid.Row="2"  FontSize="16" IsHitTestVisible="False" Text="Password" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="#FFB1DAEE">
+            </TextBlock>
+            
+            <StackPanel Grid.Column="1" Grid.Row="3" Margin="10">
+                <TextBlock x:Name="tbl_AdminAppLoginWarning" Visibility="Collapsed" FontSize="16" Foreground="Coral"
+                       Text="Oops! Something went wrong! Try again..."/>
+
+                <Button Height="Auto" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Center" Padding="10,5,10,5" Content="Login"/>
+
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
