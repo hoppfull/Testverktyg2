@@ -15,14 +15,5 @@ namespace Testverktyg.Model {
         public TestDefinitionState TestDefinitionState { get; set; }
         public bool IsNotRemoved { get; set; }
         public IList<Question> Questions { get; set; }
-        public TestDefinition(string title, Subject subject, string paragraph = "") {
-            Title = title;
-            Subject = subject;
-            Paragraph = paragraph;
-            TestDefinitionState = TestDefinitionState.Created;
-            IsNotRemoved = true;
-            MaxScore = 0;
-            Questions = new List<Question>();
-        }
     }
 }

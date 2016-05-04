@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Linq;
+using Testverktyg.Context;
 using Testverktyg.Model;
 using Testverktyg.Repository;
 
@@ -11,11 +13,13 @@ namespace Testverktyg.Controller
     {
         public static bool CreateTest(string name, Subject subject)
         {
-            var testdefinition = new TestDefinition(name, subject);
+            var testdefinition = new TestDefinition {Title = name, Subject = subject,TestDefinitionState = TestDefinitionState.Created, Paragraph = "" };
 
+            Repository<TestDefinition>.Instance.Add(testdefinition);
             return true;
         }
 
+        
         public static bool IsTestDefinitionNameValid(string name)
         {
             return true;
@@ -71,22 +75,43 @@ namespace Testverktyg.Controller
 
         public static Tuple<int, int, int, int, int, int, int> CalcStatistics(IList<Tuple<string, GradeType, int, int>> result)
         {
+            //Tuple tup = new Tuple<int, int, int, int, int, int, int>;
+
+            foreach (var item in result)
+            {
+                //item.
+            }
+
             return null;
         }
 
         public static string GetTestDefinitionAuthorName(TestDefinition testDefinition)
         {
+
+            using (var db = new TestverktygContext())
+            {
+                TeacherAccount t = db.TeacherAccounts.Where(x => x.Id == 1).Include(x => x.TestDefinitions).First();
+
+            }
             return null;
         }
 
         public static bool ValidateTestDefinition(TestDefinition testDefinition, IList<StudentAccount> studentAccounts, int time, DateTime finalDate)
         {
+            //Create a Test for each user
+
+            foreach (var item in studentAccounts)
+            {
+                item.TestForms.Add(new TestForm(time, finalDate, testDefinition));
+                Repository.Repository<StudentAccount>.Instance.Update(item);
+            }
+
             return true;
         }
 
         public static bool ReturnTestDefinition(TestDefinition testDefinition)
         {
-            // Necessary?
+            testDefinition.TestDefinitionState = TestDefinitionState.Returned;
             return true;
         }
 
@@ -94,17 +119,32 @@ namespace Testverktyg.Controller
         {
 
             return new EmailAddressAttribute().IsValid(email);
+
         }
 
         public static bool UpdateEmail(AbstractUser user, string email)
         {
-            // hint, check if exists: mylist.Exists(x => x.Email == email);
-            // Hint:
-            //user.Email = email;
-            //if(user is StudentAccount) {
-            //    Repository.Repository<StudentAccount>.Instance.Update(user as StudentAccount);
-            //}
-            return true;
+            if (IsEmailValid(email))
+            {
+                user.Email = email;
+
+                if (user is StudentAccount)
+                {
+                    Repository.Repository<StudentAccount>.Instance.Update(user as StudentAccount);
+                    return true;
+                }
+                else if (user is AdminAccount)
+                {
+                    Repository.Repository<AdminAccount>.Instance.Update(user as AdminAccount);
+                    return true;
+                }
+                else if (user is TeacherAccount)
+                {
+                    Repository.Repository<TeacherAccount>.Instance.Update(user as TeacherAccount);
+                    return true;
+                }
+            }
+            return false;
         }
 
         public static bool IsPasswordValid(string password)
@@ -149,8 +189,7 @@ namespace Testverktyg.Controller
 
         public static bool IsUserNameValid(string name)
         {
-            // Check if name makes sense... if you like... or whatever
-            return true;
+            return !string.IsNullOrWhiteSpace(name);
         }
     }
 }

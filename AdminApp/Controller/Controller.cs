@@ -103,52 +103,52 @@ namespace AdminApp.Controller
                 {
                     Repository<TeacherAccount>.Instance.Delete(tuser);
                 }
-            }       
-                    return true;
+            }
+            return true;
         }
 
         public static string ResetPassword(AbstractUser user)
-{
+        {
 
-    user.Password = GenerateNewPassword();
+            user.Password = GenerateNewPassword();
 
-    if (user is StudentAccount)
-    {
-        Repository<StudentAccount>.Instance.Update(user as StudentAccount);
-        return user.Password;
+            if (user is StudentAccount)
+            {
+                Repository<StudentAccount>.Instance.Update(user as StudentAccount);
+                return user.Password;
 
-    }
-    else if (user is AdminAccount)
-    {
-        Repository<AdminAccount>.Instance.Update(user as AdminAccount);
-        return user.Password;
+            }
+            else if (user is AdminAccount)
+            {
+                Repository<AdminAccount>.Instance.Update(user as AdminAccount);
+                return user.Password;
 
 
-    }
-    else if (user is TeacherAccount)
-    {
-        Repository<TeacherAccount>.Instance.Update(user as TeacherAccount);
-        return user.Password;
+            }
+            else if (user is TeacherAccount)
+            {
+                Repository<TeacherAccount>.Instance.Update(user as TeacherAccount);
+                return user.Password;
 
-    }
+            }
 
-    return null;
-}
+            return null;
+        }
 
-public static string GenerateNewPassword()
-{
+        public static string GenerateNewPassword()
+        {
 
-    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    var stringChars = new char[6];
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var stringChars = new char[6];
 
-    for (int i = 0; i < stringChars.Length; i++)
-    {
-        stringChars[i] = chars[rng.Next(chars.Length)];
+            for (int i = 0; i < stringChars.Length; i++)
+            {
+                stringChars[i] = chars[rng.Next(chars.Length)];
 
-    }
+            }
 
-    var password = new string(stringChars);
-    return password;
-}
+            var password = new string(stringChars);
+            return password;
+        }
     }
 }

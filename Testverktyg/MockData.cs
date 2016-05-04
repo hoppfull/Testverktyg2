@@ -30,21 +30,20 @@ namespace Testverktyg
             var admin3 = new AdminAccount { Name = "Admin3", Email = "Admin3", Password = "a", IsNotRemoved = false };
             var teacher1 = new TeacherAccount { Name = "Teacher1", Email = "Teacher1", Password = "a", TestDefinitions = new List<TestDefinition>() };
             var teacher2 = new TeacherAccount { Name = "Teacher2", Email = "Teacher2", Password = "a", TestDefinitions = new List<TestDefinition>() };
-            var teacher3 = new TeacherAccount { Name = "Teacher3", Email = "Teacher3", Password = "a", TestDefinitions = new List<TestDefinition>(), IsNotRemoved = false };
+            var teacher3 = new TeacherAccount { Name = "Teacher3", Email = "Teacher3", Password = "a", TestDefinitions = new List<TestDefinition>(), IsNotRemoved = true };
 
             //Create Subject
             var sub1 = new Subject("Initial");
             var sub2 = new Subject("SystemUtvecklare");
 
             //Create TestDefinition
-            var test1 = new TestDefinition("DatabasProv", sub1, "1");
-            var test2 = new TestDefinition("ProgrameringProv", sub2, "2");
-            test2.TestDefinitionState = TestDefinitionState.Sent;
-            var test3 = new TestDefinition("SvenskaProv", sub1, "3");
-            var test4 = new TestDefinition("FinskaProv", sub2, "4");
-            test4.TestDefinitionState = TestDefinitionState.Sent;
-            var test5 = new TestDefinition("WindowsAppProv", sub1, "5");
-            var test6 = new TestDefinition("WebbUtvecklingProv", sub2, "6");
+            var test1 = new TestDefinition {Title = "DatabasProv", Subject = sub1, Paragraph ="1",TestDefinitionState = TestDefinitionState.Created, Questions = new List<Question>()};
+            var test2 = new TestDefinition { Title = "DatabasProv", Subject = sub1, Paragraph = "1",TestDefinitionState = TestDefinitionState.Sent, Questions = new List<Question>() };
+
+            var test3 = new TestDefinition { Title = "DatabasProv", Subject = sub1, Paragraph = "1", TestDefinitionState = TestDefinitionState.Created, Questions = new List<Question>()};
+            var test4 = new TestDefinition { Title = "DatabasProv", Subject = sub1, Paragraph = "1",TestDefinitionState = TestDefinitionState.Sent, Questions = new List<Question>() };
+            var test5 = new TestDefinition { Title = "DatabasProv", Subject = sub1, Paragraph = "1", TestDefinitionState = TestDefinitionState.Created, Questions = new List<Question>() };
+            var test6 = new TestDefinition { Title = "DatabasProv", Subject = sub1, Paragraph = "1", TestDefinitionState = TestDefinitionState.Created, Questions = new List<Question>() };
 
             //Create TestForms
             var testForms1 = new TestForm(30, new DateTime(2016, 08, 01), test1);
@@ -454,6 +453,7 @@ namespace Testverktyg
                 db.StudentAccounts.Add(stud2);
                 db.TeacherAccounts.Add(teacher1);
                 db.TeacherAccounts.Add(teacher2);
+                db.TeacherAccounts.Add(teacher3);
                 db.AdminAccounts.Add(admin1);
                 db.AdminAccounts.Add(admin2);
 
