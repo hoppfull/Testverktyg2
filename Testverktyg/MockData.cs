@@ -33,8 +33,8 @@ namespace Testverktyg
             var teacher3 = new TeacherAccount { Name = "Teacher3", Email = "Teacher3", Password = "a", TestDefinitions = new List<TestDefinition>(), IsNotRemoved = false };
 
             //Create Subject
-            var sub1 = new Subject("Initial");
-            var sub2 = new Subject("SystemUtvecklare");
+            var sub1 = new Subject { Name = "Initial" };
+            var sub2 = new Subject { Name = "SystemUtvecklare" };
 
             //Create TestDefinition
             var test1 = new TestDefinition("DatabasProv", sub1, "1");

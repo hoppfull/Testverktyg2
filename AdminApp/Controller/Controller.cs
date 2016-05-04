@@ -17,10 +17,8 @@ namespace AdminApp.Controller {
         }
 
         public static bool SubjectExists(string name) {
-            Console.WriteLine("test");
-            return true;
-            
-            //ss
+            IList<Subject> repo = Repository<Subject>.Instance.GetAll();
+            return repo.Any(x => x.Name == name);
         }
 
         public static bool IsSubjectValid(string name) {

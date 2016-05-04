@@ -24,7 +24,6 @@ namespace AdminApp {
             InitializeComponent();
             Console.WriteLine(Controller.Controller.GenerateNewPassword());
             MockData.Reset();
-
         }
     }
 }
