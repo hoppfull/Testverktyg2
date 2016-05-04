@@ -25,6 +25,7 @@ namespace AdminApp {
             MockData.Reset();
             Console.WriteLine(Testverktyg.Controller.Controller.GetTestDefinitionAuthorName(Repository<TestDefinition>.Instance.Get(1)));
             Console.WriteLine(Testverktyg.Controller.Controller.GetTestDefinitionAuthorName(Repository<TestDefinition>.Instance.Get(3)));
+
         }
     }
 }
