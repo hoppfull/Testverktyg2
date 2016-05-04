@@ -14,17 +14,24 @@ namespace Testverktyg.Controller
     {
         public static bool CreateTest(string name, Subject subject)
         {
+            if (IsTestDefinitionNameValid(name))
+            {
             var testdefinition = new TestDefinition { Title = name, Subject = subject, TestDefinitionState = TestDefinitionState.Created, Paragraph = "" };
-
             Repository<TestDefinition>.Instance.Add(testdefinition);
             return true;
+
+            }
+            else
+            {
+                return false;
+            }
         }
 
 
         public static bool IsTestDefinitionNameValid(string name)
         {
             //Check if exist
-
+            //Andreas
             return true;
         }
 
@@ -48,26 +55,32 @@ namespace Testverktyg.Controller
 
         public static bool SendTestDefinitionForValidation(TestDefinition testDefinition)
         {
+            testDefinition.TestDefinitionState = TestDefinitionState.Sent;
             return true;
         }
 
         public static bool UpdateTestDefinition(TestDefinition testDefinition)
         {
+            Repository.Repository<TestDefinition>.Instance.Update(testDefinition);
             return true;
         }
 
         public static IList<TestDefinition> FindTestDefinitions(string name = "", Subject subject = null)
         {
             return null;
+            //Rickard
         }
 
         public static IList<TestForm> GetTestFormResults(TestDefinition testDefinition)
         {
+            //hämta alla test forms som finns på en test definition
+            //Andreas
             return null;
         }
 
         public static IList<Tuple<string, GradeType, int, int>> GetResults(IList<TestForm> testForms)
         {
+            //Rickard
             // Get student related to each testform
             // return studentname * grade * time * score
             return null;
