@@ -12,5 +12,9 @@ namespace Testverktyg.Context {
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
         public DbSet<AnsweredQuestion> AnsweredQuestions { get; set; }
+
+        public TestverktygContext():base("TestverktygDB") {
+
+        }
     }
 }
