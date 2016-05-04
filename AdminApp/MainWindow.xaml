@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="Login" Height="390" Width="500" ResizeMode="NoResize">
     <Grid>
-        <Grid Background="#569DC0">
+        <Grid Background="{StaticResource color_NormalDarkMain}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
+                <RowDefinition Height="70" />
                 <RowDefinition Height="40" />
                 <RowDefinition Height="40" />
                 <RowDefinition Height="*" />

@@ -5,101 +5,114 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AdminApp"
         mc:Ignorable="d"
-        Title="AdminPage" Height="600" Width="800" MinHeight="600" MinWidth="800">
+        Title="AdminPage" Height="720" Width="1024" MinHeight="720" MinWidth="1024">
     <Grid>
-
-        <TabControl>
-            <TabItem>
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Prov &amp; Ämnen"></Label>
-                    </StackPanel>
-                </TabItem.Header>
-                <TabItem.Content>
-                    <Grid Margin="20">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="0.4*" />
-                            <RowDefinition Height="0.1*" />
-                            <RowDefinition Height="0.4*" />
-                            <RowDefinition Height="0.1*" />
-                        </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0">
-                            <Label Content="Ämnen" />
-                            <ScrollViewer>
-                                <ListView x:Name="lvw_Subjects" Background="Gray">
-                                    <Label Content="ASD" />
-                                    <Label Content="ASD" />
-                                    <Label Content="ASD" />
-                                    <Label Content="ASD" />
-                                    <Label Content="ASD" />
-                                    <Label Content="ASD" />
-                                    <Label Content="ASD" />
-                                    <Label Content="ASD" />
-                                    <Label Content="ASD" />
-                                    <Label Content="ASD" />
-                                </ListView>
-                            </ScrollViewer>
+        <Grid Background="{StaticResource color_DarkDarkMain}">
+            <TabControl>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Style="{StaticResource Key_lbl_TabControl}" Content="Prov &amp; Ämnen"></Label>
                         </StackPanel>
-                        <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Orientation="Horizontal">
-                            <Button Content="Lägg till" Click="btn_AddSubject_Click" />
-                            <Button Content="Ta bort" Click="btn_RemoveSubject_Click" IsEnabled="False" />
-                            <Button Content="Redigera" Click="btn_EditSubject_Click" IsEnabled="False" />
-                            <TextBox x:Name="tbx_EditSubjectName" Visibility="Collapsed" />
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <Grid Background="{StaticResource color_NormalDarkMain}">
+                            <Grid Margin="25">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0.06*" />
+                                    <RowDefinition Height="0.30*" />
+                                    <RowDefinition Height="0.1*" />
+                                    <RowDefinition Height="0.08*" />
+                                    <RowDefinition Height="0.30*" />
+                                    <RowDefinition Height="0.1*" />
+                                </Grid.RowDefinitions>
+
+                                <Label Grid.Row="0" VerticalAlignment="Top" Content="Ämnen" Style="{StaticResource Key_lbl_Header2}"/>
+                                
+                                <ScrollViewer Grid.Row="1">
+                                    <StackPanel>
+                                        <ListView x:Name="lvw_Subjects" Background="{StaticResource color_MidDarkMain}">
+                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
+                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
+                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
+                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
+                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
+                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
+                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
+                                        </ListView>
+                                    </StackPanel>
+                                </ScrollViewer>
+                                
+                                <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Orientation="Horizontal">
+                                    <Button Content="Lägg till" Click="btn_AddSubject_Click" />
+                                    <Button Margin="10,0" Content="Ta bort" Click="btn_RemoveSubject_Click" IsEnabled="False" />
+                                    <Button Content="Redigera" Click="btn_EditSubject_Click" IsEnabled="False" />
+                                    <TextBox x:Name="tbx_EditSubjectName" Visibility="Collapsed" />
+                                </StackPanel>
+
+                                <Label Grid.Row="3" Content="Prov" Style="{StaticResource Key_lbl_Header2}" />
+
+                                <ScrollViewer Grid.Row="4">
+                                    <StackPanel>
+                                        <ListView x:Name="lvw_TestDefinitions" Background="{StaticResource color_MidDarkMain}">
+                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
+                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
+                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
+                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
+                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
+                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
+                                            <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD" />
+                                        </ListView>
+                                    </StackPanel>
+                                </ScrollViewer>
+
+                                <StackPanel Grid.Row="5" VerticalAlignment="Bottom" Orientation="Horizontal">
+                                    <Button Content="Granska prov" Click="btn_InspectTestDefinition_Click" IsEnabled="False" />
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </TabItem.Content>
+                </TabItem>
+
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Style="{StaticResource Key_lbl_TabControl}" Content="Användare"></Label>
                         </StackPanel>
-                        <StackPanel Grid.Row="2">
-                            <Label Content="Prov" />
-                            <ScrollViewer>
-                                <ListView x:Name="lvw_TestDefinitions" Background="Gray">
-                                    
-                                </ListView>
-                            </ScrollViewer>
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <Grid>
+
+                        </Grid>
+                    </TabItem.Content>
+                </TabItem>
+
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Style="{StaticResource Key_lbl_TabControl}" Content="Statistik"></Label>
                         </StackPanel>
-                        <StackPanel Grid.Row="3" VerticalAlignment="Bottom" Orientation="Horizontal">
-                            <Button Content="Granska prov" Click="btn_InspectTestDefinition_Click" IsEnabled="False" />
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <Grid>
+
+                        </Grid>
+                    </TabItem.Content>
+                </TabItem>
+
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Style="{StaticResource Key_lbl_TabControl}" Content="Inställningar"></Label>
                         </StackPanel>
-                    </Grid>
-                </TabItem.Content>
-            </TabItem>
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <Grid>
 
-            <TabItem>
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Användare"></Label>
-                    </StackPanel>
-                </TabItem.Header>
-                <TabItem.Content>
-                    <Grid>
-
-                    </Grid>
-                </TabItem.Content>
-            </TabItem>
-
-            <TabItem>
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Statistik"></Label>
-                    </StackPanel>
-                </TabItem.Header>
-                <TabItem.Content>
-                    <Grid>
-
-                    </Grid>
-                </TabItem.Content>
-            </TabItem>
-
-            <TabItem>
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Inställningar"></Label>
-                    </StackPanel>
-                </TabItem.Header>
-                <TabItem.Content>
-                    <Grid>
-
-                    </Grid>
-                </TabItem.Content>
-            </TabItem>
-        </TabControl>
-
+                        </Grid>
+                    </TabItem.Content>
+                </TabItem>
+            </TabControl>
+        </Grid>
     </Grid>
 </Window>
