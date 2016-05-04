@@ -17,7 +17,10 @@ namespace AdminApp.Controller {
         }
 
         public static bool SubjectExists(string name) {
+            Console.WriteLine("test");
             return true;
+            
+            //ss
         }
 
         public static bool IsSubjectValid(string name) {
