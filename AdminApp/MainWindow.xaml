@@ -10,7 +10,7 @@
         <Grid Background="{StaticResource color_NormalDarkMain}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70" />
-                <RowDefinition Height="40" />
+                <RowDefinition Height="36" />
                 <RowDefinition Height="40" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -32,6 +32,7 @@
 
             <TextBox x:Name="tbx_LoginPassword"
                      Grid.Column="1" Grid.Row="2"
+                     Margin="0,5,0,0"
                      Style="{StaticResource Key_tbx_LoginField}"
                      TextChanged="tbx_LoginField_TextChanged" />
             <TextBlock Grid.Column="1" Grid.Row="2"

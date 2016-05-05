@@ -20,12 +20,12 @@
                         <Grid Background="{StaticResource color_NormalDarkMain}">
                             <Grid Margin="25">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="40" />
                                     <RowDefinition Height="5*" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
                                     <RowDefinition Height="5*" />
-                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="40" />
                                 </Grid.RowDefinitions>
 
                                 <Label Grid.Row="0" VerticalAlignment="Top" Content="Ämnen" Style="{StaticResource Key_lbl_Header2}"/>
@@ -82,34 +82,66 @@
                         </StackPanel>
                     </TabItem.Header>
                     <TabItem.Content>
-                        <Grid>
-                            <StackPanel Orientation="Vertical">
-                                <ComboBox x:Name="cbx_SelectUserType"
-                                          SelectionChanged="cbx_SelectUserType_SelectionChanged">
-                                    <ComboBoxItem Content="Administratörer"
+                        <Grid Background="{StaticResource color_NormalDarkMain}">
+                            <Grid Margin="25">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="40" />
+                                </Grid.RowDefinitions>
+
+                                <Label Grid.Row="0" Content="Välj kontotyp:" VerticalAlignment="Top" Style="{StaticResource Key_lbl_Header2}"/>
+                                
+                                <Grid Grid.Row="1">
+                                    <ComboBox x:Name="cbx_SelectUserType" HorizontalAlignment="Left" MinWidth="150"
+                                          SelectionChanged="cbx_SelectUserType_SelectionChanged"
+                                              Style="{StaticResource Key_cbx_Normal}">
+                                        <ComboBoxItem Content="Administratörer"
                                                   Tag="{x:Static users:UserType.Admin}" />
-                                    <ComboBoxItem Content="Lärare"
+                                        <ComboBoxItem Content="Lärare"
                                                   Tag="{x:Static users:UserType.Teacher}" />
-                                    <ComboBoxItem Content="Elever"
+                                        <ComboBoxItem Content="Elever"
                                                   Tag="{x:Static users:UserType.Student}" />
-                                </ComboBox>
-                                <ListView x:Name="lvw_Users" SelectionChanged="lvw_Users_SelectionChanged">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="200" />
-                                                    <ColumnDefinition Width="200" />
-                                                    <ColumnDefinition Width="200" />
-                                                </Grid.ColumnDefinitions>
-                                                <Label Grid.Column="0" Content="{Binding Name}" />
-                                                <Label Grid.Column="1" Content="{Binding Email}" />
-                                                <Label Grid.Column="2" Content="{Binding Password}" />
-                                            </Grid>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
-                                <StackPanel x:Name="skp_UserTools"
+                                    </ComboBox>
+                                </Grid>
+
+                                <Grid  Grid.Row="2" Background="{StaticResource color_DarkDarkMain}" Margin="0,7,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="300" />
+                                        <ColumnDefinition Width="300" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Padding="13,5" Content="Name" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="1" Padding="13,5" Content="Email" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="2" Padding="13,5" Content="Password" Foreground="{StaticResource color_MidLightMain}" />
+                                </Grid>
+                                
+                                <Grid Grid.Row="3">
+                                    <ListView x:Name="lvw_Users" Style="{StaticResource Key_lvw_Base}" ItemContainerStyle="{StaticResource ListViewItemOptionStyle}"
+                                              SelectionChanged="lvw_Users_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="300" />
+                                                        <ColumnDefinition Width="300" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Grid.Column="0" Content="{Binding Name}" Foreground="{StaticResource color_MidLightMain}" />
+                                                    <Label Grid.Column="1" Content="{Binding Email}" Foreground="{StaticResource color_MidLightMain}"
+                                                           BorderBrush="{StaticResource color_LowDarkMain}" BorderThickness="1,0,0,0" />
+                                                    <Label Grid.Column="2" Content="{Binding Password}" Foreground="{StaticResource color_MidLightMain}"
+                                                           BorderBrush="{StaticResource color_LowDarkMain}" BorderThickness="1,0,0,0"  />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Grid>
+                                
+                                <StackPanel Grid.Row="4" Margin="0,4,0,0"
+                                            x:Name="skp_UserTools"
                                             Orientation="Horizontal"
                                             Visibility="Collapsed">
                                     <Button x:Name="btn_AddUser"
@@ -122,19 +154,29 @@
                                         <Button x:Name="btn_SaveUser"
                                                 Content="Spara"
                                                 Click="btn_SaveUser_Click"/>
-                                        <TextBox x:Name="tbx_AddUserName" Text="Namn"/>
-                                        <TextBox x:Name="tbx_AddUserEmail" Text="Email"/>
+
+                                        <TextBox x:Name="tbx_AddUserName"
+                                                 MinWidth="200"
+                                                 Height="36"
+                                                 Margin="10,1,0,1"
+                                                 Style="{StaticResource Key_tbx_LoginField}" />
+                                        <TextBox x:Name="tbx_AddUserEmail"
+                                                 MinWidth="200"
+                                                 Height="35"
+                                                 Margin="10,1,10,1"
+                                                 Style="{StaticResource Key_tbx_LoginField}" />
                                     </StackPanel>
                                     <StackPanel x:Name="skp_EditUser"
                                                 Orientation="Horizontal"
                                                 IsEnabled="False">
                                         <Button Content="Ta bort"
+                                                    Margin="10,0"
                                                 Click="btn_RemoveUser_Click" />
                                         <Button Content="Ställ om lösenord"
                                                 Click="btn_ResetUserPassword_Click" />
                                     </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
+                            </Grid>
                         </Grid>
                     </TabItem.Content>
                 </TabItem>
