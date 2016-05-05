@@ -82,7 +82,49 @@
                     </TabItem.Header>
                     <TabItem.Content>
                         <Grid>
-
+                            <StackPanel Orientation="Vertical">
+                                <ComboBox x:Name="cbx_SelectUserType" SelectionChanged="cbx_SelectUserType_SelectionChanged">
+                                    <ComboBoxItem Content="Administratörer"
+                                                  Tag="{x:Static local:UserType.Admin}" />
+                                    <ComboBoxItem Content="Lärare"
+                                                  Tag="{x:Static local:UserType.Teacher}" />
+                                    <ComboBoxItem Content="Elever"
+                                                  Tag="{x:Static local:UserType.Student}" />
+                                </ComboBox>
+                                <ListView x:Name="lvw_Users" SelectionChanged="lvw_Users_SelectionChanged">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Label Grid.Column="0" Content="{Binding Name}" />
+                                                <Label Grid.Column="1" Content="{Binding Email}" />
+                                                <Label Grid.Column="2" Content="{Binding Password}" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button x:Name="btn_AddUser"
+                                            Content="Lägg till"
+                                            Click="btn_AddUser_Click"
+                                            Visibility="Visible" />
+                                    <StackPanel x:Name="skp_SaveUser"
+                                                Orientation="Horizontal"
+                                                Visibility="Collapsed">
+                                        <Button x:Name="btn_SaveUser"
+                                                Content="Spara"
+                                                Click="btn_SaveUser_Click"/>
+                                        <TextBox x:Name="tbx_AddUserName" Text="Namn"/>
+                                        <TextBox x:Name="tbx_AddUserEmail" Text="Email"/>
+                                    </StackPanel>
+                                    <Button Content="Ta bort" Click="btn_RemoveUser_Click" IsEnabled="False" />
+                                    <Button Content="Ställ om lösenord" Click="btn_ResetUserPassword_Click" IsEnabled="False" />
+                                </StackPanel>
+                            </StackPanel>
                         </Grid>
                     </TabItem.Content>
                 </TabItem>
