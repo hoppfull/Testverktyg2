@@ -322,8 +322,8 @@ namespace Testverktyg
             var ansque19 = new AnsweredQuestion { Question = question43, Answers = question43.Answers };
             var ansque20 = new AnsweredQuestion { Question = question44, Answers = question44.Answers };
             var ansque21 = new AnsweredQuestion { Question = question45, Answers = question45.Answers };
-            var ansque22 = new AnsweredQuestion { Question = question46, Answers = question45.Answers };
-            var ansque23 = new AnsweredQuestion { Question = question47, Answers = question46.Answers };
+            var ansque22 = new AnsweredQuestion { Question = question46, Answers = question46.Answers };
+            var ansque23 = new AnsweredQuestion { Question = question47, Answers = question47.Answers };
             var ansque24 = new AnsweredQuestion { Question = question48, Answers = question48.Answers };
 
             testForms1.AnsweredQuestions.Add(ansque1);
