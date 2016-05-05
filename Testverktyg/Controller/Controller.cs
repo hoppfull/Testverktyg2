@@ -66,8 +66,28 @@ namespace Testverktyg.Controller
 
         public static IList<TestDefinition> FindTestDefinitions(string name = "", Subject subject = null)
         {
-            return null;
-            //Rickard
+
+            IList<TestDefinition> list = Repository.Repository<TestDefinition>.Instance.GetAll();
+            IList<TestDefinition> sortedList = new List<TestDefinition>();
+            string nametolower = name.ToLower();
+
+            foreach (var item in list)
+            {
+
+                if (item.Title.ToLower().Contains(name))
+                {
+                    if (subject == item.Subject)
+                    {
+                        sortedList.Add(item);
+                    }
+                    else if (subject == null)
+                    {
+                        sortedList.Add(item);
+                    }
+                }
+            }
+
+            return sortedList;
         }
 
         public static IList<TestForm> GetTestFormResults(TestDefinition testDefinition)
@@ -79,25 +99,26 @@ namespace Testverktyg.Controller
 
         public static IList<Tuple<string, GradeType, int, int>> GetResults(IList<TestForm> testForms)
         {
-            //Rickard
             string name;
             int testTime = 0;
             int testScore = 0;
             GradeType grade = GradeType.IG;
             Tuple<string, GradeType, int, int> tup;
             IList<Tuple<string, GradeType, int, int>> list = new List<Tuple<string, GradeType, int, int>>();
+            
 
             foreach (var item in testForms)
             {
                 name = Repository<StudentAccount>.Instance.Get(item.StudentAccountId).Name;
                 grade = CalcGrade(item);
-                testTime = //startdate - finisheddate
+                TimeSpan duration = (DateTime)item.FinishedDate - (DateTime)item.StartDate;
+                testTime = (int)duration.TotalMinutes;
                 testScore = item.Score;
                 tup = Tuple.Create(name, grade, testScore, testTime);
                 list.Add(tup);
             }
-            // return studentname * grade * time * score
-            return null;
+
+            return list;
         }
 
         public static Tuple<int, int, int, int, int, int, int> CalcStatistics(IList<Tuple<string, GradeType, int, int>> result)
@@ -152,7 +173,6 @@ namespace Testverktyg.Controller
 
         public static bool ValidateTestDefinition(TestDefinition testDefinition, IList<StudentAccount> studentAccounts, int time, DateTime finalDate)
         {
-            //Create a Test for each user
 
             foreach (var item in studentAccounts)
             {
@@ -255,7 +275,29 @@ namespace Testverktyg.Controller
 
         public static GradeType CalcGrade(TestForm testform)
         {
-            return GradeType.G;
+            GradeType grade;
+            double G;
+            double Vg;
+            int maxscore = testform.TestDefinition.MaxScore;
+            int score = testform.Score;
+
+            G = maxscore * 0.5;
+            Vg = maxscore * 0.75;
+
+            if (score > G && score < Vg)
+            {
+                grade = GradeType.G;
+            }
+            else if (score > Vg)
+            {
+                grade = GradeType.VG;
+            }
+            else
+            {
+                grade = GradeType.IG;
+            }
+
+            return grade;
         }
     }
 }
