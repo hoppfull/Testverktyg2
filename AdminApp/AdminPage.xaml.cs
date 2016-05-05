@@ -54,10 +54,11 @@ namespace AdminApp {
                     lvw_Users.ItemsSource = Repository<StudentAccount>.Instance.GetAll();
                     break;
             }
+            skp_EditUser.IsEnabled = false;
         }
 
         private void lvw_Users_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-
+            skp_EditUser.IsEnabled = true;
         }
 
         private void btn_AddUser_Click(object sender, RoutedEventArgs e) {
@@ -71,7 +72,12 @@ namespace AdminApp {
         }
 
         private void btn_RemoveUser_Click(object sender, RoutedEventArgs e) {
-            
+            if (lvw_Users.SelectedItem != null) {
+                if (lvw_Users.SelectedItem is TeacherAccount) {
+                    var x = Repository<TeacherAccount>.Instance.Get(((TeacherAccount)lvw_Users.SelectedItem).Id);
+                    Repository<TeacherAccount>.Instance.Delete(x);
+                }
+            }
         }
 
         private void btn_ResetUserPassword_Click(object sender, RoutedEventArgs e) {

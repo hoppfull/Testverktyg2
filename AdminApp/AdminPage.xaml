@@ -121,8 +121,14 @@
                                         <TextBox x:Name="tbx_AddUserName" Text="Namn"/>
                                         <TextBox x:Name="tbx_AddUserEmail" Text="Email"/>
                                     </StackPanel>
-                                    <Button Content="Ta bort" Click="btn_RemoveUser_Click" IsEnabled="False" />
-                                    <Button Content="Ställ om lösenord" Click="btn_ResetUserPassword_Click" IsEnabled="False" />
+                                    <StackPanel x:Name="skp_EditUser"
+                                                Orientation="Horizontal"
+                                                IsEnabled="False">
+                                        <Button Content="Ta bort"
+                                                Click="btn_RemoveUser_Click" />
+                                        <Button Content="Ställ om lösenord"
+                                                Click="btn_ResetUserPassword_Click" />
+                                    </StackPanel>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
