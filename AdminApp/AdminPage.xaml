@@ -113,9 +113,9 @@
                                         <ColumnDefinition Width="300" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0" Padding="13,5" Content="Name" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="0" Padding="13,5" Content="Namn" Foreground="{StaticResource color_MidLightMain}" />
                                     <Label Grid.Column="1" Padding="13,5" Content="Email" Foreground="{StaticResource color_MidLightMain}" />
-                                    <Label Grid.Column="2" Padding="13,5" Content="Password" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="2" Padding="13,5" Content="Lösenord" Foreground="{StaticResource color_MidLightMain}" />
                                 </Grid>
                                 
                                 <Grid Grid.Row="3">

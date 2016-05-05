@@ -27,7 +27,7 @@
                      TextChanged="tbx_LoginField_TextChanged" />
             <TextBlock Grid.Column="1" Grid.Row="1"
                        Style="{StaticResource Key_tbl_EmailPlaceholder}"
-                       Text="Emailaddress">
+                       Text="Email">
             </TextBlock>
 
             <TextBox x:Name="tbx_LoginPassword"
