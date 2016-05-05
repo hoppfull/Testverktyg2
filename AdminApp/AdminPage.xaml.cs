@@ -13,18 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Testverktyg.Model;
 using Testverktyg.Repository;
-using AdminApp.Controller;
+using AdminApp.Controllers;
 
 namespace AdminApp {
-    public enum UserType {
-        Admin, Teacher, Student
-    }
     public partial class AdminPage : Window {
-        public AdminAccount UserAccount { get; }
-        public AdminPage(AdminAccount userAccount) {
+        public AdminAccount LoggedInAccount { get; }
+        public AdminPage(AdminAccount loggedInAccount) {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            UserAccount = userAccount;
+            LoggedInAccount = loggedInAccount;
         }
 
         private void btn_EditSubject_Click(object sender, RoutedEventArgs e) {
@@ -44,17 +41,7 @@ namespace AdminApp {
         }
 
         private void cbx_SelectUserType_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            switch ((UserType)((ComboBoxItem)cbx_SelectUserType.SelectedItem).Tag) {
-                case UserType.Admin:
-                    UpdateUserListView<AdminAccount>();
-                    break;
-                case UserType.Teacher:
-                    UpdateUserListView<TeacherAccount>();
-                    break;
-                case UserType.Student:
-                    UpdateUserListView<StudentAccount>();
-                    break;
-            }
+            UpdateUserListView(GetSelectedUserType());
             skp_EditUser.IsEnabled = false;
         }
 
@@ -70,34 +57,42 @@ namespace AdminApp {
         private void btn_SaveUser_Click(object sender, RoutedEventArgs e) {
             btn_AddUser.Visibility = Visibility.Visible;
             skp_SaveUser.Visibility = Visibility.Collapsed;
+            Controller.CreateUser(tbx_AddUserName.Text, tbx_AddUserEmail.Text, GetSelectedUserType());
+            UpdateUserListView(GetSelectedUserType());
         }
 
         private void btn_RemoveUser_Click(object sender, RoutedEventArgs e) {
             if (lvw_Users.SelectedItem != null) {
                 ((AbstractUser)lvw_Users.SelectedItem).IsNotRemoved = false;
-                if (UpdateUser(lvw_Users.SelectedItem as AdminAccount)) {
-                } else if (UpdateUser(lvw_Users.SelectedItem as TeacherAccount)) {
-                } else if (UpdateUser(lvw_Users.SelectedItem as StudentAccount)) {
-                }
+                if (Controller.DeleteUser(LoggedInAccount, lvw_Users.SelectedItem as AdminAccount)) { }
+                else if (Controller.DeleteUser(LoggedInAccount, lvw_Users.SelectedItem as TeacherAccount)) { }
+                else if (Controller.DeleteUser(LoggedInAccount, lvw_Users.SelectedItem as StudentAccount)) { }
+                UpdateUserListView(GetSelectedUserType());
             }
         }
 
-        private void UpdateUserListView<T>() where T : AbstractUser {
-            lvw_Users.ItemsSource = Repository<T>.Instance.GetAll().Where(user => user.IsNotRemoved);
+        private void UpdateUserListView(UserType userType) {
+            Func<AbstractUser, bool> f = user => user.IsNotRemoved;
+            lvw_Users.ItemsSource =
+                userType == UserType.Admin ?
+                    Repository<AdminAccount>.Instance.GetAll().Where(f) :
+                userType == UserType.Teacher ?
+                    Repository<TeacherAccount>.Instance.GetAll().Where(f) :
+                userType == UserType.Student ?
+                    Repository<StudentAccount>.Instance.GetAll().Where(f) :
+                    null;
             skp_EditUser.IsEnabled = false;
         }
 
-        private bool UpdateUser<T>(T user) where T : AbstractUser {
-            if(user != null) {
-                Repository<T>.Instance.Update(user);
-                UpdateUserListView<T>();
-                return true;
-            }
-            return false;
+        private UserType GetSelectedUserType() {
+            return (UserType)((ComboBoxItem)cbx_SelectUserType.SelectedItem).Tag;
         }
 
         private void btn_ResetUserPassword_Click(object sender, RoutedEventArgs e) {
-
+            if(lvw_Users.SelectedItem != null) {
+                Controller.ResetPassword(lvw_Users.SelectedItem as AbstractUser);
+                UpdateUserListView(GetSelectedUserType());
+            }
         }
     }
 }

@@ -17,7 +17,7 @@ using Testverktyg;
 using Testverktyg.Model;
 using Testverktyg.Context;
 using Testverktyg.Repository;
-using AdminApp.Controller;
+using AdminApp.Controllers;
 
 namespace AdminApp {
     public partial class MainWindow : Window {

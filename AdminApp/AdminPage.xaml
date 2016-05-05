@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AdminApp"
+        xmlns:users="clr-namespace:Testverktyg.Model;assembly=Testverktyg"
         mc:Ignorable="d"
         Title="AdminPage" Height="720" Width="1024" MinHeight="720" MinWidth="1024">
     <Grid>
@@ -85,20 +86,20 @@
                             <StackPanel Orientation="Vertical">
                                 <ComboBox x:Name="cbx_SelectUserType" SelectionChanged="cbx_SelectUserType_SelectionChanged">
                                     <ComboBoxItem Content="Administratörer"
-                                                  Tag="{x:Static local:UserType.Admin}" />
+                                                  Tag="{x:Static users:UserType.Admin}" />
                                     <ComboBoxItem Content="Lärare"
-                                                  Tag="{x:Static local:UserType.Teacher}" />
+                                                  Tag="{x:Static users:UserType.Teacher}" />
                                     <ComboBoxItem Content="Elever"
-                                                  Tag="{x:Static local:UserType.Student}" />
+                                                  Tag="{x:Static users:UserType.Student}" />
                                 </ComboBox>
                                 <ListView x:Name="lvw_Users" SelectionChanged="lvw_Users_SelectionChanged">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="200" />
+                                                    <ColumnDefinition Width="200" />
+                                                    <ColumnDefinition Width="200" />
                                                 </Grid.ColumnDefinitions>
                                                 <Label Grid.Column="0" Content="{Binding Name}" />
                                                 <Label Grid.Column="1" Content="{Binding Email}" />

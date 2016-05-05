@@ -3,7 +3,7 @@ using System.Windows;
 using Testverktyg.Repository;
 using Testverktyg.Model;
 
-namespace AdminApp.Controller {
+namespace AdminApp.Controllers {
     static class ViewController {
         public enum LoginResponse {
             InvalidUser, InvalidPassword, Success
