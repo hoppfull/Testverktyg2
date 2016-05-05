@@ -31,7 +31,8 @@ namespace Testverktyg.Controller
         {
             //Check if exist
             //Andreas
-            return true;
+            IList<TestDefinition> tds = Repository<TestDefinition>.Instance.GetAll();
+            return !(tds.Any(x => x.Title == name) || String.IsNullOrWhiteSpace(name));
         }
 
 
@@ -94,7 +95,9 @@ namespace Testverktyg.Controller
         {
             //hämta alla test forms som finns på en test definition
             //Andreas
-            return null;
+            IList<TestForm> forms = Repository<TestForm>.Instance.GetAll();
+            IList<TestForm> neededforms = forms.Where(x => x.TestDefinitionFK == testDefinition.Id).ToList();
+            return neededforms;
         }
 
         public static IList<Tuple<string, GradeType, int, int>> GetResults(IList<TestForm> testForms)
