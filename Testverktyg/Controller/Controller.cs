@@ -29,8 +29,6 @@ namespace Testverktyg.Controller
 
         public static bool IsTestDefinitionNameValid(string name)
         {
-            //Check if exist
-            //Andreas
             IList<TestDefinition> tds = Repository<TestDefinition>.Instance.GetAll();
             return !(tds.Any(x => x.Title == name) || String.IsNullOrWhiteSpace(name));
         }
@@ -94,7 +92,6 @@ namespace Testverktyg.Controller
         public static IList<TestForm> GetTestFormResults(TestDefinition testDefinition)
         {
             //hämta alla test forms som finns på en test definition
-            //Andreas
             IList<TestForm> forms = Repository<TestForm>.Instance.GetAll();
             IList<TestForm> neededforms = forms.Where(x => x.TestDefinitionFK == testDefinition.Id).ToList();
             return neededforms;
