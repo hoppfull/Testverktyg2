@@ -8,7 +8,7 @@ using Testverktyg.Context;
 using Testverktyg.Model;
 using Testverktyg.Repository;
 
-namespace Testverktyg.Controller
+namespace Testverktyg.Controllers
 {
     static public class Controller
     {

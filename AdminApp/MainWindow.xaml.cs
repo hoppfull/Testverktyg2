@@ -17,14 +17,15 @@ using Testverktyg;
 using Testverktyg.Model;
 using Testverktyg.Context;
 using Testverktyg.Repository;
+using Testverktyg.Controllers;
 
 namespace AdminApp {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
             MockData.Reset();
-            Console.WriteLine(Testverktyg.Controller.Controller.GetTestDefinitionAuthorName(Repository<TestDefinition>.Instance.Get(1)));
-            Console.WriteLine(Testverktyg.Controller.Controller.GetTestDefinitionAuthorName(Repository<TestDefinition>.Instance.Get(3)));
+            Console.WriteLine(Controller.GetTestDefinitionAuthorName(Repository<TestDefinition>.Instance.Get(1)));
+            Console.WriteLine(Controller.GetTestDefinitionAuthorName(Repository<TestDefinition>.Instance.Get(3)));
 
         }
     }
