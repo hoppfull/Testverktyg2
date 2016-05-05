@@ -19,8 +19,8 @@ namespace Testverktyg.Model
         public DateTime? StartDate { get; set; }
         public DateTime? FinishedDate { get; set; }
         public DateTime FinalDate { get; set; }
-        public int TestDefinitionFK { get; set; }
-        [ForeignKey("TestDefinitionFK")]
+        public int TestDefinitionId { get; set; }
+        [ForeignKey("TestDefinitionId")]
         public TestDefinition TestDefinition { get; set; }
         public int StudentAccountId { get; set; }
         [ForeignKey("StudentAccountId")]
