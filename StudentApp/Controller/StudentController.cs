@@ -13,15 +13,18 @@ namespace StudentApp.Controller
 
         public static bool TestFormCalculateScore(TestForm testForm)
         {
-            //räkna ut poäng
+            TestDefinition testdef = testForm.TestDefinition;
+
+            //compare answers with rigth answer
+            foreach (var item in testForm.AnsweredQuestions)
+            {
+
+            }
+
+            GradeType grade = Testverktyg.Controller.Controller.CalcGrade(testForm);
 
             //Save to databas
             return false;
         }
-
-
-
-
-
     }
 }
