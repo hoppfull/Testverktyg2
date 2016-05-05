@@ -23,9 +23,8 @@ namespace AdminApp {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
-            //Console.WriteLine(Controller.Controller.GenerateNewPassword());
-            //MockData.Reset();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            //MockData.Reset();
         }
 
         private void btn_Login_Click(object sender, RoutedEventArgs e) {

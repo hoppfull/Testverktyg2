@@ -45,13 +45,16 @@ namespace AdminApp {
         private void cbx_SelectUserType_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             switch ((UserType)((ComboBoxItem)cbx_SelectUserType.SelectedItem).Tag) {
                 case UserType.Admin:
-                    lvw_Users.ItemsSource = Repository<AdminAccount>.Instance.GetAll();
+                    //lvw_Users.ItemsSource = Repository<AdminAccount>.Instance.GetAll().Where(user => user.IsNotRemoved);
+                    UpdateUserListView<AdminAccount>();
                     break;
                 case UserType.Teacher:
-                    lvw_Users.ItemsSource = Repository<TeacherAccount>.Instance.GetAll();
+                    //lvw_Users.ItemsSource = Repository<TeacherAccount>.Instance.GetAll().Where(user => user.IsNotRemoved);
+                    UpdateUserListView<TeacherAccount>();
                     break;
                 case UserType.Student:
-                    lvw_Users.ItemsSource = Repository<StudentAccount>.Instance.GetAll();
+                    //lvw_Users.ItemsSource = Repository<StudentAccount>.Instance.GetAll().Where(user => user.IsNotRemoved);
+                    UpdateUserListView<StudentAccount>();
                     break;
             }
             skp_EditUser.IsEnabled = false;
@@ -73,11 +76,29 @@ namespace AdminApp {
 
         private void btn_RemoveUser_Click(object sender, RoutedEventArgs e) {
             if (lvw_Users.SelectedItem != null) {
-                if (lvw_Users.SelectedItem is TeacherAccount) {
-                    var x = Repository<TeacherAccount>.Instance.Get(((TeacherAccount)lvw_Users.SelectedItem).Id);
-                    Repository<TeacherAccount>.Instance.Delete(x);
+                ((AbstractUser)lvw_Users.SelectedItem).IsNotRemoved = false;
+                if (UpdateUser(lvw_Users.SelectedItem as AdminAccount)) {
+
+                } else if (UpdateUser(lvw_Users.SelectedItem as TeacherAccount)) {
+
+                } else if (UpdateUser(lvw_Users.SelectedItem as StudentAccount)) {
+
                 }
             }
+        }
+
+        private void UpdateUserListView<T>() where T : AbstractUser {
+            lvw_Users.ItemsSource = Repository<T>.Instance.GetAll().Where(user => user.IsNotRemoved);
+            skp_EditUser.IsEnabled = false;
+        }
+
+        private bool UpdateUser<T>(T user) where T : AbstractUser {
+            if(user != null) {
+                Repository<T>.Instance.Update(user);
+                UpdateUserListView<T>();
+                return true;
+            }
+            return false;
         }
 
         private void btn_ResetUserPassword_Click(object sender, RoutedEventArgs e) {
