@@ -8,7 +8,7 @@ using Testverktyg.Context;
 using Testverktyg.Model;
 using Testverktyg.Repository;
 
-namespace Testverktyg.Controller
+namespace Testverktyg.Controllers
 {
     static public class Controller
     {
@@ -93,7 +93,7 @@ namespace Testverktyg.Controller
         {
             //hämta alla test forms som finns på en test definition
             IList<TestForm> forms = Repository<TestForm>.Instance.GetAll();
-            IList<TestForm> neededforms = forms.Where(x => x.TestDefinitionFK == testDefinition.Id).ToList();
+            IList<TestForm> neededforms = forms.Where(x => x.TestDefinitionId == testDefinition.Id).ToList();
             return neededforms;
         }
 

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Testverktyg.Model {
     public enum QuestionType {
@@ -16,6 +12,5 @@ namespace Testverktyg.Model {
         public int Score { get; set; }
         public QuestionType QuestionType { get; set; }
         public IList<Answer> Answers { get; set; }
-
     }
 }

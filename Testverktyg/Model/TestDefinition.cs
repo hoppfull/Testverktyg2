@@ -19,5 +19,10 @@ namespace Testverktyg.Model {
         public int TeacherAccountId { get; set; }
         [ForeignKey("TeacherAccountId")]
         public TeacherAccount TeacherAccount { get; set; }
+        public TestDefinition() {
+            TestDefinitionState = TestDefinitionState.Created;
+            IsNotRemoved = true;
+            MaxScore = 0;
+        }
     }
 }
