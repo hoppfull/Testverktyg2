@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Testverktyg.Model;
 using Testverktyg.Repository;
+using AdminApp.Controller;
 
 namespace AdminApp {
     public enum UserType {
@@ -45,15 +46,12 @@ namespace AdminApp {
         private void cbx_SelectUserType_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             switch ((UserType)((ComboBoxItem)cbx_SelectUserType.SelectedItem).Tag) {
                 case UserType.Admin:
-                    //lvw_Users.ItemsSource = Repository<AdminAccount>.Instance.GetAll().Where(user => user.IsNotRemoved);
                     UpdateUserListView<AdminAccount>();
                     break;
                 case UserType.Teacher:
-                    //lvw_Users.ItemsSource = Repository<TeacherAccount>.Instance.GetAll().Where(user => user.IsNotRemoved);
                     UpdateUserListView<TeacherAccount>();
                     break;
                 case UserType.Student:
-                    //lvw_Users.ItemsSource = Repository<StudentAccount>.Instance.GetAll().Where(user => user.IsNotRemoved);
                     UpdateUserListView<StudentAccount>();
                     break;
             }
@@ -78,11 +76,8 @@ namespace AdminApp {
             if (lvw_Users.SelectedItem != null) {
                 ((AbstractUser)lvw_Users.SelectedItem).IsNotRemoved = false;
                 if (UpdateUser(lvw_Users.SelectedItem as AdminAccount)) {
-
                 } else if (UpdateUser(lvw_Users.SelectedItem as TeacherAccount)) {
-
                 } else if (UpdateUser(lvw_Users.SelectedItem as StudentAccount)) {
-
                 }
             }
         }
