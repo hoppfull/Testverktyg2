@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo04 - AppResources", "De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo05 - Login screen", "Demo05 - Login screen\Demo05 - Login screen.csproj", "{9EAEC262-4D3D-4DA1-B828-B730397C7023}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo06 - WPF Frame navigation", "Demo06 - WPF Frame navigation\Demo06 - WPF Frame navigation.csproj", "{72CB097F-DC4B-458A-97ED-A3C25E0D78D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{9EAEC262-4D3D-4DA1-B828-B730397C7023}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EAEC262-4D3D-4DA1-B828-B730397C7023}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EAEC262-4D3D-4DA1-B828-B730397C7023}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72CB097F-DC4B-458A-97ED-A3C25E0D78D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72CB097F-DC4B-458A-97ED-A3C25E0D78D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72CB097F-DC4B-458A-97ED-A3C25E0D78D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72CB097F-DC4B-458A-97ED-A3C25E0D78D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

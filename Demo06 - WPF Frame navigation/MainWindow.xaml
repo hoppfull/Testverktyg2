@@ -1,0 +1,31 @@
+﻿<Window x:Class="Demo06___WPF_Frame_navigation.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demo06___WPF_Frame_navigation"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <Frame x:Name="frm_RootFrame" NavigationUIVisibility="Hidden" />
+        <!--NavigationUIVisibility="Visible" allows one to navigate back and forth-->
+        
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Grid.Row="1" Margin="5">
+            
+            <Button Content="Red page!" Tag="{x:Static local:PageType.Red}"
+                    Click="btn_Page_Click" />
+            <Button Content="Green page!" Tag="{x:Static local:PageType.Green}"
+                    Click="btn_Page_Click" />
+            <Button Content="Blue page!" Tag="{x:Static local:PageType.Blue}"
+                    Click="btn_Page_Click" />
+            
+        </StackPanel>
+    </Grid>
+</Window>
