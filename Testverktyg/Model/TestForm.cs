@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Testverktyg.Model
-{
-    public enum GradeType
-    {
+namespace Testverktyg.Model {
+    public enum GradeType {
         G, VG, IG
     }
-    public class TestForm
-    {
+    public class TestForm {
         [Key]
         public int Id { get; set; }
         public int Score { get; set; }
@@ -26,6 +23,8 @@ namespace Testverktyg.Model
         [ForeignKey("StudentAccountId")]
         public StudentAccount StudentAccount { get; set; }
         public IList<AnsweredQuestion> AnsweredQuestions { get; set; }
+        public TestForm() {
+            IsCompleted = false;
+        }
     }
 }
-
