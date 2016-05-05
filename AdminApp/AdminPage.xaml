@@ -84,7 +84,8 @@
                     <TabItem.Content>
                         <Grid>
                             <StackPanel Orientation="Vertical">
-                                <ComboBox x:Name="cbx_SelectUserType" SelectionChanged="cbx_SelectUserType_SelectionChanged">
+                                <ComboBox x:Name="cbx_SelectUserType"
+                                          SelectionChanged="cbx_SelectUserType_SelectionChanged">
                                     <ComboBoxItem Content="Administratörer"
                                                   Tag="{x:Static users:UserType.Admin}" />
                                     <ComboBoxItem Content="Lärare"
@@ -108,7 +109,9 @@
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel x:Name="skp_UserTools"
+                                            Orientation="Horizontal"
+                                            Visibility="Collapsed">
                                     <Button x:Name="btn_AddUser"
                                             Content="Lägg till"
                                             Click="btn_AddUser_Click"

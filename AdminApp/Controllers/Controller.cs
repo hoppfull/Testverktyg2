@@ -30,42 +30,6 @@ namespace AdminApp.Controllers
             IList<Subject> subjects = Repository<Subject>.Instance.GetAll();
             return !(subjects.Any(x => x.Name == name) || String.IsNullOrWhiteSpace(name)); //Check if name exists in db and if it's not empty
         }
-        public static AbstractUser CreateUserOLD(string name, string email, UserType userType)
-        {
-
-            if (userType == UserType.Student)
-            {
-                var user = new StudentAccount();
-                user.Name = name;
-                user.Email = email;
-                user.TestForms = new List<TestForm>();
-                Repository<StudentAccount>.Instance.Add(user as StudentAccount);
-                return user as AbstractUser;
-
-
-            }
-            else if (userType == UserType.Admin)
-            {
-                var user = new AdminAccount();
-                user.Name = name;
-                user.Email = email;
-                Repository<AdminAccount>.Instance.Add(user as AdminAccount);
-                return user as AbstractUser;
-            }
-            else if (userType == UserType.Teacher)
-            {
-                var user = new TeacherAccount();
-                user.Name = name;
-                user.Email = email;
-                user.TestDefinitions = new List<TestDefinition>();
-                Repository<TeacherAccount>.Instance.Add(user as TeacherAccount);
-                return user as AbstractUser;
-            }
-            else
-            {
-            return null;
-            }
-        }
 
         public static AbstractUser CreateUser(string name, string email, UserType userType) {
             switch (userType) {

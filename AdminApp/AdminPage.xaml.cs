@@ -43,6 +43,7 @@ namespace AdminApp {
         private void cbx_SelectUserType_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             UpdateUserListView(GetSelectedUserType());
             skp_EditUser.IsEnabled = false;
+            skp_UserTools.Visibility = Visibility.Visible;
         }
 
         private void lvw_Users_SelectionChanged(object sender, SelectionChangedEventArgs e) {
