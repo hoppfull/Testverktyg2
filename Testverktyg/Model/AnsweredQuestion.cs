@@ -7,6 +7,7 @@ namespace Testverktyg.Model {
     public class AnsweredQuestion {
         [Key]
         public int Id { get; set; }
+        public IList<Answer> Answers { get; set; }
         public Question Question { get; set; }
     }
 }

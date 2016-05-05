@@ -301,30 +301,30 @@ namespace Testverktyg
 
 
             //Create AnswerQuestions
-            var ansque1 = new AnsweredQuestion { Question = question25 };
-            var ansque2 = new AnsweredQuestion { Question = question26 };
-            var ansque3 = new AnsweredQuestion { Question = question27 };
-            var ansque4 = new AnsweredQuestion { Question = question28 };
-            var ansque5 = new AnsweredQuestion { Question = question29 };
-            var ansque6 = new AnsweredQuestion { Question = question30 };
-            var ansque7 = new AnsweredQuestion { Question = question31 };
-            var ansque8 = new AnsweredQuestion { Question = question32 };
-            var ansque9 = new AnsweredQuestion { Question = question33 };
-            var ansque10 = new AnsweredQuestion { Question = question34 };
-            var ansque11 = new AnsweredQuestion { Question = question35 };
-            var ansque12 = new AnsweredQuestion { Question = question36 };
-            var ansque13 = new AnsweredQuestion { Question = question37 };
-            var ansque14 = new AnsweredQuestion { Question = question38 };
-            var ansque15 = new AnsweredQuestion { Question = question39 };
-            var ansque16 = new AnsweredQuestion { Question = question40 };
-            var ansque17 = new AnsweredQuestion { Question = question41 };
-            var ansque18 = new AnsweredQuestion { Question = question42 };
-            var ansque19 = new AnsweredQuestion { Question = question43 };
-            var ansque20 = new AnsweredQuestion { Question = question44 };
-            var ansque21 = new AnsweredQuestion { Question = question45 };
-            var ansque22 = new AnsweredQuestion { Question = question46 };
-            var ansque23 = new AnsweredQuestion { Question = question47 };
-            var ansque24 = new AnsweredQuestion { Question = question48 };
+            var ansque1 = new AnsweredQuestion { Question = question25, Answers = question25.Answers };
+            var ansque2 = new AnsweredQuestion { Question = question26, Answers = question26.Answers };
+            var ansque3 = new AnsweredQuestion { Question = question27, Answers = question27.Answers };
+            var ansque4 = new AnsweredQuestion { Question = question28, Answers = question28.Answers };
+            var ansque5 = new AnsweredQuestion { Question = question29, Answers = question29.Answers };
+            var ansque6 = new AnsweredQuestion { Question = question30, Answers = question30.Answers };
+            var ansque7 = new AnsweredQuestion { Question = question31, Answers = question31.Answers };
+            var ansque8 = new AnsweredQuestion { Question = question32, Answers = question32.Answers };
+            var ansque9 = new AnsweredQuestion { Question = question33, Answers = question33.Answers };
+            var ansque10 = new AnsweredQuestion { Question = question34, Answers = question34.Answers };
+            var ansque11 = new AnsweredQuestion { Question = question35, Answers = question35.Answers };
+            var ansque12 = new AnsweredQuestion { Question = question36, Answers = question36.Answers };
+            var ansque13 = new AnsweredQuestion { Question = question37, Answers = question37.Answers };
+            var ansque14 = new AnsweredQuestion { Question = question38, Answers = question38.Answers };
+            var ansque15 = new AnsweredQuestion { Question = question39, Answers = question39.Answers };
+            var ansque16 = new AnsweredQuestion { Question = question40, Answers = question40.Answers };
+            var ansque17 = new AnsweredQuestion { Question = question41, Answers = question41.Answers };
+            var ansque18 = new AnsweredQuestion { Question = question42, Answers = question42.Answers };
+            var ansque19 = new AnsweredQuestion { Question = question43, Answers = question43.Answers };
+            var ansque20 = new AnsweredQuestion { Question = question44, Answers = question44.Answers };
+            var ansque21 = new AnsweredQuestion { Question = question45, Answers = question45.Answers };
+            var ansque22 = new AnsweredQuestion { Question = question46, Answers = question45.Answers };
+            var ansque23 = new AnsweredQuestion { Question = question47, Answers = question46.Answers };
+            var ansque24 = new AnsweredQuestion { Question = question48, Answers = question48.Answers };
 
             testForms1.AnsweredQuestions.Add(ansque1);
             testForms1.AnsweredQuestions.Add(ansque3);
