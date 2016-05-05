@@ -14,10 +14,7 @@ namespace Testverktyg.Model {
         public DateTime FinalDate { get; set; }
         public TestDefinition TestDefinition { get; set; }
         public IList<AnsweredQuestion> AnsweredQuestions { get; set; }
-        public TestForm(int timeLimit, DateTime finalDate, TestDefinition testDefinition) {
-            TimeLimit = timeLimit;
-            FinalDate = finalDate;
-            TestDefinition = testDefinition;
+        public TestForm() {
             IsCompleted = false;
         }
     }
