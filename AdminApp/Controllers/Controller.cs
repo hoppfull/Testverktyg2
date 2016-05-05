@@ -1,52 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Testverktyg.Model;
 using Testverktyg.Repository;
 
-namespace AdminApp.Controllers
-{
-    public class Controller
-    {
-
-        private static Random rng = new Random();
-
-        public static Subject CreateSubject(string name)
-        {
-
-            if (IsSubjectValid(name))
-            {
-                var subject = new Subject { Name = name };
-                Repository<Subject>.Instance.Add(subject);
+namespace AdminApp.Controllers {
+    public class Controller {
+        public static Subject CreateSubject(string name) {
+            if (IsSubjectValid(name)) {
+                Subject subject = new Subject { Name = name };
+                Repository<Subject>.Instance.Add(new Subject { Name = name });
                 return subject;
             }
             return null;
         }
 
-        public static bool IsSubjectValid(string name)
-        {
+        public static bool DeleteSubject(Subject subject) {
+            return true;
+        }
+
+        public static bool EditSubject(Subject subject, string name) {
+            return true;
+        }
+
+        public static bool IsSubjectValid(string name) {
             IList<Subject> subjects = Repository<Subject>.Instance.GetAll();
-            return !(subjects.Any(x => x.Name == name) || String.IsNullOrWhiteSpace(name)); //Check if name exists in db and if it's not empty
+            // Check if name exists in db and if it's not empty:
+            return !(string.IsNullOrWhiteSpace(name) || subjects.Any(subject => subject.Name == name));
         }
 
         public static AbstractUser CreateUser(string name, string email, UserType userType) {
             switch (userType) {
                 case UserType.Admin:
-                    return AppendNewUserToDB(new AdminAccount {
+                    return TryAppendNewUserToDB(new AdminAccount {
                         Name = name,
                         Email = email,
                         Password = GenerateNewPassword()
                     });
                 case UserType.Student:
-                    return AppendNewUserToDB(new StudentAccount {
+                    return TryAppendNewUserToDB(new StudentAccount {
                         Name = name,
                         Email = email,
                         Password = GenerateNewPassword()
                     });
                 case UserType.Teacher:
-                    return AppendNewUserToDB(new TeacherAccount {
+                    return TryAppendNewUserToDB(new TeacherAccount {
                         Name = name,
                         Email = email,
                         Password = GenerateNewPassword()
@@ -56,7 +54,10 @@ namespace AdminApp.Controllers
             }
         }
 
-        private static T AppendNewUserToDB<T>(T newUser) where T : AbstractUser {
+        private static T TryAppendNewUserToDB<T>(T newUser) where T : AbstractUser {
+            // Check first if user email already exists:
+            if (Repository<T>.Instance.GetAll().Any(user => user.Email == newUser.Email))
+                return null;
             Repository<T>.Instance.Add(newUser);
             return newUser;
         }
@@ -66,7 +67,10 @@ namespace AdminApp.Controllers
                 // Admin account cannot delete itself:
                 if (user is AdminAccount && user.Id == admin.Id)
                     return false;
-
+                // Try to delete entry from database:
+                if (Repository<T>.Instance.Delete(user))
+                    return true;
+                // If entry could not be deleted, flag entry as removed:
                 user.IsNotRemoved = false;
                 Repository<T>.Instance.Update(user);
                 return true;
@@ -82,6 +86,7 @@ namespace AdminApp.Controllers
 
         public static string GenerateNewPassword() {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            Random rng = new Random();
             return new string(Enumerable.Repeat(chars, 6).Select(s => s[rng.Next(s.Length)]).ToArray());
         }
     }
