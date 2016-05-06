@@ -30,9 +30,13 @@
                                 </Grid.RowDefinitions>
                                 
                                 <!--#region Subject management tool: -->
-                                <Label Grid.Row="0" Content="Ämnen"
-                                       VerticalAlignment="Top"
-                                       Style="{StaticResource Key_lbl_Header2}"/>
+                                
+                                <Grid  Grid.Row="0" Background="{StaticResource color_DarkDarkMain}" Margin="0,7,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="300" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Padding="13,5" Content="Ämnen" Foreground="{StaticResource color_MidLightMain}" />
+                                </Grid>
 
                                 <Grid Grid.Row="1">
                                     <ListView x:Name="lvw_Subjects"
@@ -42,7 +46,7 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <Label Content="{Binding Name}"
-                                                       Style="{StaticResource Key_lvw_Item}" />
+                                                       Style="{StaticResource Key_lvw_Item}"  BorderThickness="0" />
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
@@ -89,8 +93,14 @@
                                 <!--#endregion-->
 
                                 <!--#region Test management tool:-->
-                                <Label Grid.Row="3" Content="Prov" Style="{StaticResource Key_lbl_Header2}" />
 
+                                <Grid  Grid.Row="3" Background="{StaticResource color_DarkDarkMain}" Margin="0,7,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="300" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Padding="13,5" Content="Prov" Foreground="{StaticResource color_MidLightMain}" />
+                                </Grid>
+                                
                                 <Grid Grid.Row="4">
                                     <ListView x:Name="lvw_TestDefinitions"
                                               Style="{StaticResource Key_lvw_Base}"
@@ -105,7 +115,7 @@
                                                         <ColumnDefinition Width="*" />
                                                     </Grid.ColumnDefinitions>
                                                     <Label Grid.Column="0" Content="{Binding Item1.Title}"
-                                                           Style="{StaticResource Key_lvw_Item}" />
+                                                           Style="{StaticResource Key_lvw_Item}"  BorderThickness="0" />
                                                     <Label Grid.Column="1" Content="{Binding Item2.Name}"
                                                            Style="{StaticResource Key_lvw_Item}" />
                                                     <Label Grid.Column="2" Content="{Binding Item3.Name}"
@@ -187,7 +197,7 @@
                                                         <ColumnDefinition Width="*" />
                                                     </Grid.ColumnDefinitions>
                                                     <Label Grid.Column="0" Content="{Binding Name}"
-                                                           Style="{StaticResource Key_lvw_Item}" />
+                                                           Style="{StaticResource Key_lvw_Item}" BorderThickness="0" />
                                                     <Label Grid.Column="1" Content="{Binding Email}"
                                                            Style="{StaticResource Key_lvw_Item}" />
                                                     <Label Grid.Column="2" Content="{Binding Password}"
@@ -215,11 +225,25 @@
                                         <Button x:Name="btn_AbortSaveUser"
                                                 Content="Avbryt"
                                                 Click="btn_AbortSaveUser_Click"/>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition></ColumnDefinition>
+                                                <ColumnDefinition></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBox Grid.Column="0" x:Name="tbx_AddUserName"
+                                                 Style="{StaticResource Key_tbx_TextField}" />
 
-                                        <TextBox x:Name="tbx_AddUserName"
+                                            <TextBlock Grid.Column="0" 
+                                                       Style="{StaticResource Key_tbl_AddUserName}" 
+                                                       Text="Nytt namn" />
+                                            
+                                            <TextBox Grid.Column="1" x:Name="tbx_AddUserEmail"
                                                  Style="{StaticResource Key_tbx_TextField}" />
-                                        <TextBox x:Name="tbx_AddUserEmail"
-                                                 Style="{StaticResource Key_tbx_TextField}" />
+
+                                            <TextBlock Grid.Column="1"
+                                                       Style="{StaticResource Key_tbl_AddUserEmail}"
+                                                       Text="Ny email" />
+                                        </Grid>
                                     </StackPanel>
                                     <StackPanel x:Name="skp_EditUser"
                                                 Orientation="Horizontal"
