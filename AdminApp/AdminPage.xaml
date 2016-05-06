@@ -98,18 +98,29 @@
                                               SelectionChanged="lvw_TestDefinitions_SelectionChanged">
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Label Content="{Binding Item1.Title}" />
-                                                    <Label Content="{Binding Item1.Subject.Name}" />
-                                                    <Label Content="{Binding Item2}" />
-                                                </StackPanel>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="300" />
+                                                        <ColumnDefinition Width="300" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Grid.Column="0" Content="{Binding Item1.Title}"
+                                                           Style="{StaticResource Key_lvw_Item}" />
+                                                    <Label Grid.Column="1" Content="{Binding Item2.Name}"
+                                                           Style="{StaticResource Key_lvw_Item}" />
+                                                    <Label Grid.Column="2" Content="{Binding Item3.Name}"
+                                                           Style="{StaticResource Key_lvw_Item}" />
+                                                </Grid>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
                                 </Grid>
 
                                 <StackPanel Grid.Row="5" VerticalAlignment="Bottom" Orientation="Horizontal">
-                                    <Button Content="Granska prov" Click="btn_InspectTestDefinition_Click" IsEnabled="False" />
+                                    <Button x:Name="btn_InspectTestDefinition"
+                                            Content="Granska prov"
+                                            Click="btn_InspectTestDefinition_Click"
+                                            IsEnabled="False" />
                                 </StackPanel>
                                 <!--#endregion-->
                             </Grid>

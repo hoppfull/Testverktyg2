@@ -84,10 +84,7 @@ namespace AdminApp {
         private void UpdateSubjectListView() {
             lvw_Subjects.ItemsSource = Repository<Subject>.Instance.GetAll();
             skp_EditSubjectTools.IsEnabled = false;
-        }
-
-        private void btn_InspectTestDefinition_Click(object sender, RoutedEventArgs e) {
-
+            UpdateTestDefinitionListView();
         }
         #endregion
 
@@ -162,12 +159,24 @@ namespace AdminApp {
         #region Test management tools:
 
         private void lvw_TestDefinitions_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-
+            btn_InspectTestDefinition.IsEnabled = true;
+        }
+        
+        private void btn_InspectTestDefinition_Click(object sender, RoutedEventArgs e) {
+            var selectedItem = lvw_TestDefinitions.SelectedItem as Tuple<TestDefinition, TeacherAccount, Subject>;
+            if (selectedItem != null && selectedItem.Item1 != null) {
+                InspectTestDefinition w = new InspectTestDefinition(selectedItem.Item1);
+                w.Show();
+            }
         }
 
         private void UpdateTestDefinitionListView() {
             lvw_TestDefinitions.ItemsSource = Repository<TestDefinition>.Instance.GetAll()
-                .Select(TD => Tuple.Create(TD, Testverktyg.Controllers.Controller.GetTestDefinitionAuthorName(TD)));
+                .Select(TD => Tuple.Create(TD,
+                    Testverktyg.Controllers.Controller.GetTestDefinitionAuthor(TD),
+                    Testverktyg.Controllers.Controller.GetTestDefinitionSubject(TD)));
+            btn_InspectTestDefinition.IsEnabled = false;
+            lvw_TestDefinitions.SelectedIndex = -1;
         }
         #endregion
     }
