@@ -28,8 +28,11 @@
                                     <RowDefinition Height="5*" />
                                     <RowDefinition Height="40" />
                                 </Grid.RowDefinitions>
-
-                                <Label Grid.Row="0" VerticalAlignment="Top" Content="Ämnen" Style="{StaticResource Key_lbl_Header2}"/>
+                                
+                                <!--#region Subject management tool: -->
+                                <Label Grid.Row="0" Content="Ämnen"
+                                       VerticalAlignment="Top"
+                                       Style="{StaticResource Key_lbl_Header2}"/>
 
                                 <Grid Grid.Row="1">
                                     <ListView x:Name="lvw_Subjects"
@@ -83,26 +86,32 @@
                                                 Click="btn_RemoveSubject_Click" />
                                     </StackPanel>
                                 </StackPanel>
+                                <!--#endregion-->
 
+                                <!--#region Test management tool:-->
                                 <Label Grid.Row="3" Content="Prov" Style="{StaticResource Key_lbl_Header2}" />
 
                                 <Grid Grid.Row="4">
-                                    <ListView x:Name="lvw_TestDefinitions" Style="{StaticResource Key_lvw_Base}" SelectionMode="Single"
-                                              ItemContainerStyle="{StaticResource ListViewItemOptionStyle}" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD1" />
-                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD2" />
-                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD3" />
-                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD4" />
-                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD5" />
-                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD6" />
-                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD7" />
-                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD8" />
+                                    <ListView x:Name="lvw_TestDefinitions"
+                                              Style="{StaticResource Key_lvw_Base}"
+                                              ItemContainerStyle="{StaticResource ListViewItemOptionStyle}"
+                                              SelectionChanged="lvw_TestDefinitions_SelectionChanged">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Label Content="{Binding Item1.Title}" />
+                                                    <Label Content="{Binding Item1.Subject.Name}" />
+                                                    <Label Content="{Binding Item2}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
                                     </ListView>
                                 </Grid>
 
                                 <StackPanel Grid.Row="5" VerticalAlignment="Bottom" Orientation="Horizontal">
                                     <Button Content="Granska prov" Click="btn_InspectTestDefinition_Click" IsEnabled="False" />
                                 </StackPanel>
+                                <!--#endregion-->
                             </Grid>
                         </Grid>
                     </TabItem.Content>

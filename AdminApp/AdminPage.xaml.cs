@@ -23,6 +23,7 @@ namespace AdminApp {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             LoggedInAccount = loggedInAccount;
             UpdateSubjectListView();
+            UpdateTestDefinitionListView();
         }
 
         #region Subject management tools:
@@ -155,6 +156,18 @@ namespace AdminApp {
                 Controller.ResetPassword(lvw_Users.SelectedItem as AbstractUser);
                 UpdateUserListView(GetSelectedUserType());
             }
+        }
+        #endregion
+
+        #region Test management tools:
+
+        private void lvw_TestDefinitions_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+
+        }
+
+        private void UpdateTestDefinitionListView() {
+            lvw_TestDefinitions.ItemsSource = Repository<TestDefinition>.Instance.GetAll()
+                .Select(TD => Tuple.Create(TD, Testverktyg.Controllers.Controller.GetTestDefinitionAuthorName(TD)));
         }
         #endregion
     }
