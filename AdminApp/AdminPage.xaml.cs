@@ -25,6 +25,7 @@ namespace AdminApp {
             UpdateSubjectListView();
         }
 
+        #region Subject management tools:
         private void lvw_Subjects_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             skp_EditSubjectTools.IsEnabled = true;
         }
@@ -87,7 +88,9 @@ namespace AdminApp {
         private void btn_InspectTestDefinition_Click(object sender, RoutedEventArgs e) {
 
         }
+        #endregion
 
+        #region User management tools:
         private void cbx_SelectUserType_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             UpdateUserListView(GetSelectedUserType());
             skp_UserTools.Visibility = Visibility.Visible;
@@ -121,9 +124,11 @@ namespace AdminApp {
         private void btn_RemoveUser_Click(object sender, RoutedEventArgs e) {
             if (lvw_Users.SelectedItem != null) {
                 ((AbstractUser)lvw_Users.SelectedItem).IsNotRemoved = false;
-                if (Controller.DeleteUser(LoggedInAccount, lvw_Users.SelectedItem as AdminAccount)) { }
-                else if (Controller.DeleteUser(LoggedInAccount, lvw_Users.SelectedItem as TeacherAccount)) { }
-                else if (Controller.DeleteUser(LoggedInAccount, lvw_Users.SelectedItem as StudentAccount)) { }
+                if (Controller.DeleteUser(LoggedInAccount, lvw_Users.SelectedItem as AdminAccount)) {
+                } else if (Controller.DeleteUser(LoggedInAccount, lvw_Users.SelectedItem as TeacherAccount)) {
+                } else if (Controller.DeleteUser(LoggedInAccount, lvw_Users.SelectedItem as StudentAccount)) {
+                } else
+                    MessageBox.Show("Kan inte ta bort denna användare!\nKanske försöker du ta bort ditt eget konto.");
                 UpdateUserListView(GetSelectedUserType());
             }
         }
@@ -146,10 +151,11 @@ namespace AdminApp {
         }
 
         private void btn_ResetUserPassword_Click(object sender, RoutedEventArgs e) {
-            if(lvw_Users.SelectedItem != null) {
+            if (lvw_Users.SelectedItem != null) {
                 Controller.ResetPassword(lvw_Users.SelectedItem as AbstractUser);
                 UpdateUserListView(GetSelectedUserType());
             }
         }
+        #endregion
     }
 }

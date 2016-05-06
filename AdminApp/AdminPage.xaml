@@ -10,6 +10,7 @@
     <Grid>
         <Grid Background="{StaticResource color_DarkDarkMain}">
             <TabControl>
+                <!--#region Test and subject management tools: -->
                 <TabItem>
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
@@ -106,7 +107,9 @@
                         </Grid>
                     </TabItem.Content>
                 </TabItem>
+                <!--#endregion-->
 
+                <!--#region User management tools: -->
                 <TabItem>
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
@@ -211,7 +214,9 @@
                         </Grid>
                     </TabItem.Content>
                 </TabItem>
+                <!--#endregion-->
 
+                <!--#region Statistic tools: -->
                 <TabItem>
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
@@ -224,7 +229,9 @@
                         </Grid>
                     </TabItem.Content>
                 </TabItem>
+                <!--#endregion-->
 
+                <!--#region Admin settings tools: -->
                 <TabItem>
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
@@ -237,6 +244,7 @@
                         </Grid>
                     </TabItem.Content>
                 </TabItem>
+                <!--#endregion-->
             </TabControl>
         </Grid>
     </Grid>
