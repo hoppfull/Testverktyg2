@@ -1,14 +1,13 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using AdminApp.Controllers;
-using Testverktyg;
 
 namespace AdminApp {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            //MockData.Reset();
+            //Testverktyg.MockData.Reset();
         }
 
         private void btn_Login_Click(object sender, RoutedEventArgs e) {

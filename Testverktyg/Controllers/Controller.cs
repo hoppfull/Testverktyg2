@@ -166,9 +166,14 @@ namespace Testverktyg.Controllers
             return Tuple.Create(avgPoints, avgTime, median, G, IG, VG, result.Count);
         }
 
-        public static string GetTestDefinitionAuthorName(TestDefinition testDefinition)
+        public static TeacherAccount GetTestDefinitionAuthor(TestDefinition testDefinition)
         {
-            return Repository<TeacherAccount>.Instance.Get(testDefinition.TeacherAccountId).Name;
+            return Repository<TeacherAccount>.Instance.Get(testDefinition.TeacherAccountId);
+        }
+
+        public static Subject GetTestDefinitionSubject(TestDefinition testDefinition)
+        {
+            return Repository<Subject>.Instance.Get(testDefinition.SubjectId);
         }
 
         public static bool ValidateTestDefinition(TestDefinition testDefinition, IList<StudentAccount> studentAccounts, int time, DateTime finalDate)
