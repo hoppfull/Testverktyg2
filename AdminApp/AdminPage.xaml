@@ -31,24 +31,58 @@
                                 <Label Grid.Row="0" VerticalAlignment="Top" Content="Ämnen" Style="{StaticResource Key_lbl_Header2}"/>
 
                                 <Grid Grid.Row="1">
-                                    <ListView x:Name="lvw_Subjects" Style="{StaticResource Key_lvw_Base}" SelectionMode="Single"
-                                              ItemContainerStyle="{StaticResource ListViewItemOptionStyle}" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD1" />
-                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD2" />
-                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD3" />
-                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD4" />
-                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD5" />
-                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD6" />
-                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD7" />
-                                        <Label Foreground="{StaticResource color_MidLightMain}" Content="ASD8" />
+                                    <ListView x:Name="lvw_Subjects"
+                                              Style="{StaticResource Key_lvw_Base}"
+                                              SelectionMode="Single"
+                                              ItemContainerStyle="{StaticResource ListViewItemOptionStyle}"
+                                              ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                              SelectionChanged="lvw_Subjects_SelectionChanged">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Label Content="{Binding Name}"
+                                                       Style="{StaticResource Key_lvw_Item}" />
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
                                     </ListView>
                                 </Grid>
 
-                                <StackPanel Grid.Row="2" VerticalAlignment="Bottom" Orientation="Horizontal">
-                                    <Button Content="Lägg till" Click="btn_AddSubject_Click" />
-                                    <Button Margin="10,0" Content="Ta bort" Click="btn_RemoveSubject_Click" IsEnabled="False" />
-                                    <Button Content="Redigera" Click="btn_EditSubject_Click" IsEnabled="False" />
-                                    <TextBox x:Name="tbx_EditSubjectName" Visibility="Collapsed" />
+                                <StackPanel Grid.Row="2"
+                                            Orientation="Horizontal"
+                                            VerticalAlignment="Bottom">
+                                    <Button x:Name="btn_AddSubject"
+                                            Content="Lägg till"
+                                            Click="btn_AddSubject_Click"
+                                            Visibility="Visible" />
+                                    <StackPanel x:Name="skp_SaveSubject"
+                                                Orientation="Horizontal"
+                                                Visibility="Collapsed">
+                                        <Button Content="Spara"
+                                                Click="btn_SaveSubject_Click"/>
+                                        <Button Content="Avbryt"
+                                                Click="btn_AbortSaveSubject_Click"/>
+                                        <TextBox x:Name="tbx_AddSubjectName"
+                                                 Style="{StaticResource Key_tbx_TextField}" />
+                                    </StackPanel>
+                                    <StackPanel x:Name="skp_EditSubjectTools"
+                                                Orientation="Horizontal"
+                                                IsEnabled="False">
+                                        <Button x:Name="btn_ChangeSubjectName"
+                                                Content="Redigera"
+                                                Click="btn_ChangeSubjectName_Click"
+                                                Visibility="Visible" />
+                                        <StackPanel x:Name="skp_ChangeSubjectName"
+                                                Orientation="Horizontal"
+                                                Visibility="Collapsed">
+                                            <Button Content="Spara"
+                                                    Click="btn_SaveChangeSubjectName_Click" />
+                                            <Button Content="Avbryt"
+                                                    Click="btn_AbortChangeSubjectName_Click" />
+                                            <TextBox x:Name="tbx_ChangeSubjectName"
+                                                     Style="{StaticResource Key_tbx_TextField}" />
+                                        </StackPanel>
+                                        <Button Content="Ta bort"
+                                                Click="btn_RemoveSubject_Click" />
+                                    </StackPanel>
                                 </StackPanel>
 
                                 <Label Grid.Row="3" Content="Prov" Style="{StaticResource Key_lbl_Header2}" />
@@ -93,7 +127,7 @@
                                 </Grid.RowDefinitions>
 
                                 <Label Grid.Row="0" Content="Välj kontotyp:" VerticalAlignment="Top" Style="{StaticResource Key_lbl_Header2}"/>
-                                
+
                                 <Grid Grid.Row="1">
                                     <ComboBox x:Name="cbx_SelectUserType" HorizontalAlignment="Left" MinWidth="150"
                                           SelectionChanged="cbx_SelectUserType_SelectionChanged"
@@ -117,7 +151,7 @@
                                     <Label Grid.Column="1" Padding="13,5" Content="Email" Foreground="{StaticResource color_MidLightMain}" />
                                     <Label Grid.Column="2" Padding="13,5" Content="Lösenord" Foreground="{StaticResource color_MidLightMain}" />
                                 </Grid>
-                                
+
                                 <Grid Grid.Row="3">
                                     <ListView x:Name="lvw_Users" Style="{StaticResource Key_lvw_Base}" ItemContainerStyle="{StaticResource ListViewItemOptionStyle}"
                                               SelectionChanged="lvw_Users_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Visible">
@@ -129,17 +163,18 @@
                                                         <ColumnDefinition Width="300" />
                                                         <ColumnDefinition Width="*" />
                                                     </Grid.ColumnDefinitions>
-                                                    <Label Grid.Column="0" Content="{Binding Name}" Foreground="{StaticResource color_MidLightMain}" />
-                                                    <Label Grid.Column="1" Content="{Binding Email}" Foreground="{StaticResource color_MidLightMain}"
-                                                           BorderBrush="{StaticResource color_LowDarkMain}" BorderThickness="1,0,0,0" />
-                                                    <Label Grid.Column="2" Content="{Binding Password}" Foreground="{StaticResource color_MidLightMain}"
-                                                           BorderBrush="{StaticResource color_LowDarkMain}" BorderThickness="1,0,0,0"  />
+                                                    <Label Grid.Column="0" Content="{Binding Name}"
+                                                           Style="{StaticResource Key_lvw_Item}" />
+                                                    <Label Grid.Column="1" Content="{Binding Email}"
+                                                           Style="{StaticResource Key_lvw_Item}" />
+                                                    <Label Grid.Column="2" Content="{Binding Password}"
+                                                           Style="{StaticResource Key_lvw_Item}" />
                                                 </Grid>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
                                 </Grid>
-                                
+
                                 <StackPanel Grid.Row="4" Margin="0,4,0,0"
                                             x:Name="skp_UserTools"
                                             Orientation="Horizontal"
@@ -154,23 +189,19 @@
                                         <Button x:Name="btn_SaveUser"
                                                 Content="Spara"
                                                 Click="btn_SaveUser_Click"/>
+                                        <Button x:Name="btn_AbortSaveUser"
+                                                Content="Avbryt"
+                                                Click="btn_AbortSaveUser_Click"/>
 
                                         <TextBox x:Name="tbx_AddUserName"
-                                                 MinWidth="200"
-                                                 Height="35"
-                                                 Margin="10,1,0,2"
-                                                 Style="{StaticResource Key_tbx_LoginField}" />
+                                                 Style="{StaticResource Key_tbx_TextField}" />
                                         <TextBox x:Name="tbx_AddUserEmail"
-                                                 MinWidth="200"
-                                                 Height="35"
-                                                 Margin="10,1,0,2"
-                                                 Style="{StaticResource Key_tbx_LoginField}" />
+                                                 Style="{StaticResource Key_tbx_TextField}" />
                                     </StackPanel>
                                     <StackPanel x:Name="skp_EditUser"
                                                 Orientation="Horizontal"
                                                 IsEnabled="False">
                                         <Button Content="Ta bort"
-                                                    Margin="10,0"
                                                 Click="btn_RemoveUser_Click" />
                                         <Button Content="Ställ om lösenord"
                                                 Click="btn_ResetUserPassword_Click" />

@@ -22,10 +22,28 @@ namespace AdminApp {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             LoggedInAccount = loggedInAccount;
+            UpdateSubjectListView();
         }
 
-        private void btn_EditSubject_Click(object sender, RoutedEventArgs e) {
+        private void lvw_Subjects_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            skp_EditSubjectTools.IsEnabled = true;
+        }
 
+        private void btn_ChangeSubjectName_Click(object sender, RoutedEventArgs e) {
+            ToggleChangeSubjectTools(true);
+        }
+
+        private void btn_SaveChangeSubjectName_Click(object sender, RoutedEventArgs e) {
+            ToggleChangeSubjectTools(false);
+        }
+
+        private void btn_AbortChangeSubjectName_Click(object sender, RoutedEventArgs e) {
+            ToggleChangeSubjectTools(false);
+        }
+
+        private void ToggleChangeSubjectTools(bool enable) {
+            btn_ChangeSubjectName.Visibility = enable ? Visibility.Collapsed : Visibility.Visible;
+            skp_ChangeSubjectName.Visibility = enable ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void btn_RemoveSubject_Click(object sender, RoutedEventArgs e) {
@@ -33,7 +51,25 @@ namespace AdminApp {
         }
 
         private void btn_AddSubject_Click(object sender, RoutedEventArgs e) {
+            ToggleSaveSubjectTools(true);
+        }
 
+        private void btn_SaveSubject_Click(object sender, RoutedEventArgs e) {
+            ToggleSaveSubjectTools(false);
+        }
+
+        private void btn_AbortSaveSubject_Click(object sender, RoutedEventArgs e) {
+            ToggleSaveSubjectTools(false);
+        }
+
+        private void ToggleSaveSubjectTools(bool enable) {
+            btn_AddSubject.Visibility = enable ? Visibility.Collapsed : Visibility.Visible;
+            skp_SaveSubject.Visibility = enable ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        private void UpdateSubjectListView() {
+            lvw_Subjects.ItemsSource = Repository<Subject>.Instance.GetAll();
+            skp_EditSubjectTools.IsEnabled = false;
         }
 
         private void btn_InspectTestDefinition_Click(object sender, RoutedEventArgs e) {
@@ -42,7 +78,6 @@ namespace AdminApp {
 
         private void cbx_SelectUserType_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             UpdateUserListView(GetSelectedUserType());
-            skp_EditUser.IsEnabled = false;
             skp_UserTools.Visibility = Visibility.Visible;
         }
 
@@ -51,15 +86,22 @@ namespace AdminApp {
         }
 
         private void btn_AddUser_Click(object sender, RoutedEventArgs e) {
-            btn_AddUser.Visibility = Visibility.Collapsed;
-            skp_SaveUser.Visibility = Visibility.Visible;
+            ToggleSaveUserTools(true);
         }
 
         private void btn_SaveUser_Click(object sender, RoutedEventArgs e) {
-            btn_AddUser.Visibility = Visibility.Visible;
-            skp_SaveUser.Visibility = Visibility.Collapsed;
+            ToggleSaveUserTools(false);
             Controller.CreateUser(tbx_AddUserName.Text, tbx_AddUserEmail.Text, GetSelectedUserType());
             UpdateUserListView(GetSelectedUserType());
+        }
+
+        private void btn_AbortSaveUser_Click(object sender, RoutedEventArgs e) {
+            ToggleSaveUserTools(false);
+        }
+
+        private void ToggleSaveUserTools(bool enable) {
+            btn_AddUser.Visibility = enable ? Visibility.Collapsed : Visibility.Visible;
+            skp_SaveUser.Visibility = enable ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void btn_RemoveUser_Click(object sender, RoutedEventArgs e) {
