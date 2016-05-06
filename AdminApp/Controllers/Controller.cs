@@ -16,11 +16,19 @@ namespace AdminApp.Controllers {
         }
 
         public static bool DeleteSubject(Subject subject) {
-            return true;
+            if(subject != null) {
+                return Repository<Subject>.Instance.Delete(subject);
+            }
+            return false;
         }
 
         public static bool EditSubject(Subject subject, string name) {
-            return true;
+            if(subject != null && IsSubjectValid(name)) {
+                subject.Name = name;
+                Repository<Subject>.Instance.Update(subject);
+                return true;
+            }
+            return false;
         }
 
         public static bool IsSubjectValid(string name) {

@@ -31,10 +31,15 @@ namespace AdminApp {
 
         private void btn_ChangeSubjectName_Click(object sender, RoutedEventArgs e) {
             ToggleChangeSubjectTools(true);
+            tbx_ChangeSubjectName.Text = ((Subject)lvw_Subjects.SelectedItem).Name;
         }
 
         private void btn_SaveChangeSubjectName_Click(object sender, RoutedEventArgs e) {
-            ToggleChangeSubjectTools(false);
+            if (Controller.EditSubject(lvw_Subjects.SelectedItem as Subject, tbx_ChangeSubjectName.Text)) {
+                ToggleChangeSubjectTools(false);
+                UpdateSubjectListView();
+            } else
+                MessageBox.Show("Kunde inte ändra namn på ämne!\nKanske är namnet ogiltigt.");
         }
 
         private void btn_AbortChangeSubjectName_Click(object sender, RoutedEventArgs e) {
@@ -44,10 +49,14 @@ namespace AdminApp {
         private void ToggleChangeSubjectTools(bool enable) {
             btn_ChangeSubjectName.Visibility = enable ? Visibility.Collapsed : Visibility.Visible;
             skp_ChangeSubjectName.Visibility = enable ? Visibility.Visible : Visibility.Collapsed;
+            tbx_ChangeSubjectName.Text = "";
         }
 
         private void btn_RemoveSubject_Click(object sender, RoutedEventArgs e) {
-
+            if (Controller.DeleteSubject(lvw_Subjects.SelectedItem as Subject))
+                UpdateSubjectListView();
+            else
+                MessageBox.Show("Kan inte ta bort detta ämne!\nKanske refereras det av ett eller fler prov.");
         }
 
         private void btn_AddSubject_Click(object sender, RoutedEventArgs e) {
@@ -55,9 +64,8 @@ namespace AdminApp {
         }
 
         private void btn_SaveSubject_Click(object sender, RoutedEventArgs e) {
-            if (Controller.CreateSubject(tbx_AddSubjectName.Text) != null) {
+            if (Controller.CreateSubject(tbx_AddSubjectName.Text) != null)
                 UpdateSubjectListView();
-            };
             ToggleSaveSubjectTools(false);
         }
 
@@ -94,9 +102,9 @@ namespace AdminApp {
         }
 
         private void btn_SaveUser_Click(object sender, RoutedEventArgs e) {
-            ToggleSaveUserTools(false);
             Controller.CreateUser(tbx_AddUserName.Text, tbx_AddUserEmail.Text, GetSelectedUserType());
             UpdateUserListView(GetSelectedUserType());
+            ToggleSaveUserTools(false);
         }
 
         private void btn_AbortSaveUser_Click(object sender, RoutedEventArgs e) {
