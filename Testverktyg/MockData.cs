@@ -36,7 +36,6 @@ namespace Testverktyg
             var sub3 = new Subject { Name = "Naturvetenskap" };
             var sub4 = new Subject { Name = "Litteratur" };
 
-
             //Create TestDefinition
             var test1 = new TestDefinition { Title = "DatabasProv", Subject = sub2, Paragraph = "1", TestDefinitionState = TestDefinitionState.Created, Questions = new List<Question>() };
             var test2 = new TestDefinition { Title = "MatteprovProv", Subject = sub3, Paragraph = "1", TestDefinitionState = TestDefinitionState.Sent, Questions = new List<Question>() };
