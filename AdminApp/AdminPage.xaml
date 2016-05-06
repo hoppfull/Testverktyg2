@@ -33,9 +33,7 @@
                                 <Grid Grid.Row="1">
                                     <ListView x:Name="lvw_Subjects"
                                               Style="{StaticResource Key_lvw_Base}"
-                                              SelectionMode="Single"
                                               ItemContainerStyle="{StaticResource ListViewItemOptionStyle}"
-                                              ScrollViewer.VerticalScrollBarVisibility="Auto"
                                               SelectionChanged="lvw_Subjects_SelectionChanged">
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
@@ -153,8 +151,10 @@
                                 </Grid>
 
                                 <Grid Grid.Row="3">
-                                    <ListView x:Name="lvw_Users" Style="{StaticResource Key_lvw_Base}" ItemContainerStyle="{StaticResource ListViewItemOptionStyle}"
-                                              SelectionChanged="lvw_Users_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                    <ListView x:Name="lvw_Users" 
+                                              Style="{StaticResource Key_lvw_Base}"
+                                              ItemContainerStyle="{StaticResource ListViewItemOptionStyle}"
+                                              SelectionChanged="lvw_Users_SelectionChanged">
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <Grid>

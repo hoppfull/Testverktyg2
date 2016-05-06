@@ -55,6 +55,9 @@ namespace AdminApp {
         }
 
         private void btn_SaveSubject_Click(object sender, RoutedEventArgs e) {
+            if (Controller.CreateSubject(tbx_AddSubjectName.Text) != null) {
+                UpdateSubjectListView();
+            };
             ToggleSaveSubjectTools(false);
         }
 
@@ -65,6 +68,7 @@ namespace AdminApp {
         private void ToggleSaveSubjectTools(bool enable) {
             btn_AddSubject.Visibility = enable ? Visibility.Collapsed : Visibility.Visible;
             skp_SaveSubject.Visibility = enable ? Visibility.Visible : Visibility.Collapsed;
+            tbx_AddSubjectName.Text = "";
         }
 
         private void UpdateSubjectListView() {
@@ -102,6 +106,8 @@ namespace AdminApp {
         private void ToggleSaveUserTools(bool enable) {
             btn_AddUser.Visibility = enable ? Visibility.Collapsed : Visibility.Visible;
             skp_SaveUser.Visibility = enable ? Visibility.Visible : Visibility.Collapsed;
+            tbx_AddUserName.Text = "";
+            tbx_AddUserEmail.Text = "";
         }
 
         private void btn_RemoveUser_Click(object sender, RoutedEventArgs e) {
