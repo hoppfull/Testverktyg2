@@ -28,9 +28,9 @@
                                     <RowDefinition Height="5*" />
                                     <RowDefinition Height="40" />
                                 </Grid.RowDefinitions>
-                                
+
                                 <!--#region Subject management tool: -->
-                                
+
                                 <Grid  Grid.Row="0" Background="{StaticResource color_DarkDarkMain}" Margin="0,7,0,0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="300" />
@@ -66,8 +66,17 @@
                                                 Click="btn_SaveSubject_Click"/>
                                         <Button Content="Avbryt"
                                                 Click="btn_AbortSaveSubject_Click"/>
-                                        <TextBox x:Name="tbx_AddSubjectName"
+
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBox  Grid.Column="0" x:Name="tbx_AddSubjectName"
                                                  Style="{StaticResource Key_tbx_TextField}" />
+                                            <TextBlock Grid.Column="0" 
+                                                       Style="{StaticResource Key_tbl_AddSubjectName}" 
+                                                       Text="Nytt ämne" />
+                                        </Grid>
                                     </StackPanel>
                                     <StackPanel x:Name="skp_EditSubjectTools"
                                                 Orientation="Horizontal"
@@ -100,7 +109,7 @@
                                     </Grid.ColumnDefinitions>
                                     <Label Grid.Column="0" Padding="13,5" Content="Prov" Foreground="{StaticResource color_MidLightMain}" />
                                 </Grid>
-                                
+
                                 <Grid Grid.Row="4">
                                     <ListView x:Name="lvw_TestDefinitions"
                                               Style="{StaticResource Key_lvw_Base}"
@@ -236,7 +245,7 @@
                                             <TextBlock Grid.Column="0" 
                                                        Style="{StaticResource Key_tbl_AddUserName}" 
                                                        Text="Nytt namn" />
-                                            
+
                                             <TextBox Grid.Column="1" x:Name="tbx_AddUserEmail"
                                                  Style="{StaticResource Key_tbx_TextField}" />
 
@@ -268,7 +277,7 @@
                         </StackPanel>
                     </TabItem.Header>
                     <TabItem.Content>
-                        <Grid>
+                        <Grid Background="{StaticResource color_NormalDarkMain}">
 
                         </Grid>
                     </TabItem.Content>
@@ -283,7 +292,7 @@
                         </StackPanel>
                     </TabItem.Header>
                     <TabItem.Content>
-                        <Grid>
+                        <Grid Background="{StaticResource color_NormalDarkMain}">
 
                         </Grid>
                     </TabItem.Content>

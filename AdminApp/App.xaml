@@ -182,22 +182,31 @@
             <Setter Property="FontSize" Value="16" />
         </Style>
 
+        <Style x:Key="Key_tbl_AddSubjectName" TargetType="TextBlock" BasedOn="{StaticResource Key_tbl_AdminAppPlaceholderBase}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=tbx_AddSubjectName}" Value="">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
         <Style x:Key="Key_tbl_AddUserName" TargetType="TextBlock" BasedOn="{StaticResource Key_tbl_AdminAppPlaceholderBase}">
-        <Setter Property="Visibility" Value="Collapsed" />
-        <Style.Triggers>
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
                 <DataTrigger Binding="{Binding Text, ElementName=tbx_AddUserName}" Value="">
-                <Setter Property="Visibility" Value="Visible" />
-            </DataTrigger>
-        </Style.Triggers>
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
 
         <Style x:Key="Key_tbl_AddUserEmail" TargetType="TextBlock" BasedOn="{StaticResource Key_tbl_AdminAppPlaceholderBase}">
-        <Setter Property="Visibility" Value="Collapsed" />
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding Text, ElementName=tbx_AddUserEmail}" Value="">
-                <Setter Property="Visibility" Value="Visible" />
-            </DataTrigger>
-        </Style.Triggers>
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=tbx_AddUserEmail}" Value="">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
 
         <Style x:Key="Key_tbl_EmailPlaceholder" TargetType="TextBlock" BasedOn="{StaticResource Key_tbl_AdminAppPlaceholderBase}">
@@ -254,7 +263,7 @@
             <Setter Property="Padding" Value="0" />
         </Style>
 
-        
+
         <Style TargetType="{x:Type TabItem}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -326,7 +335,7 @@
                 </MultiTrigger>
             </Style.Triggers>
         </Style>
-       
+
 
     </Application.Resources>
 </Application>
