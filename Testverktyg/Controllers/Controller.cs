@@ -8,7 +8,7 @@ using Testverktyg.Context;
 using Testverktyg.Model;
 using Testverktyg.Repository;
 
-namespace Testverktyg.Controller
+namespace Testverktyg.Controllers
 {
     static public class Controller
     {
@@ -29,9 +29,8 @@ namespace Testverktyg.Controller
 
         public static bool IsTestDefinitionNameValid(string name)
         {
-            //Check if exist
-            //Andreas
-            return true;
+            IList<TestDefinition> tds = Repository<TestDefinition>.Instance.GetAll();
+            return !(tds.Any(x => x.Title == name) || String.IsNullOrWhiteSpace(name));
         }
 
 
@@ -93,8 +92,9 @@ namespace Testverktyg.Controller
         public static IList<TestForm> GetTestFormResults(TestDefinition testDefinition)
         {
             //hämta alla test forms som finns på en test definition
-            //Andreas
-            return null;
+            IList<TestForm> forms = Repository<TestForm>.Instance.GetAll();
+            IList<TestForm> neededforms = forms.Where(x => x.TestDefinitionId == testDefinition.Id).ToList();
+            return neededforms;
         }
 
         public static IList<Tuple<string, GradeType, int, int>> GetResults(IList<TestForm> testForms)
@@ -166,9 +166,14 @@ namespace Testverktyg.Controller
             return Tuple.Create(avgPoints, avgTime, median, G, IG, VG, result.Count);
         }
 
-        public static string GetTestDefinitionAuthorName(TestDefinition testDefinition)
+        public static TeacherAccount GetTestDefinitionAuthor(TestDefinition testDefinition)
         {
-            return Repository<TeacherAccount>.Instance.Get(testDefinition.TeacherAccountId).Name;
+            return Repository<TeacherAccount>.Instance.Get(testDefinition.TeacherAccountId);
+        }
+
+        public static Subject GetTestDefinitionSubject(TestDefinition testDefinition)
+        {
+            return Repository<Subject>.Instance.Get(testDefinition.SubjectId);
         }
 
         public static bool ValidateTestDefinition(TestDefinition testDefinition, IList<StudentAccount> studentAccounts, int time, DateTime finalDate)

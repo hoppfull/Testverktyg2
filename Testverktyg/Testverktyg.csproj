@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\TestverktygContext.cs" />
-    <Compile Include="Controller\Controller.cs" />
+    <Compile Include="Controllers\Controller.cs" />
     <Compile Include="MockData.cs" />
     <Compile Include="Model\AbstractUser.cs" />
     <Compile Include="Model\AdminAccount.cs" />

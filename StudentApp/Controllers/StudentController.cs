@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Testverktyg.Model;
 using Testverktyg.Repository;
+using Testverktyg.Controllers;
 
-namespace StudentApp.Controller
+namespace StudentApp.Controllers
 {
     public static class StudentController
     {
@@ -21,7 +22,7 @@ namespace StudentApp.Controller
 
             }
 
-            GradeType grade = Testverktyg.Controller.Controller.CalcGrade(testForm);
+            GradeType grade = Controller.CalcGrade(testForm);
 
             //Save to databas
             return false;

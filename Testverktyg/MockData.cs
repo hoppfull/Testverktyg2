@@ -32,16 +32,17 @@ namespace Testverktyg
 
             //Create Subject
             var sub1 = new Subject { Name = "Initial" };
-            var sub2 = new Subject { Name = "SystemUtvecklare" };
+            var sub2 = new Subject { Name = "SystemUtveckling" };
+            var sub3 = new Subject { Name = "Naturvetenskap" };
+            var sub4 = new Subject { Name = "Litteratur" };
             
-
             //Create TestDefinition
-            var test1 = new TestDefinition { Title = "DatabasProv", Subject = sub1, Paragraph = "1", TestDefinitionState = TestDefinitionState.Created, Questions = new List<Question>() };
-            var test2 = new TestDefinition { Title = "DatabasProv", Subject = sub1, Paragraph = "1", TestDefinitionState = TestDefinitionState.Sent, Questions = new List<Question>() };
-            var test3 = new TestDefinition { Title = "DatabasProv", Subject = sub1, Paragraph = "1", TestDefinitionState = TestDefinitionState.Created, Questions = new List<Question>() };
-            var test4 = new TestDefinition { Title = "DatabasProv", Subject = sub1, Paragraph = "1", TestDefinitionState = TestDefinitionState.Sent, Questions = new List<Question>() };
-            var test5 = new TestDefinition { Title = "DatabasProv", Subject = sub1, Paragraph = "1", TestDefinitionState = TestDefinitionState.Created, Questions = new List<Question>() };
-            var test6 = new TestDefinition { Title = "DatabasProv", Subject = sub1, Paragraph = "1", TestDefinitionState = TestDefinitionState.Created, Questions = new List<Question>() };
+            var test1 = new TestDefinition { Title = "DatabasProv", Subject = sub2, Paragraph = "1", TestDefinitionState = TestDefinitionState.Created, Questions = new List<Question>() };
+            var test2 = new TestDefinition { Title = "MatteprovProv", Subject = sub3, Paragraph = "1", TestDefinitionState = TestDefinitionState.Sent, Questions = new List<Question>() };
+            var test3 = new TestDefinition { Title = "FysikProv", Subject = sub3, Paragraph = "1", TestDefinitionState = TestDefinitionState.Created, Questions = new List<Question>() };
+            var test4 = new TestDefinition { Title = "SvenskaProv", Subject = sub4, Paragraph = "1", TestDefinitionState = TestDefinitionState.Sent, Questions = new List<Question>() };
+            var test5 = new TestDefinition { Title = "ProgrammeringsProv", Subject = sub2, Paragraph = "1", TestDefinitionState = TestDefinitionState.Created, Questions = new List<Question>() };
+            var test6 = new TestDefinition { Title = "TestProv", Subject = sub1, Paragraph = "1", TestDefinitionState = TestDefinitionState.Created, Questions = new List<Question>() };
 
             //Create TestForms
             var testForms1 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test1, AnsweredQuestions = new List<AnsweredQuestion>() };
