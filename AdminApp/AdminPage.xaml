@@ -266,9 +266,10 @@
                 <!--#endregion-->
 
                 <!--#region Statistic tools: -->
-                <TabItem MouseDown="tab_Statistics_MouseDown">
+                <TabItem>
                     <TabItem.Header>
-                        <Label Style="{StaticResource Key_lbl_TabControl}" Content="Statistik" />
+                        <Label Content="Statistik" MouseDown="tab_Statistics_MouseDown"
+                               Style="{StaticResource Key_lbl_TabControl}" />
                     </TabItem.Header>
                     <TabItem.Content>
                         <Grid Background="{StaticResource color_NormalDarkMain}">
@@ -296,7 +297,7 @@
 
                                         <!--Subjectfilter:-->
                                         <Label Style="{StaticResource Key_lbl_Header2}" Content="Välj ämne:" VerticalAlignment="Top" />
-                                        <ComboBox Grid.Column="1" MinWidth="200" x:Name="cbx_FilterSubject" 
+                                        <ComboBox Grid.Column="1" MinWidth="200" x:Name="cbx_FilterSubject" SelectionChanged="cbx_FilterSubject_SelectionChanged"
                                                   Style="{StaticResource Key_cbx_Normal}">
                                             <ComboBox.ItemTemplate>
                                                 <DataTemplate>
@@ -308,31 +309,28 @@
 
                                         <Grid Grid.Column="2" Margin="10,0,0,0">
 
-                                            <TextBox x:Name="tbx_FilterTestName"
-                                                 Style="{StaticResource Key_tbx_TextField}" />
+                                            <TextBox x:Name="tbx_FilterTestName" TextChanged="tbx_FilterTestName_TextChanged"
+                                                     Style="{StaticResource Key_tbx_TextField}" IsEnabled="False" />
 
-                                            <TextBlock 
-                                                       Style="{StaticResource Key_tbl_FilterTestName}" 
-                                                       Text="Filtera efter provnamn" />
+                                            <TextBlock Text="Filtera efter provnamn"
+                                                       Style="{StaticResource Key_tbl_FilterTestName}" />
                                         </Grid>
                                     </StackPanel>
 
                                     <!-- Listview Master header items -->
                                     <Grid Grid.Row="1" Background="{StaticResource color_DarkDarkMain}" Margin="0,7,0,0">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="160" />
-                                            <ColumnDefinition Width="160" />
+                                            <ColumnDefinition Width="230" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <Label Grid.Column="0" Padding="13,5" Content="Prov:" 
                                            Foreground="{StaticResource color_MidLightMain}" />
                                         <Label Grid.Column="1" Padding="13,5" Content="Skapad av:" 
                                            Foreground="{StaticResource color_MidLightMain}" />
-                                        <Label Grid.Column="2" Padding="13,5" Content="Ämne:" 
-                                           Foreground="{StaticResource color_MidLightMain}" />
+                                        <!--<Label Grid.Column="2" Padding="13,5" Content="Ämne:" 
+                                           Foreground="{StaticResource color_MidLightMain}" />-->
                                     </Grid>
 
-                                    <!--#region Master:-->
                                     <Grid Grid.Row="2">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
@@ -345,30 +343,25 @@
                                                 <DataTemplate>
                                                     <Grid>
                                                         <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="160" />
-                                                            <ColumnDefinition Width="160" />
+                                                            <ColumnDefinition Width="230" />
                                                             <ColumnDefinition Width="*" />
                                                         </Grid.ColumnDefinitions>
                                                         <!--Test name:-->
-                                                        <!--<Label Grid.Column="0" Content="{Binding Item1.Title}" />-->
-                                                        <Label Grid.Column="0" Content="{Binding Item1}" 
+                                                        <Label Grid.Column="0" Content="{Binding Item1.Title}"
                                                             Style="{StaticResource Key_lvw_Item}" BorderThickness="0" />
                                                         <!--Author name:-->
-                                                        <!--<Label Grid.Column="1" Content="{Binding Item2.Name}" />-->
-                                                        <Label Grid.Column="1" Content="{Binding Item2}" 
-                                                            Style="{StaticResource Key_lvw_Item}" />
+                                                        <Label Grid.Column="1" Content="{Binding Item2.Name}"
+                                                               Style="{StaticResource Key_lvw_Item}" />
                                                         <!--Subject name:-->
-                                                        <!--<Label Grid.Column="2" Content="{Binding Item3.Name}" />-->
-                                                        <Label Grid.Column="2" Content="{Binding Item3}" 
-                                                            Style="{StaticResource Key_lvw_Item}" />
+                                                        <!--<Label Grid.Column="2" Content="{Binding Item3.Name}"
+                                                               Style="{StaticResource Key_lvw_Item}" />-->
                                                     </Grid>
                                                 </DataTemplate>
                                             </ListView.ItemTemplate>
                                         </ListView>
                                     </Grid>
                                 </Grid>
-                                <!--#endregion-->
-                                
+
                                 <!--#region Detail:-->
                                 <Grid Grid.Column="2">
                                     <Grid.RowDefinitions>

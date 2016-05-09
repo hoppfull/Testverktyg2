@@ -24,49 +24,9 @@ namespace AdminApp {
             LoggedInAccount = loggedInAccount;
             UpdateSubjectListView();
             UpdateTestDefinitionListView();
-            icl_TestResults.ItemsSource = new List<Tuple<string, string, string, string>> {
-                Tuple.Create("Andreas", "G", "22", "40"),
-                Tuple.Create("Andreas", "G", "22", "40"),
-                Tuple.Create("Andreas", "G", "22", "40"),
-                Tuple.Create("Andreas", "G", "22", "40"),
-                Tuple.Create("Andreas", "G", "22", "40"),
-                Tuple.Create("Andreas", "G", "22", "40"),
-                Tuple.Create("Andreas", "G", "22", "40"),
-                Tuple.Create("Andreas", "G", "22", "40"),
-                Tuple.Create("Andreas", "G", "22", "40"),
-                Tuple.Create("Andreas", "G", "22", "40"),
-                Tuple.Create("Andreas", "G", "22", "40"),
-                Tuple.Create("Andreas", "G", "22", "40"),
-                Tuple.Create("Andreas", "G", "22", "40"),
-                Tuple.Create("Andreas", "G", "22", "40"),
-                Tuple.Create("Andreas", "G", "22", "40"),
-                Tuple.Create("Andreas", "G", "22", "40")
-            };
-            lvw_TestStatisticsMaster.ItemsSource = new List<Tuple<string, string, string>>
-            {
-                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
-                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
-                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
-                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
-                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
-                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
-                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
-                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
-                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
-                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
-                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
-                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
-                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
-                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
-                Tuple.Create("Matteprov", "Lärare1", "Matematik")
-            };
-
-            grd_SummaryStatistics.DataContext = Tuple.Create("123", "123", "123", "1/7", "3/7", "3/7");
-            UpdateSubjectMasterComboBox();
         }
 
         private void LogoutEvent(object sender, RoutedEventArgs e) {
-            Console.WriteLine("lol");
             ViewController.Logout(this);
         }
 
@@ -229,23 +189,37 @@ namespace AdminApp {
 
         #region Statistics tools:
         private void tab_Statistics_MouseDown(object sender, RoutedEventArgs e) {
-            UpdateTestsMasterListView();
             UpdateSubjectMasterComboBox();
         }
 
-        private void UpdateTestsMasterListView() {
+        private void cbx_FilterSubject_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            tbx_FilterTestName.IsEnabled = true;
+            tbx_FilterTestName.Text = "";
+            UpdateTestsMasterListView();
+        }
 
+        private void tbx_FilterTestName_TextChanged(object sender, TextChangedEventArgs e) {
+            UpdateTestsMasterListView();
+        }
+
+        private void UpdateTestsMasterListView() {
+            lvw_TestStatisticsMaster.ItemsSource = FilterTests((Subject)cbx_FilterSubject.SelectedItem, tbx_FilterTestName.Text)
+                .Select(test => Tuple.Create(test,
+                Repository<TeacherAccount>.Instance.Get(test.TeacherAccountId)));
         }
 
         private void UpdateSubjectMasterComboBox() {
-            Console.WriteLine("tjosan");
+            //TODO: Solve this bug!
             cbx_FilterSubject.ItemsSource = Repository<Subject>.Instance.GetAll();
+            cbx_FilterSubject.SelectedIndex = -1;
         }
 
-        private IList<TestDefinition> FilterTests(string title = null, Subject subject = null) {
-            return null;
-        }
+        private IList<TestDefinition> FilterTests(Subject subject, string titleFilter) {
+            Func<string, bool> textFilter = text => titleFilter.ToLower() == text.ToLower().Substring(0, Math.Min(titleFilter.Length, text.Length));
 
+            return Repository<TestDefinition>.Instance.GetAll()
+                .Where(test => test.SubjectId == subject.Id && (string.IsNullOrWhiteSpace(titleFilter) || textFilter(test.Title))).ToList();
+        }
         #endregion
 
         #region Settings tools:
@@ -283,6 +257,8 @@ namespace AdminApp {
             } else
                 MessageBox.Show("Kunde inte ändra din email!\nKanske är mailen inte giltig.");
         }
+
         #endregion
+        
     }
 }
