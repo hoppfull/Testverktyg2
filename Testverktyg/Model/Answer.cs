@@ -7,8 +7,12 @@ namespace Testverktyg.Model {
         public int Id { get; set; }
         public string Text { get; set; }
         public int CheckedOrRanked { get; set; }
-        public int QuestionId { get; set; }
+        public int? QuestionId { get; set; }
         [ForeignKey("QuestionId")]
         public Question Question { get; set; }
+        public int AnswerQuestionId { get; set; }
+        [ForeignKey("AnswerdQuestonId")]
+        public AnsweredQuestion AnswerdQuestion { get; set; }
+
     }
 }
