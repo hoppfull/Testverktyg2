@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Testverktyg.Model {
     public enum QuestionType {
@@ -13,8 +12,6 @@ namespace Testverktyg.Model {
         public int Score { get; set; }
         public QuestionType QuestionType { get; set; }
         public IList<Answer> Answers { get; set; }
-        public int? TestDefinitionId { get; set; }
-        [ForeignKey("TestDefinitionId")]
-        public TestDefinition TestDefinition { get; set; }
+
     }
 }

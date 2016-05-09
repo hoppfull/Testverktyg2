@@ -56,6 +56,11 @@
                                                 <TextBlock Text="{Binding Score}" />
                                                 <TextBlock Text=" Space " />
                                                 <TextBlock Text="{Binding Id}"/>
+                                                <TextBlock Text=" Space " />
+                                                <TextBlock Text="{Binding FinalDate}" />
+                                                <TextBlock Text=" Space " />
+                                                <TextBlock Text="{Binding StartDate}" />
+
                                             </WrapPanel>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
