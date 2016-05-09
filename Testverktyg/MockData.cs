@@ -59,61 +59,61 @@ namespace Testverktyg
             var testForms12 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test6, AnsweredQuestions = new List<AnsweredQuestion>(), IsCompleted = true, Score = 5 };
 
             //Create Questions
-            var question1 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 5, Answers = new List<Answer>() };
-            var question2 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 4, Answers = new List<Answer>() };
-            var question3 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 3, Answers = new List<Answer>() };
-            var question4 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 2, Answers = new List<Answer>() };
-            var question5 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 1, Answers = new List<Answer>() };
-            var question6 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 2, Answers = new List<Answer>() };
-            var question7 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 3, Answers = new List<Answer>() };
-            var question8 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 4, Answers = new List<Answer>() };
+            var question1 = new Question { QuestionType = QuestionType.Single, Text = "Adele?", Score = 5, Answers = new List<Answer>(), TestDefinition = test1};
+            var question2 = new Question { QuestionType = QuestionType.Single, Text = "MY TEAM?", Score = 4, Answers = new List<Answer>(), TestDefinition = test2 };
+            var question3 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = test1 };
+            var question4 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = test2 };
+            var question5 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 1, Answers = new List<Answer>(), TestDefinition = test1 };
+            var question6 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = test2 };
+            var question7 = new Question { QuestionType = QuestionType.Open, Text = "i am OPEN LIKE A BOOK xDdpppppp", Score = 3, Answers = new List<Answer>(), TestDefinition = test1 };
+            var question8 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 4, Answers = new List<Answer>(), TestDefinition = test2 };
 
-            var question9 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 5, Answers = new List<Answer>() };
-            var question10 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 4, Answers = new List<Answer>() };
-            var question11 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 3, Answers = new List<Answer>() };
-            var question12 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 2, Answers = new List<Answer>() };
-            var question13 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 1, Answers = new List<Answer>() };
-            var question14 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 2, Answers = new List<Answer>() };
-            var question15 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 3, Answers = new List<Answer>() };
-            var question16 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 4, Answers = new List<Answer>() };
+            var question9 = new Question { QuestionType = QuestionType.Single, Text = "Katt?", Score = 5, Answers = new List<Answer>(), TestDefinition = test3 };
+            var question10 = new Question { QuestionType = QuestionType.Single, Text = "Hello?", Score = 4, Answers = new List<Answer>(), TestDefinition = test4 };
+            var question11 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = test3 };
+            var question12 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = test4 };
+            var question13 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 1, Answers = new List<Answer>(), TestDefinition = test3 };
+            var question14 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = test4 };
+            var question15 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = test3 };
+            var question16 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 4, Answers = new List<Answer>(), TestDefinition = test4 };
 
-            var question17 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 5, Answers = new List<Answer>() };
-            var question18 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 4, Answers = new List<Answer>() };
-            var question19 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 3, Answers = new List<Answer>() };
-            var question20 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 2, Answers = new List<Answer>() };
-            var question21 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 1, Answers = new List<Answer>() };
-            var question22 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 2, Answers = new List<Answer>() };
-            var question23 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 3, Answers = new List<Answer>() };
-            var question24 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 4, Answers = new List<Answer>() };
+            var question17 = new Question { QuestionType = QuestionType.Single, Text = "Jag är en fråga", Score = 5, Answers = new List<Answer>(), TestDefinition = test5 };
+            var question18 = new Question { QuestionType = QuestionType.Single, Text = "??", Score = 4, Answers = new List<Answer>(), TestDefinition = test6 };
+            var question19 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = test5};
+            var question20 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = test6 };
+            var question21 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 1, Answers = new List<Answer>(), TestDefinition = test5 };
+            var question22 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = test6 };
+            var question23 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = test5 };
+            var question24 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 4, Answers = new List<Answer>(), TestDefinition = test6 };
 
             //Create Student Question and Answers
 
-            var question25 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 5, Answers = new List<Answer>() };
-            var question26 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 4, Answers = new List<Answer>() };
-            var question27 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 3, Answers = new List<Answer>() };
-            var question28 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 2, Answers = new List<Answer>() };
-            var question29 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 1, Answers = new List<Answer>() };
-            var question30 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 2, Answers = new List<Answer>() };
-            var question31 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 3, Answers = new List<Answer>() };
-            var question32 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 4, Answers = new List<Answer>() };
+            var question25 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 5, Answers = new List<Answer>(), TestDefinition = null };
+            var question26 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 4, Answers = new List<Answer>(), TestDefinition = null };
+            var question27 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = null };
+            var question28 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = null };
+            var question29 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 1, Answers = new List<Answer>(), TestDefinition = null };
+            var question30 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = null };
+            var question31 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = null };
+            var question32 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 4, Answers = new List<Answer>(), TestDefinition = null };
 
-            var question33 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 5, Answers = new List<Answer>() };
-            var question34 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 4, Answers = new List<Answer>() };
-            var question35 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 3, Answers = new List<Answer>() };
-            var question36 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 2, Answers = new List<Answer>() };
-            var question37 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 1, Answers = new List<Answer>() };
-            var question38 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 2, Answers = new List<Answer>() };
-            var question39 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 3, Answers = new List<Answer>() };
-            var question40 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 4, Answers = new List<Answer>() };
+            var question33 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 5, Answers = new List<Answer>(), TestDefinition = null };
+            var question34 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 4, Answers = new List<Answer>(), TestDefinition = null };
+            var question35 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = null };
+            var question36 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = null };
+            var question37 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 1, Answers = new List<Answer>(), TestDefinition = null };
+            var question38 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = null };
+            var question39 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = null };
+            var question40 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 4, Answers = new List<Answer>(), TestDefinition = null };
 
-            var question41 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 5, Answers = new List<Answer>() };
-            var question42 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 4, Answers = new List<Answer>() };
-            var question43 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 3, Answers = new List<Answer>() };
-            var question44 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 2, Answers = new List<Answer>() };
-            var question45 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 1, Answers = new List<Answer>() };
-            var question46 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 2, Answers = new List<Answer>() };
-            var question47 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 3, Answers = new List<Answer>() };
-            var question48 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 4, Answers = new List<Answer>() };
+            var question41 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 5, Answers = new List<Answer>(), TestDefinition = null };
+            var question42 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 4, Answers = new List<Answer>(), TestDefinition = null };
+            var question43 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = null };
+            var question44 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = null };
+            var question45 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 1, Answers = new List<Answer>(), TestDefinition = null };
+            var question46 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = null };
+            var question47 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = null };
+            var question48 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 4, Answers = new List<Answer>(), TestDefinition = null };
 
             //Single
             question1.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 1 });
