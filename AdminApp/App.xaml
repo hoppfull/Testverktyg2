@@ -182,6 +182,33 @@
             <Setter Property="FontSize" Value="16" />
         </Style>
 
+        <Style x:Key="Key_tbl_AdminChangePassword" TargetType="TextBlock" BasedOn="{StaticResource Key_tbl_AdminAppPlaceholderBase}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=tbx_AdminChangePassword}" Value="">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="Key_tbl_AdminRepeatChangePassword" TargetType="TextBlock" BasedOn="{StaticResource Key_tbl_AdminAppPlaceholderBase}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=tbx_AdminRepeatChangePassword}" Value="">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="Key_tbl_AdminChangeEmail" TargetType="TextBlock" BasedOn="{StaticResource Key_tbl_AdminAppPlaceholderBase}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=tbx_AdminChangeEmail}" Value="">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
         <Style x:Key="Key_tbl_AddSubjectName" TargetType="TextBlock" BasedOn="{StaticResource Key_tbl_AdminAppPlaceholderBase}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>

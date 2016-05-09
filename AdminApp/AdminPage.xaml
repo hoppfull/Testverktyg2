@@ -71,7 +71,7 @@
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition></ColumnDefinition>
                                             </Grid.ColumnDefinitions>
-                                            <TextBox  Grid.Column="0" x:Name="tbx_AddSubjectName"
+                                            <TextBox Grid.Column="0" x:Name="tbx_AddSubjectName"
                                                  Style="{StaticResource Key_tbx_TextField}" />
                                             <TextBlock Grid.Column="0" 
                                                        Style="{StaticResource Key_tbl_AddSubjectName}" 
@@ -294,6 +294,64 @@
                     <TabItem.Content>
                         <Grid Background="{StaticResource color_NormalDarkMain}">
 
+                            <Grid Margin="25">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="160" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="300" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Row="0" Content="Ändra ditt lösenord" VerticalAlignment="Top" Style="{StaticResource Key_lbl_Header2}" />
+
+                                <Grid Grid.Row="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50" />
+                                        <RowDefinition Height="50" />
+                                        <RowDefinition Height="50" />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBox Grid.Row="0" x:Name="tbx_AdminChangePassword"
+                                                 Style="{StaticResource Key_tbx_TextField}" />
+                                    <TextBlock Grid.Row="0"
+                                                        Style="{StaticResource Key_tbl_AdminChangePassword}" 
+                                                        Text="Nytt lösenord" />
+
+                                    <TextBox  Grid.Row="1" x:Name="tbx_AdminRepeatChangePassword"
+                                                 Style="{StaticResource Key_tbx_TextField}" />
+                                    <TextBlock Grid.Row="1"
+                                                       Style="{StaticResource Key_tbl_AdminRepeatChangePassword}" 
+                                                       Text="Upprepa lösenord" />
+
+                                    <StackPanel Grid.Row="2" HorizontalAlignment="Left">
+                                        <Button x:Name="btn_AcceptChangePassword" Content="Byt lösenord"></Button>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Label Grid.Row="2" Content="Ändra din email" VerticalAlignment="Top" Style="{StaticResource Key_lbl_Header2}" />
+
+                                <Grid Grid.Row="3">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50" />
+                                        <RowDefinition Height="50" />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBox  Grid.Row="0" x:Name="tbx_AdminChangeEmail"
+                                                 Style="{StaticResource Key_tbx_TextField}" />
+                                    <TextBlock Grid.Row="0" 
+                                                        Style="{StaticResource Key_tbl_AdminChangeEmail}" 
+                                                        Text="Ny email" />
+
+                                    <StackPanel Grid.Row="1" HorizontalAlignment="Left">
+                                        <Button x:Name="btn_AcceptChangeEmail" Content="Byt email"></Button>
+                                    </StackPanel>
+                                </Grid>
+
+                            </Grid>
                         </Grid>
                     </TabItem.Content>
                 </TabItem>
