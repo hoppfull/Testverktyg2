@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using Testverktyg;
 using Testverktyg.Model;
 using Testverktyg.Context;
@@ -10,7 +11,7 @@ namespace AdminApp {
         public MainWindow() {
             InitializeComponent();
             //Console.WriteLine(Controller.Controller.GenerateNewPassword());
-            //MockData.Reset();
+            MockData.Reset();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
