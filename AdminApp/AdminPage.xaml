@@ -479,6 +479,16 @@
                     </TabItem.Content>
                 </TabItem>
                 <!--#endregion-->
+
+                <!--#region Logout user: -->
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Style="{StaticResource Key_lbl_TabControl}" Content="Logga ut"></Label>
+                        </StackPanel>
+                    </TabItem.Header>
+                </TabItem>
+                <!--#endregion-->
             </TabControl>
         </Grid>
     </Grid>
