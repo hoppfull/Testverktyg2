@@ -24,6 +24,44 @@ namespace AdminApp {
             LoggedInAccount = loggedInAccount;
             UpdateSubjectListView();
             UpdateTestDefinitionListView();
+            icl_TestResults.ItemsSource = new List<Tuple<string, string, string, string>> {
+                Tuple.Create("Andreas", "G", "22", "40"),
+                Tuple.Create("Andreas", "G", "22", "40"),
+                Tuple.Create("Andreas", "G", "22", "40"),
+                Tuple.Create("Andreas", "G", "22", "40"),
+                Tuple.Create("Andreas", "G", "22", "40"),
+                Tuple.Create("Andreas", "G", "22", "40"),
+                Tuple.Create("Andreas", "G", "22", "40"),
+                Tuple.Create("Andreas", "G", "22", "40"),
+                Tuple.Create("Andreas", "G", "22", "40"),
+                Tuple.Create("Andreas", "G", "22", "40"),
+                Tuple.Create("Andreas", "G", "22", "40"),
+                Tuple.Create("Andreas", "G", "22", "40"),
+                Tuple.Create("Andreas", "G", "22", "40"),
+                Tuple.Create("Andreas", "G", "22", "40"),
+                Tuple.Create("Andreas", "G", "22", "40"),
+                Tuple.Create("Andreas", "G", "22", "40")
+            };
+            lvw_TestStatisticsMaster.ItemsSource = new List<Tuple<string, string, string>>
+            {
+                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
+                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
+                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
+                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
+                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
+                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
+                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
+                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
+                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
+                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
+                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
+                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
+                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
+                Tuple.Create("Matteprov", "Lärare1", "Matematik"),
+                Tuple.Create("Matteprov", "Lärare1", "Matematik")
+            };
+
+            grd_SummaryStatistics.DataContext = Tuple.Create("123", "123", "123", "1/7", "3/7", "3/7");
         }
 
         #region Subject management tools:
