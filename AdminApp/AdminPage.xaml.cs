@@ -62,9 +62,11 @@ namespace AdminApp {
             };
 
             grd_SummaryStatistics.DataContext = Tuple.Create("123", "123", "123", "1/7", "3/7", "3/7");
+            UpdateSubjectMasterComboBox();
         }
 
         private void LogoutEvent(object sender, RoutedEventArgs e) {
+            Console.WriteLine("lol");
             ViewController.Logout(this);
         }
 
@@ -226,14 +228,9 @@ namespace AdminApp {
         #endregion
 
         #region Statistics tools:
-        private void tab_Statistics_GotFocus(object sender, RoutedEventArgs e) {
+        private void tab_Statistics_MouseDown(object sender, RoutedEventArgs e) {
             UpdateTestsMasterListView();
             UpdateSubjectMasterComboBox();
-        }
-
-        private void cbx_FilterSubject_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            var x = cbx_FilterSubject.SelectedItem as Subject;
-            Console.WriteLine(x);
         }
 
         private void UpdateTestsMasterListView() {

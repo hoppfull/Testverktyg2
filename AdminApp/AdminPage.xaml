@@ -13,9 +13,7 @@
                 <!--#region Test and subject management tools: -->
                 <TabItem>
                     <TabItem.Header>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Style="{StaticResource Key_lbl_TabControl}" Content="Prov &amp; Ämnen"></Label>
-                        </StackPanel>
+                        <Label Style="{StaticResource Key_lbl_TabControl}" Content="Prov &amp; Ämnen" />
                     </TabItem.Header>
                     <TabItem.Content>
                         <Grid Background="{StaticResource color_NormalDarkMain}">
@@ -151,9 +149,7 @@
                 <!--#region User management tools: -->
                 <TabItem>
                     <TabItem.Header>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Style="{StaticResource Key_lbl_TabControl}" Content="Användare"></Label>
-                        </StackPanel>
+                        <Label Style="{StaticResource Key_lbl_TabControl}" Content="Användare" />
                     </TabItem.Header>
                     <TabItem.Content>
                         <Grid Background="{StaticResource color_NormalDarkMain}">
@@ -172,7 +168,7 @@
                                     <ComboBox x:Name="cbx_SelectUserType" HorizontalAlignment="Left" MinWidth="150"
                                           SelectionChanged="cbx_SelectUserType_SelectionChanged"
                                               Style="{StaticResource Key_cbx_Normal}">
-                                        <ComboBoxItem Content="Administratörer"
+                                        <ComboBoxItem Content="Administratörerg"
                                                   Tag="{x:Static users:UserType.Admin}" />
                                         <ComboBoxItem Content="Lärare"
                                                   Tag="{x:Static users:UserType.Teacher}" />
@@ -270,11 +266,9 @@
                 <!--#endregion-->
 
                 <!--#region Statistic tools: -->
-                <TabItem GotFocus="tab_Statistics_GotFocus">
+                <TabItem MouseDown="tab_Statistics_MouseDown">
                     <TabItem.Header>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Style="{StaticResource Key_lbl_TabControl}" Content="Statistik"></Label>
-                        </StackPanel>
+                        <Label Style="{StaticResource Key_lbl_TabControl}" Content="Statistik" />
                     </TabItem.Header>
                     <TabItem.Content>
                         <Grid Background="{StaticResource color_NormalDarkMain}">
@@ -302,8 +296,14 @@
 
                                         <!--Subjectfilter:-->
                                         <Label Style="{StaticResource Key_lbl_Header2}" Content="Välj ämne:" VerticalAlignment="Top" />
-                                        <ComboBox Grid.Column="1" MinWidth="150" x:Name="cbx_FilterSubject" 
-                                                  Style="{StaticResource Key_cbx_Normal}"/>
+                                        <ComboBox Grid.Column="1" MinWidth="200" x:Name="cbx_FilterSubject" 
+                                                  Style="{StaticResource Key_cbx_Normal}">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Label Padding="4, 0" Content="{Binding Name}" />
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
                                         <!--Namefilter:-->
 
                                         <Grid Grid.Column="2" Margin="10,0,0,0">
@@ -514,9 +514,7 @@
                 <!--#region Admin settings tools: -->
                 <TabItem>
                     <TabItem.Header>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Style="{StaticResource Key_lbl_TabControl}" Content="Inställningar"></Label>
-                        </StackPanel>
+                        <Label Style="{StaticResource Key_lbl_TabControl}" Content="Inställningar" />
                     </TabItem.Header>
                     <TabItem.Content>
                         <Grid Background="{StaticResource color_NormalDarkMain}">
@@ -587,11 +585,10 @@
                 <!--#endregion-->
 
                 <!--#region Logout user: -->
-                <TabItem GotFocus="LogoutEvent">
+                <TabItem>
                     <TabItem.Header>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Style="{StaticResource Key_lbl_TabControl}" Content="Logga ut"></Label>
-                        </StackPanel>
+                        <Label Content="Logga ut" MouseDown="LogoutEvent"
+                               Style="{StaticResource Key_lbl_TabControl}" />
                     </TabItem.Header>
                 </TabItem>
                 <!--#endregion-->
