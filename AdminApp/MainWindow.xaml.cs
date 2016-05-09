@@ -7,7 +7,6 @@ namespace AdminApp {
             InitializeComponent();
             MockData.Reset();
 
-            Console.WriteLine(Testverktyg.Controller.Controller.CreateTest("hej", Testverktyg.Repository.Repository<Subject>.Instance.Get(1)));
             //TestDefinition test = Testverktyg.Repository.Repository<TestDefinition>.Instance.Get(7);
             //Console.WriteLine(test.Subject);
             //Testverktyg.Repository.Repository<TestDefinition>.Instance.Delete(test);
