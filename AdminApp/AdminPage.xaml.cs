@@ -187,6 +187,32 @@ namespace AdminApp {
         }
         #endregion
 
+        #region Statistics tools:
+        private void tab_Statistics_GotFocus(object sender, RoutedEventArgs e) {
+            UpdateTestsMasterListView();
+            UpdateSubjectMasterComboBox();
+        }
+
+        private void cbx_FilterSubject_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            var x = cbx_FilterSubject.SelectedItem as Subject;
+            Console.WriteLine(x);
+        }
+
+        private void UpdateTestsMasterListView() {
+
+        }
+
+        private void UpdateSubjectMasterComboBox() {
+            Console.WriteLine("tjosan");
+            cbx_FilterSubject.ItemsSource = Repository<Subject>.Instance.GetAll();
+        }
+
+        private IList<TestDefinition> FilterTests(string title = null, Subject subject = null) {
+            return null;
+        }
+
+        #endregion
+
         #region Settings tools:
         private void tbx_AdminChangePassword_TextChanged(object sender, TextChangedEventArgs e) {
             btn_AcceptChangePassword.IsEnabled =

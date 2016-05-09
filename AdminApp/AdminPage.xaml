@@ -270,7 +270,7 @@
                 <!--#endregion-->
 
                 <!--#region Statistic tools: -->
-                <TabItem>
+                <TabItem GotFocus="tab_Statistics_GotFocus">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
                             <Label Style="{StaticResource Key_lbl_TabControl}" Content="Statistik"></Label>
@@ -296,7 +296,8 @@
                                     <!--Namefilter:-->
                                     <TextBox x:Name="tbx_FilterName" />
                                     <!--Subjectfilter:-->
-                                    <ComboBox x:Name="cbx_FilterSubject" />
+                                    <ComboBox x:Name="cbx_FilterSubject"
+                                              SelectionChanged="cbx_FilterSubject_SelectionChanged" />
                                 </StackPanel>
                                 <ListView Grid.Row="1" x:Name="lvw_TestStatisticsMaster">
                                     <ListView.ItemTemplate>
