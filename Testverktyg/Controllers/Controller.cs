@@ -12,7 +12,7 @@ namespace Testverktyg.Controllers
 {
     static public class Controller
     {
-        public static bool CreateTest(string name, Subject subject)
+        public static bool CreateTest(string name, Subject subject,int teacherId )
         {
             if (IsTestDefinitionNameValid(name))
             {
@@ -105,11 +105,11 @@ namespace Testverktyg.Controllers
             GradeType grade = GradeType.IG;
             Tuple<string, GradeType, int, int> tup;
             IList<Tuple<string, GradeType, int, int>> list = new List<Tuple<string, GradeType, int, int>>();
-            
+            IList<StudentAccount> stud = Repository<StudentAccount>.Instance.GetAll();
 
             foreach (var item in testForms)
             {
-                name = Repository<StudentAccount>.Instance.Get(item.StudentAccountId).Name;
+                name = stud.First(x => x.Id == item.StudentAccountId).Name;
                 grade = CalcGrade(item);
                 TimeSpan duration = (DateTime)item.FinishedDate - (DateTime)item.StartDate;
                 testTime = (int)duration.TotalMinutes;
@@ -236,4 +236,3 @@ namespace Testverktyg.Controllers
         }
     }
 }
-//309
