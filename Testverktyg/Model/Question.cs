@@ -12,6 +12,8 @@ namespace Testverktyg.Model {
         public int Score { get; set; }
         public QuestionType QuestionType { get; set; }
         public IList<Answer> Answers { get; set; }
-
+        public int? TestDefinitionId { get; set; }
+        [ForeignKey("TestDefinitionId")]//hej
+        public TestDefinition TestDefinition { get; set; }
     }
 }
