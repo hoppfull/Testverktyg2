@@ -51,12 +51,12 @@ namespace Testverktyg
             var testForms4 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test2, AnsweredQuestions = new List<AnsweredQuestion>() };
             var testForms5 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test3, AnsweredQuestions = new List<AnsweredQuestion>() };
             var testForms6 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test3, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms7 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test4, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms8 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test4, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms9 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test5, AnsweredQuestions = new List<AnsweredQuestion>() };
+            var testForms7 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test4, AnsweredQuestions = new List<AnsweredQuestion>(), IsCompleted = true, Score = 5 };
+            var testForms8 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test4, AnsweredQuestions = new List<AnsweredQuestion>(), IsCompleted = true, Score = 5 };
+            var testForms9 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test5, AnsweredQuestions = new List<AnsweredQuestion>(), IsCompleted = true, Score = 5 };
             var testForms10 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test5, AnsweredQuestions = new List<AnsweredQuestion>() };
             var testForms11 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test6, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms12 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test6, AnsweredQuestions = new List<AnsweredQuestion>() };
+            var testForms12 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test6, AnsweredQuestions = new List<AnsweredQuestion>(), IsCompleted = true, Score = 5 };
 
             //Create Questions
             var question1 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 5, Answers = new List<Answer>() };
