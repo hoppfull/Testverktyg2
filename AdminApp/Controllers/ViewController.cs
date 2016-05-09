@@ -42,8 +42,8 @@ namespace AdminApp.Controllers {
         }
 
         static public void Logout(Window window) {
-            MainWindow loginscreen = new MainWindow();
-            loginscreen.Show();
+            //MainWindow loginscreen = new MainWindow();
+            //loginscreen.Show();
             window.Close();
         }
     }
