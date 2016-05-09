@@ -26,6 +26,10 @@ namespace AdminApp {
             UpdateTestDefinitionListView();
         }
 
+        private void LogoutEvent(object sender, RoutedEventArgs e) {
+            ViewController.Logout(this);
+        }
+
         #region Subject management tools:
         private void lvw_Subjects_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             skp_EditSubjectTools.IsEnabled = true;
@@ -103,7 +107,7 @@ namespace AdminApp {
         }
 
         private void btn_SaveUser_Click(object sender, RoutedEventArgs e) {
-            Controller.CreateUser(tbx_AddUserName.Text, tbx_AddUserEmail.Text, GetSelectedUserType());
+            Controller.CreateUser(tbx_AddUserName.Text, tbx_AddUserEmail.Text, GetSelectedUserType().Value);
             UpdateUserListView(GetSelectedUserType());
             ToggleSaveUserTools(false);
         }
@@ -131,7 +135,7 @@ namespace AdminApp {
             }
         }
 
-        private void UpdateUserListView(UserType userType) {
+        private void UpdateUserListView(UserType? userType) {
             Func<AbstractUser, bool> f = user => user.IsNotRemoved;
             lvw_Users.ItemsSource =
                 userType == UserType.Admin ?
@@ -144,8 +148,11 @@ namespace AdminApp {
             skp_EditUser.IsEnabled = false;
         }
 
-        private UserType GetSelectedUserType() {
-            return (UserType)((ComboBoxItem)cbx_SelectUserType.SelectedItem).Tag;
+        private UserType? GetSelectedUserType() {
+            if (cbx_SelectUserType.SelectedIndex == -1)
+                return null;
+            else
+                return (UserType)((ComboBoxItem)cbx_SelectUserType.SelectedItem).Tag;
         }
 
         private void btn_ResetUserPassword_Click(object sender, RoutedEventArgs e) {
@@ -192,6 +199,8 @@ namespace AdminApp {
                 btn_AcceptChangePassword.IsEnabled = false;
                 tbx_AdminChangePassword.Text = "";
                 tbx_AdminRepeatChangePassword.Text = "";
+                if (GetSelectedUserType() == UserType.Admin)
+                    UpdateUserListView(GetSelectedUserType());
                 MessageBox.Show($"Lösenord ändrat till '{LoggedInAccount.Password}'");
             } else
                 MessageBox.Show("Kunde inte ändra lösenordet!\nKanske är lösenordet inte giltigt.");
@@ -208,6 +217,8 @@ namespace AdminApp {
             if(Testverktyg.Controllers.Controller.UpdateEmail(LoggedInAccount, tbx_AdminChangeEmail.Text)) {
                 btn_AcceptChangeEmail.IsEnabled = false;
                 tbx_AdminChangeEmail.Text = "";
+                if (GetSelectedUserType() == UserType.Admin)
+                    UpdateUserListView(GetSelectedUserType());
             } else
                 MessageBox.Show("Kunde inte ändra din email!\nKanske är mailen inte giltig.");
         }
