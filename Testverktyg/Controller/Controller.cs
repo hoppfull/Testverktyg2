@@ -12,7 +12,7 @@ namespace Testverktyg.Controller
 {
     static public class Controller
     {
-        public static bool CreateTest(string name, Subject subject)
+        public static bool CreateTest(string name, Subject subject,int teacherId )
         {
             if (IsTestDefinitionNameValid(name))
             {
@@ -105,11 +105,11 @@ namespace Testverktyg.Controller
             GradeType grade = GradeType.IG;
             Tuple<string, GradeType, int, int> tup;
             IList<Tuple<string, GradeType, int, int>> list = new List<Tuple<string, GradeType, int, int>>();
-            
+            IList<StudentAccount> stud = Repository<StudentAccount>.Instance.GetAll();
 
             foreach (var item in testForms)
             {
-                name = Repository<StudentAccount>.Instance.Get(item.StudentAccountId).Name;
+                name = stud.First(x => x.Id == item.StudentAccountId).Name;
                 grade = CalcGrade(item);
                 TimeSpan duration = (DateTime)item.FinishedDate - (DateTime)item.StartDate;
                 testTime = (int)duration.TotalMinutes;
@@ -276,19 +276,14 @@ namespace Testverktyg.Controller
         public static GradeType CalcGrade(TestForm testform)
         {
             GradeType grade;
-            double G;
-            double Vg;
-            int maxscore = testform.TestDefinition.MaxScore;
-            int score = testform.Score;
 
-            G = maxscore * 0.5;
-            Vg = maxscore * 0.75;
+            double gradescore = testform.Score / testform.TestDefinition.MaxScore;
 
-            if (score > G && score < Vg)
+            if (gradescore >= 0.5 && gradescore < 0.75)
             {
                 grade = GradeType.G;
             }
-            else if (score > Vg)
+            else if (gradescore > 0.75)
             {
                 grade = GradeType.VG;
             }

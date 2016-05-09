@@ -23,9 +23,12 @@ namespace AdminApp {
         public MainWindow() {
             InitializeComponent();
             MockData.Reset();
-            Console.WriteLine(Testverktyg.Controller.Controller.GetTestDefinitionAuthorName(Repository<TestDefinition>.Instance.Get(1)));
-            Console.WriteLine(Testverktyg.Controller.Controller.GetTestDefinitionAuthorName(Repository<TestDefinition>.Instance.Get(3)));
 
+            Console.WriteLine(Testverktyg.Controller.Controller.CreateTest("hej", Testverktyg.Repository.Repository<Subject>.Instance.Get(1)));
+            //TestDefinition test = Testverktyg.Repository.Repository<TestDefinition>.Instance.Get(7);
+            //Console.WriteLine(test.Subject);
+            //Testverktyg.Repository.Repository<TestDefinition>.Instance.Delete(test);
+            //Testverktyg.Repository.Repository<TestDefinition>.Instance.Delete(test);
         }
     }
 }
