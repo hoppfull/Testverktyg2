@@ -278,7 +278,130 @@
                     </TabItem.Header>
                     <TabItem.Content>
                         <Grid Background="{StaticResource color_NormalDarkMain}">
-
+                            <Grid.ColumnDefinitions>
+                                <!--Master:-->
+                                <ColumnDefinition Width="*" />
+                                <!--Detail:-->
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <!--#region Master:-->
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                                    <Label Content="Prov" />
+                                    <Label Content="Filter:" />
+                                    <!--Namefilter:-->
+                                    <TextBox x:Name="tbx_FilterName" />
+                                    <!--Subjectfilter:-->
+                                    <ComboBox x:Name="cbx_FilterSubject" />
+                                </StackPanel>
+                                <ListView Grid.Row="1" x:Name="lvw_TestStatisticsMaster">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="300" />
+                                                    <ColumnDefinition Width="300" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <!--Test name:-->
+                                                <Label Grid.Column="0" Content="{Binding Item1.Title}" />
+                                                <!--Author name:-->
+                                                <Label Grid.Column="1" Content="{Binding Item2.Name}" />
+                                                <!--Subject name:-->
+                                                <Label Grid.Column="2" Content="{Binding Item3.Name}" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Grid>
+                            <!--#endregion-->
+                            <!--#region Detail:-->
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" Content="Resultat:" />
+                                <ItemsControl Grid.Row="1" x:Name="icl_TestResults">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <!--Student name:-->
+                                                    <ColumnDefinition Width="200" />
+                                                    <!--Test grade:-->
+                                                    <ColumnDefinition Width="200" />
+                                                    <!--Test time:-->
+                                                    <ColumnDefinition Width="200" />
+                                                    <!--Test score:-->
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <!--Student name:-->
+                                                <Label Grid.Column="0" Content="{Binding Item1}" />
+                                                <!--Test grade.-->
+                                                <Label Grid.Column="1" Content="{Binding Item2}" />
+                                                <!--Test time:-->
+                                                <Label Grid.Column="2" Content="{Binding Item3}" />
+                                                <!--Test score:-->
+                                                <Label Grid.Column="3" Content="{Binding Item4}" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Grid>
+                            <!--Summary statistics:-->
+                            <Grid Grid.Row="2" x:Name="grd_SummaryStatistics">
+                                <Grid.ColumnDefinitions>
+                                    <!--Average score:-->
+                                    <ColumnDefinition Width="2*" />
+                                    <!--Median score:-->
+                                    <ColumnDefinition Width="2*" />
+                                    <!--Average time:-->
+                                    <ColumnDefinition Width="2*" />
+                                    <!--n Gs:-->
+                                    <ColumnDefinition Width="*" />
+                                    <!--n VGs:-->
+                                    <ColumnDefinition Width="*" />
+                                    <!--n IGs:-->
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <!--Headers:-->
+                                <Label Grid.Column="0" Grid.Row="0"
+                                       Content="Medelpoäng" />
+                                <Label Grid.Column="1" Grid.Row="0"
+                                       Content="Medianpoäng" />
+                                <Label Grid.Column="2" Grid.Row="0"
+                                       Content="Medeltid" />
+                                <Label Grid.Column="3" Grid.Row="0"
+                                       Content="#G" />
+                                <Label Grid.Column="4" Grid.Row="0"
+                                       Content="#VG" />
+                                <Label Grid.Column="5" Grid.Row="0"
+                                       Content="#IG" />
+                                <!--Data:-->
+                                <Label Grid.Column="0" Grid.Row="1"
+                                       Content="{Binding Item1}" />
+                                <Label Grid.Column="1" Grid.Row="1"
+                                       Content="{Binding Item2}" />
+                                <Label Grid.Column="2" Grid.Row="1"
+                                       Content="{Binding Item3}" />
+                                <Label Grid.Column="3" Grid.Row="1"
+                                       Content="{Binding Item4}" />
+                                <Label Grid.Column="4" Grid.Row="1"
+                                       Content="{Binding Item5}" />
+                                <Label Grid.Column="5" Grid.Row="1"
+                                       Content="{Binding Item6}" />
+                            </Grid>
+                            <!--#endregion-->
                         </Grid>
                     </TabItem.Content>
                 </TabItem>
