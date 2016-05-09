@@ -64,6 +64,10 @@ namespace AdminApp {
             grd_SummaryStatistics.DataContext = Tuple.Create("123", "123", "123", "1/7", "3/7", "3/7");
         }
 
+        private void LogoutEvent(object sender, RoutedEventArgs e) {
+            ViewController.Logout(this);
+        }
+
         #region Subject management tools:
         private void lvw_Subjects_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             skp_EditSubjectTools.IsEnabled = true;
@@ -141,7 +145,7 @@ namespace AdminApp {
         }
 
         private void btn_SaveUser_Click(object sender, RoutedEventArgs e) {
-            Controller.CreateUser(tbx_AddUserName.Text, tbx_AddUserEmail.Text, GetSelectedUserType());
+            Controller.CreateUser(tbx_AddUserName.Text, tbx_AddUserEmail.Text, GetSelectedUserType().Value);
             UpdateUserListView(GetSelectedUserType());
             ToggleSaveUserTools(false);
         }
@@ -169,7 +173,7 @@ namespace AdminApp {
             }
         }
 
-        private void UpdateUserListView(UserType userType) {
+        private void UpdateUserListView(UserType? userType) {
             Func<AbstractUser, bool> f = user => user.IsNotRemoved;
             lvw_Users.ItemsSource =
                 userType == UserType.Admin ?
@@ -182,8 +186,11 @@ namespace AdminApp {
             skp_EditUser.IsEnabled = false;
         }
 
-        private UserType GetSelectedUserType() {
-            return (UserType)((ComboBoxItem)cbx_SelectUserType.SelectedItem).Tag;
+        private UserType? GetSelectedUserType() {
+            if (cbx_SelectUserType.SelectedIndex == -1)
+                return null;
+            else
+                return (UserType)((ComboBoxItem)cbx_SelectUserType.SelectedItem).Tag;
         }
 
         private void btn_ResetUserPassword_Click(object sender, RoutedEventArgs e) {
@@ -215,6 +222,43 @@ namespace AdminApp {
                     Testverktyg.Controllers.Controller.GetTestDefinitionSubject(TD)));
             btn_InspectTestDefinition.IsEnabled = false;
             lvw_TestDefinitions.SelectedIndex = -1;
+        }
+        #endregion
+
+        #region Settings tools:
+        private void tbx_AdminChangePassword_TextChanged(object sender, TextChangedEventArgs e) {
+            btn_AcceptChangePassword.IsEnabled =
+                tbx_AdminChangePassword.Text == tbx_AdminRepeatChangePassword.Text &&
+                !string.IsNullOrWhiteSpace(((TextBox)sender).Text);
+        }
+
+        private void btn_AcceptChangePassword_Click(object sender, RoutedEventArgs e) {
+            if(Testverktyg.Controllers.Controller.UpdatePassword(LoggedInAccount, tbx_AdminChangePassword.Text)) {
+                btn_AcceptChangePassword.IsEnabled = false;
+                tbx_AdminChangePassword.Text = "";
+                tbx_AdminRepeatChangePassword.Text = "";
+                if (GetSelectedUserType() == UserType.Admin)
+                    UpdateUserListView(GetSelectedUserType());
+                MessageBox.Show($"Lösenord ändrat till '{LoggedInAccount.Password}'");
+            } else
+                MessageBox.Show("Kunde inte ändra lösenordet!\nKanske är lösenordet inte giltigt.");
+            
+        }
+        
+        private void tbx_AdminChangeEmail_TextChanged(object sender, TextChangedEventArgs e) {
+            btn_AcceptChangeEmail.IsEnabled =
+                !string.IsNullOrWhiteSpace(tbx_AdminChangeEmail.Text) &&
+                tbx_AdminChangeEmail.Text != LoggedInAccount.Email;
+        }
+
+        private void btn_AcceptChangeEmail_Click(object sender, RoutedEventArgs e) {
+            if(Testverktyg.Controllers.Controller.UpdateEmail(LoggedInAccount, tbx_AdminChangeEmail.Text)) {
+                btn_AcceptChangeEmail.IsEnabled = false;
+                tbx_AdminChangeEmail.Text = "";
+                if (GetSelectedUserType() == UserType.Admin)
+                    UpdateUserListView(GetSelectedUserType());
+            } else
+                MessageBox.Show("Kunde inte ändra din email!\nKanske är mailen inte giltig.");
         }
         #endregion
     }

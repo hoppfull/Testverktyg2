@@ -12,7 +12,7 @@ namespace Testverktyg.Controllers
 {
     static public class Controller
     {
-        public static bool CreateTest(string name, Subject subject)
+        public static bool CreateTest(string name, Subject subject,int teacherId )
         {
             if (IsTestDefinitionNameValid(name))
             {
@@ -105,11 +105,11 @@ namespace Testverktyg.Controllers
             GradeType grade = GradeType.IG;
             Tuple<string, GradeType, int, int> tup;
             IList<Tuple<string, GradeType, int, int>> list = new List<Tuple<string, GradeType, int, int>>();
-            
+            IList<StudentAccount> stud = Repository<StudentAccount>.Instance.GetAll();
 
             foreach (var item in testForms)
             {
-                name = Repository<StudentAccount>.Instance.Get(item.StudentAccountId).Name;
+                name = stud.First(x => x.Id == item.StudentAccountId).Name;
                 grade = CalcGrade(item);
                 TimeSpan duration = (DateTime)item.FinishedDate - (DateTime)item.StartDate;
                 testTime = (int)duration.TotalMinutes;
@@ -176,15 +176,11 @@ namespace Testverktyg.Controllers
             return Repository<Subject>.Instance.Get(testDefinition.SubjectId);
         }
 
-        public static bool ValidateTestDefinition(TestDefinition testDefinition, IList<StudentAccount> studentAccounts, int time, DateTime finalDate)
-        {
-
-            foreach (var item in studentAccounts)
-            {
-                item.TestForms.Add(new TestForm { TimeLimit = time, FinalDate = finalDate, TestDefinition = testDefinition });
-                Repository.Repository<StudentAccount>.Instance.Update(item);
+        public static bool ValidateTestDefinition(TestDefinition testDefinition, int time, DateTime finalDate) {
+            foreach (StudentAccount student in Repository<StudentAccount>.Instance.GetAll()) {
+                student.TestForms.Add(new TestForm { TimeLimit = time, FinalDate = finalDate, TestDefinition = testDefinition });
+                Repository<StudentAccount>.Instance.Update(student);
             }
-
             return true;
         }
 
@@ -194,83 +190,32 @@ namespace Testverktyg.Controllers
             return true;
         }
 
-        public static bool IsEmailValid(string email)
-        {
-
-            if (!new EmailAddressAttribute().IsValid(email))
-            {
-                return false;
-            }
-            List<string> emails = new List<string>();
-            foreach (var item in Repository.Repository<AdminAccount>.Instance.GetAll()) { emails.Add(item.Email); }
-            foreach (var item in Repository.Repository<StudentAccount>.Instance.GetAll()) { emails.Add(item.Email); }
-            foreach (var item in Repository.Repository<TeacherAccount>.Instance.GetAll()) { emails.Add(item.Email); }
-            return !(emails.Any(x => x == email));
+        public static bool IsEmailValid(string email) {
+            return new EmailAddressAttribute().IsValid(email) &&
+                !Repository<AdminAccount>.Instance.GetAll().Any(admin => admin.Email == email) &&
+                !Repository<StudentAccount>.Instance.GetAll().Any(student => student.Email == email) &&
+                !Repository<TeacherAccount>.Instance.GetAll().Any(teacher => teacher.Email == email);
         }
-
-        public static bool UpdateEmail(AbstractUser user, string email)
-        {
-            if (IsEmailValid(email))
-            {
+        public static bool UpdateEmail(AbstractUser user, string email) {
+            if(IsEmailValid(email)) {
                 user.Email = email;
-
-                if (user is StudentAccount)
-                {
-                    Repository.Repository<StudentAccount>.Instance.Update(user as StudentAccount);
-                    return true;
-                }
-                else if (user is AdminAccount)
-                {
-                    Repository.Repository<AdminAccount>.Instance.Update(user as AdminAccount);
-                    return true;
-                }
-                else if (user is TeacherAccount)
-                {
-                    Repository.Repository<TeacherAccount>.Instance.Update(user as TeacherAccount);
-                    return true;
-                }
+                Repository<AbstractUser>.Instance.Update(user);
+                return true;
             }
             return false;
         }
 
-        public static bool IsPasswordValid(string password)
-        {
-
-            if (password.Length <= 6)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+        public static bool IsPasswordValid(string password) {
+            return password.Length > 6;
         }
 
-        public static bool UpdatePassword(AbstractUser user, string password)
-        {
-
-            user.Password = password;
-
-            if (user is StudentAccount)
-            {
-                Repository.Repository<StudentAccount>.Instance.Update(user as StudentAccount);
+        public static bool UpdatePassword(AbstractUser user, string password) {
+            if(IsPasswordValid(password)) {
+                user.Password = password;
+                Repository<AbstractUser>.Instance.Update(user);
                 return true;
-
             }
-            else if (user is AdminAccount)
-            {
-                Repository.Repository<AdminAccount>.Instance.Update(user as AdminAccount);
-                return true;
-
-
-            }
-            else if (user is TeacherAccount)
-            {
-                Repository.Repository<TeacherAccount>.Instance.Update(user as TeacherAccount);
-                return true;
-
-            }
-            return true;
+            return false;
         }
 
         public static bool IsUserNameValid(string name)
@@ -278,31 +223,16 @@ namespace Testverktyg.Controllers
             return !string.IsNullOrWhiteSpace(name);
         }
 
-        public static GradeType CalcGrade(TestForm testform)
-        {
-            GradeType grade;
-            double G;
-            double Vg;
-            int maxscore = testform.TestDefinition.MaxScore;
-            int score = testform.Score;
+        public static GradeType CalcGrade(TestForm testform) {
+            double G = testform.TestDefinition.MaxScore * 0.5;
+            double Vg = testform.TestDefinition.MaxScore * 0.75;
 
-            G = maxscore * 0.5;
-            Vg = maxscore * 0.75;
-
-            if (score > G && score < Vg)
-            {
-                grade = GradeType.G;
-            }
-            else if (score > Vg)
-            {
-                grade = GradeType.VG;
-            }
+            if (testform.Score > Vg)
+                return GradeType.VG;
+            else if (testform.Score > G)
+                return GradeType.G;
             else
-            {
-                grade = GradeType.IG;
-            }
-
-            return grade;
+                return GradeType.IG;
         }
     }
 }
