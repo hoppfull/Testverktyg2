@@ -7,9 +7,11 @@ namespace Testverktyg.Model {
         [Key]
         public int Id { get; set; }
         public IList<Answer> Answers { get; set; }
-        public Question Question { get; set; }
         public int? TestFormId { get; set; }
         [ForeignKey("TestFormId")]
         public TestForm TestForm { get; set; }
+        public int QuestionId { get; set; }
+        //[ForeignKey("QuestionId")]
+        //public Question Question { get; set; }
     }
 }

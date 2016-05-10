@@ -11,6 +11,37 @@ namespace StudentApp.Controllers
 {
     public static class StudentController
     {
+        //public static bool f(TestForm testForm) {
+        //    var qs = Repository<Question>.Instance.GetAll()
+        //        .Where(x => x.TestDefinitionId == testForm.TestDefinitionId);
+
+        //    int score = 0;
+
+        //    foreach (Question q in qs) {
+        //        AnsweredQuestion answeredQuestion = Repository<AnsweredQuestion>.Instance.GetAll()
+        //            .First(aq => aq.QuestionId == q.Id && aq.TestFormId == testForm.Id);
+
+        //        Answer[] userAnswers = Repository<Answer>.Instance.GetAll()
+        //            .Where(answer => answer.AnswerQuestionId == answeredQuestion.Id).ToArray();
+
+        //        Answer[] rightAnswers = Repository<Answer>.Instance.GetAll()
+        //            .Where(answer => answer.QuestionId == q.Id).ToArray();
+                
+        //        for (int i = 0; i < userAnswers.Length; i++) {
+        //            if (userAnswers[i].CheckedOrRanked == rightAnswers[i].CheckedOrRanked && userAnswers[i].Text == rightAnswers[i].Text) {
+        //                score += q.Score;
+        //                break;
+        //            }
+        //        }
+        //    }
+
+        //    if (score > 0) {
+        //        testForm.Score = score;
+        //        Repository<TestForm>.Instance.Update(testForm);
+        //        return true;
+        //    }
+        //    return false;
+        //}
 
         public static bool TestFormCalculateScore(TestForm testForm)
         {
