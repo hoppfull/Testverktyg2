@@ -204,7 +204,6 @@ namespace AdminApp {
 
                 Tuple<double, double, double, int, int, int, int> statistics =
                     Testverktyg.Controllers.Controller.CalcStatistics(tfs);
-                Console.WriteLine(statistics.Item1);
                 if (statistics != null)
                     grd_SummaryStatistics.DataContext = Tuple.Create(
                         statistics.Item1.ToString("0.##"),

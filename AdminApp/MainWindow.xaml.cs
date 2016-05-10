@@ -7,10 +7,7 @@ namespace AdminApp {
         public MainWindow() {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            //Testverktyg.MockData.Reset();
-            double d = 12.512421;
-            string s = d.ToString("0.##");
-            System.Console.WriteLine(s);
+            Testverktyg.MockData.Reset();
         }
 
         private void btn_Login_Click(object sender, RoutedEventArgs e) {
