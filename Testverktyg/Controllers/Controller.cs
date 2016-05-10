@@ -97,10 +97,12 @@ namespace Testverktyg.Controllers
             return neededforms;
         }
 
-        public static IList<Tuple<string, GradeType, int, int>> GetResults(IList<TestForm> testForms) {
+        public static IList<Tuple<string, string, int, int>> GetResults(IList<TestForm> testForms) {
             return testForms.Select(tf => Tuple.Create(
                 Repository<StudentAccount>.Instance.Get(tf.StudentAccountId).Name,
-                CalcGrade(tf),
+                tf.IsCompleted
+                    ? CalcGrade(tf).ToString()
+                    : "Ej slutfört",
                 tf.FinishedDate.HasValue && tf.StartDate.HasValue
                     ? tf.FinishedDate.Value.Minute - tf.StartDate.Value.Minute
                     : 0,
