@@ -224,8 +224,8 @@ namespace Testverktyg.Controllers
         }
 
         public static GradeType CalcGrade(TestForm testform) {
-            double G = testform.TestDefinition.MaxScore * 0.5;
-            double Vg = testform.TestDefinition.MaxScore * 0.75;
+            double G = Repository<TestDefinition>.Instance.Get(testform.TestDefinitionId).MaxScore * 0.5;
+            double Vg = Repository<TestDefinition>.Instance.Get(testform.TestDefinitionId).MaxScore * 0.75;
 
             if (testform.Score > Vg)
                 return GradeType.VG;
