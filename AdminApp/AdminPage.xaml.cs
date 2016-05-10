@@ -203,12 +203,15 @@ namespace AdminApp {
         }
 
         private void lvw_TestStatisticsMaster_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            TestDefinition td = ((Tuple<TestDefinition, TeacherAccount>)lvw_TestStatisticsMaster.SelectedItem).Item1;
             // student, tid, betyg och poäng
-            IList<TestForm> tfs = Repository<TestForm>.Instance.GetAll()
-                .Where(tf => tf.TestDefinitionId == td.Id).ToList();
-            lvw_TestStatisticsDetails.ItemsSource = Testverktyg.Controllers.Controller.GetResults(tfs);
-            
+            TestDefinition td = (lvw_TestStatisticsMaster.SelectedItem as Tuple<TestDefinition, TeacherAccount>)?.Item1;
+            if (td != null) {
+                IList<TestForm> tfs = Repository<TestForm>.Instance.GetAll()
+                    .Where(tf => tf.TestDefinitionId == td.Id).ToList();
+                lvw_TestStatisticsDetails.ItemsSource = Testverktyg.Controllers.Controller.GetResults(tfs);
+            } else {
+                lvw_TestStatisticsDetails.ItemsSource = null;
+            }
         }
 
         private void UpdateTestsMasterListView() {
