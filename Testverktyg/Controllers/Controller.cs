@@ -299,5 +299,24 @@ namespace Testverktyg.Controllers
 
             return grade;
         }
+
+        public static List<AnsweredQuestion> CreateAnsweredQuestions(TestDefinition td)
+        {
+            List<AnsweredQuestion> aqs = new List<AnsweredQuestion>();
+
+            foreach (var item in td.Questions)
+            {
+                AnsweredQuestion aq = new AnsweredQuestion();
+                aq.Question = item;
+                aq.Answers = new List<Answer>();
+                foreach (var answer in item.Answers)
+                {
+                    answer.CheckedOrRanked = 0;
+                    aq.Answers.Add(answer);
+                }
+                aqs.Add(aq);
+            }
+            return aqs;
+        }
     }
 }

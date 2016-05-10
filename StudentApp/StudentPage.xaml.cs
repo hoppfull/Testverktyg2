@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Testverktyg.Model;
 using Testverktyg.Repository;
+using System.Data.Entity;
 
 namespace StudentApp
 {
@@ -38,7 +39,15 @@ namespace StudentApp
             if (MessageBox.Show("Är det säkert att du vill påbörja provet tiden börjar om du trycker JA", "Starta Prvo", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 //Starta provet
-                TestPage t = new TestPage((TestForm)lvw_NotFinsihedTestForms.SelectedItem, UserAccount);
+                var testForm = new TestForm();
+                using (var db = new Testverktyg.Context.TestverktygContext())
+                {
+                    var selectedTf = (TestForm)lvw_NotFinsihedTestForms.SelectedItem;
+                    testForm = db.TestForms.Where(x => x.Id == selectedTf.Id)
+                         .Include(a => a.TestDefinition.Questions.Select(b => b.Answers))
+                         .FirstOrDefault();
+                }
+                    TestPage t = new TestPage(testForm, UserAccount);
                 t.Show();
                 this.Close();
             }

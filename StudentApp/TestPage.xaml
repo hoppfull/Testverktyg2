@@ -4,9 +4,58 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentApp"
+        xmlns:b="clr-namespace:StudentApp.Controllers"
         mc:Ignorable="d"
         Title="TestPage" Height="300" Width="300">
+    <Window.Resources>
+        <DataTemplate x:Key="singleTemplate">
+            <StackPanel Orientation="Horizontal">
+                <RadioButton GroupName="SingleGroup" Click="RadioButton_Click"/>
+                <TextBlock Text="{Binding Text}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="multiTemplate">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Click="CheckBox_Click"/>
+                <TextBlock Text="{Binding Text}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="rankedTemplate">
+            <TextBlock Text="I am a sranrkede template"/>
+        </DataTemplate>
+        <DataTemplate x:Key="openTemplate">
+            <TextBlock Text="I am a siopen template"/>
+        </DataTemplate>
+
+        <b:QuestionTemplateSelector x:Key="dataTemplateSelectorDictionary"
+            SingleTemplate="{StaticResource singleTemplate}"
+            MultiTemplate="{StaticResource multiTemplate}"
+            RankedTemplate="{StaticResource rankedTemplate}"
+            OpenTemplate="{StaticResource openTemplate}"
+               >
+        </b:QuestionTemplateSelector>
+    </Window.Resources>
     <StackPanel x:Name="testPageGrid">
-        
+        <ListView ItemsSource="{Binding TestQuestions}" SelectionChanged="ListView_SelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Text}"/>
+                        <ListView ItemsSource="{Binding Answers}">
+                            <!--<ListView.ItemTemplateSelector>
+                                <b:QuestionTemplateSelector></b:QuestionTemplateSelector>
+                            </ListView.ItemTemplateSelector>-->
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn CellTemplateSelector="{StaticResource dataTemplateSelectorDictionary}" Header=":(::(" Width="200">
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <Button Click="Button_Click">knapp</Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackPanel>
 </Window>

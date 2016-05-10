@@ -266,7 +266,7 @@ namespace Testverktyg
             question46.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 2 });
             question46.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 3 });
             question46.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 1 });
-
+            question7.Answers.Add(new Answer { Text = "84", CheckedOrRanked = 1 });
 
             //Add questions to Test Definitions
 

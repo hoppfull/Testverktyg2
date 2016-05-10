@@ -29,7 +29,7 @@ namespace StudentApp.Controllers
             }
             foreach (var item in answerquestions)
             {
-                userAnswers.AddRange(Repository<Answer>.Instance.GetAll().Where(x => x.AnswerQuestionId == item.Id));
+                //userAnswers.AddRange(Repository<Answer>.Instance.GetAll().Where(x => x.AnswerQuestionId == item.Id));
             }
 
             for (int i = 0; i < questions.Count-1; i++)

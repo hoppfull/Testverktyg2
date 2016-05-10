@@ -10,9 +10,7 @@ namespace Testverktyg.Model {
         public int? QuestionId { get; set; }
         [ForeignKey("QuestionId")]
         public Question Question { get; set; }
-        public int AnswerQuestionId { get; set; }
-        [ForeignKey("AnswerdQuestonId")]
-        public AnsweredQuestion AnswerdQuestion { get; set; }
+       
 
     }
 }
