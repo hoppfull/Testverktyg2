@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AdminApp"
         mc:Ignorable="d"
-        Title="InspectTestDefinition" Height="300" Width="300">
-    <Grid>
-        
+        Title="InspectTestDefinition" Height="200" Width="400" ResizeMode="NoResize">
+    <Grid Background="{StaticResource color_NormalDarkMain}">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="40">
+            <DatePicker x:Name="dpk_FinalDate" SelectedDateChanged="dpk_FinalDate_SelectedDateChanged" />
+            <ComboBox x:Name="cbx_TimeLimit" MinWidth="150"
+                      Style="{StaticResource Key_cbx_Normal}"
+                      SelectionChanged="cbx_TimeLimit_SelectionChanged">
+                <ComboBoxItem Content="10" />
+                <ComboBoxItem Content="15" />
+                <ComboBoxItem Content="30" />
+                <ComboBoxItem Content="45" />
+                <ComboBoxItem Content="60" />
+            </ComboBox>
+            <Button x:Name="btn_ValidateTestDefinition"
+                    Content="Godkänn" IsEnabled="False"
+                    Click="btn_ValidateTestDefinition_Click" />
+        </StackPanel>
     </Grid>
 </Window>

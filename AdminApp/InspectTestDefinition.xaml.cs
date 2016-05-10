@@ -19,5 +19,17 @@ namespace AdminApp {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
+
+        private void btn_ValidateTestDefinition_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void cbx_TimeLimit_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            btn_ValidateTestDefinition.IsEnabled = dpk_FinalDate.SelectedDate != null;
+        }
+
+        private void dpk_FinalDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e) {
+            btn_ValidateTestDefinition.IsEnabled = cbx_TimeLimit.SelectedIndex != -1 && dpk_FinalDate.SelectedDate != null;
+        }
     }
 }
