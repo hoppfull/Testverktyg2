@@ -217,9 +217,9 @@ namespace Testverktyg.Controllers
             double G = Repository<TestDefinition>.Instance.Get(testform.TestDefinitionId).MaxScore * 0.5;
             double Vg = Repository<TestDefinition>.Instance.Get(testform.TestDefinitionId).MaxScore * 0.75;
 
-            if (testform.Score > Vg)
+            if (testform.Score >= Vg)
                 return GradeType.VG;
-            else if (testform.Score > G)
+            else if (testform.Score >= G)
                 return GradeType.G;
             else
                 return GradeType.IG;
