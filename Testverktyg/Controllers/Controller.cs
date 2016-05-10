@@ -109,7 +109,7 @@ namespace Testverktyg.Controllers
                 tf.Score)).ToList();
         }
 
-        public static Tuple<int, int, int, int, int, int> CalcStatistics(IList<TestForm> testForms) {
+        public static Tuple<double, double, double, int, int, int, int> CalcStatistics(IList<TestForm> testForms) {
             int totPoints = 0;
             int totTime = 0;
             int G = 0;
@@ -141,15 +141,19 @@ namespace Testverktyg.Controllers
 
             scores.Sort();
 
-            int median = scores.Count == 0
+            double median = scores.Count == 0
                 ? 0
                 : scores.Count % 2 == 0
-                    ? (scores[scores.Count / 2] + scores[(scores.Count / 2) - 1]) / 2
+                    ? (double)(scores[scores.Count / 2] + scores[(scores.Count / 2) - 1]) / 2
                     : scores[(scores.Count - 1) / 2];
 
             return nCompleted == 0
                 ? null
-                : Tuple.Create(totPoints / nCompleted, median, totTime / nCompleted, G, VG, IG);
+                : Tuple.Create(
+                    ((double)totPoints / nCompleted),
+                    median,
+                    ((double)totTime / nCompleted),
+                    G, VG, IG, nCompleted);
         }
 
         public static TeacherAccount GetTestDefinitionAuthor(TestDefinition testDefinition)

@@ -210,10 +210,17 @@ namespace AdminApp {
                     .Where(tf => tf.TestDefinitionId == td.Id).ToList();
                 lvw_TestStatisticsDetails.ItemsSource = Testverktyg.Controllers.Controller.GetResults(tfs);
 
-                Tuple<int, int, int, int, int, int> statistics =
+                Tuple<double, double, double, int, int, int, int> statistics =
                     Testverktyg.Controllers.Controller.CalcStatistics(tfs);
+                Console.WriteLine(statistics.Item1);
                 if (statistics != null)
-                    grd_SummaryStatistics.DataContext = statistics;
+                    grd_SummaryStatistics.DataContext = Tuple.Create(
+                        statistics.Item1.ToString("0.##"),
+                        statistics.Item2.ToString("0.##"),
+                        statistics.Item3.ToString("0.##"),
+                        string.Format($"{statistics.Item4}/{statistics.Item7}"),
+                        string.Format($"{statistics.Item5}/{statistics.Item7}"),
+                        string.Format($"{statistics.Item6}/{statistics.Item7}"));
                 else
                     grd_SummaryStatistics.DataContext =
                         Tuple.Create("N/A", "N/A", "N/A", "N/A", "N/A", "N/A");
