@@ -384,9 +384,9 @@
                                           Background="{StaticResource color_DarkDarkMain}"
                                           Margin="0,7,0,0">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="180" />
+                                            <ColumnDefinition Width="200" />
                                             <ColumnDefinition Width="100" />
-                                            <ColumnDefinition Width="100" />
+                                            <ColumnDefinition Width="70" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <Label Grid.Column="0" Padding="13,5" Content="Student:" 
@@ -407,11 +407,11 @@
                                                     <Grid>
                                                         <Grid.ColumnDefinitions>
                                                             <!--Student name:-->
-                                                            <ColumnDefinition Width="180" />
+                                                            <ColumnDefinition Width="200" />
                                                             <!--Test grade:-->
                                                             <ColumnDefinition Width="100" />
                                                             <!--Test time:-->
-                                                            <ColumnDefinition Width="100" />
+                                                            <ColumnDefinition Width="70" />
                                                             <!--Test score:-->
                                                             <ColumnDefinition Width="*" />
                                                         </Grid.ColumnDefinitions>
