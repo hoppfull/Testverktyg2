@@ -97,28 +97,14 @@ namespace Testverktyg.Controllers
             return neededforms;
         }
 
-        public static IList<Tuple<string, GradeType, int, int>> GetResults(IList<TestForm> testForms)
-        {
-            string name;
-            int testTime = 0;
-            int testScore = 0;
-            GradeType grade = GradeType.IG;
-            Tuple<string, GradeType, int, int> tup;
-            IList<Tuple<string, GradeType, int, int>> list = new List<Tuple<string, GradeType, int, int>>();
-            IList<StudentAccount> stud = Repository<StudentAccount>.Instance.GetAll();
-
-            foreach (var item in testForms)
-            {
-                name = stud.First(x => x.Id == item.StudentAccountId).Name;
-                grade = CalcGrade(item);
-                TimeSpan duration = (DateTime)item.FinishedDate - (DateTime)item.StartDate;
-                testTime = (int)duration.TotalMinutes;
-                testScore = item.Score;
-                tup = Tuple.Create(name, grade, testScore, testTime);
-                list.Add(tup);
-            }
-
-            return list;
+        public static IList<Tuple<string, GradeType, int, int>> GetResults(IList<TestForm> testForms) {
+            return testForms.Select(tf => Tuple.Create(
+                Repository<StudentAccount>.Instance.Get(tf.StudentAccountId).Name,
+                CalcGrade(tf),
+                tf.FinishedDate.HasValue && tf.StartDate.HasValue
+                    ? tf.FinishedDate.Value.Minute - tf.StartDate.Value.Minute
+                    : 0,
+                tf.Score)).ToList();
         }
 
         public static Tuple<int, int, int, int, int, int> CalcStatistics(IList<TestForm> testForms) {
