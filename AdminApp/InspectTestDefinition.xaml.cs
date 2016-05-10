@@ -1,27 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Testverktyg.Model;
+using Testverktyg.Controllers;
+using Testverktyg.Repository;
 
 namespace AdminApp {
     public partial class InspectTestDefinition : Window {
+        private TestDefinition TestDefinition { get; }
         public InspectTestDefinition(TestDefinition testDefinition) {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            TestDefinition = testDefinition;
         }
 
         private void btn_ValidateTestDefinition_Click(object sender, RoutedEventArgs e) {
+            IList<StudentAccount> students = Repository<StudentAccount>.Instance.GetAll();
 
+            foreach (StudentAccount student in students) {
+                Controller.ValidateTestDefinition(TestDefinition,
+                    int.Parse((string)((ComboBoxItem)cbx_TimeLimit.SelectedItem).Content),
+                    dpk_FinalDate.SelectedDate.Value);
+            }
         }
 
         private void cbx_TimeLimit_SelectionChanged(object sender, SelectionChangedEventArgs e) {
@@ -29,7 +29,7 @@ namespace AdminApp {
         }
 
         private void dpk_FinalDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e) {
-            btn_ValidateTestDefinition.IsEnabled = cbx_TimeLimit.SelectedIndex != -1 && dpk_FinalDate.SelectedDate != null;
+            btn_ValidateTestDefinition.IsEnabled = cbx_TimeLimit.SelectedIndex != -1 && dpk_FinalDate.SelectedDate.HasValue;
         }
     }
 }
