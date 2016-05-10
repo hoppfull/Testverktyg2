@@ -55,7 +55,6 @@
     <Compile Include="Model\AbstractUser.cs" />
     <Compile Include="Model\AdminAccount.cs" />
     <Compile Include="Model\Answer.cs" />
-    <Compile Include="Model\AnsweredQuestion.cs" />
     <Compile Include="Model\Question.cs" />
     <Compile Include="Model\StudentAccount.cs" />
     <Compile Include="Model\Subject.cs" />

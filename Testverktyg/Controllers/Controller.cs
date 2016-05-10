@@ -168,6 +168,12 @@ namespace Testverktyg.Controllers
 
         public static bool ValidateTestDefinition(TestDefinition testDefinition, int time, DateTime finalDate) {
             foreach (StudentAccount student in Repository<StudentAccount>.Instance.GetAll()) {
+                //Repository<TestForm>.Instance.Add(new TestForm {
+                //    TimeLimit = time,
+                //    FinalDate = finalDate,
+                //    TestDefinitionId = testDefinition.Id,
+                //    StudentAccountId = student.Id
+                //});
                 student.TestForms.Add(new TestForm { TimeLimit = time, FinalDate = finalDate, TestDefinition = testDefinition });
                 Repository<StudentAccount>.Instance.Update(student);
             }
