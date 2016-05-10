@@ -22,7 +22,6 @@ namespace Testverktyg.Model {
         public int StudentAccountId { get; set; }
         [ForeignKey("StudentAccountId")]
         public StudentAccount StudentAccount { get; set; }
-        public IList<AnsweredQuestion> AnsweredQuestions { get; set; }
         public TestForm() {
             IsCompleted = false;
         }

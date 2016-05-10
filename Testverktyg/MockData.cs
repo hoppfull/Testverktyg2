@@ -45,18 +45,18 @@ namespace Testverktyg
             var test6 = new TestDefinition { Title = "TestProv", Subject = sub1, Paragraph = "1", TestDefinitionState = TestDefinitionState.Created, Questions = new List<Question>() };
 
             //Create TestForms
-            var testForms1 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test1, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms2 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test1, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms3 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test2, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms4 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test2, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms5 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test3, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms6 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test3, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms7 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test4, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms8 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test4, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms9 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test5, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms10 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test5, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms11 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test6, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms12 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test6, AnsweredQuestions = new List<AnsweredQuestion>() };
+            var testForms1 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test1 };
+            var testForms2 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test1 };
+            var testForms3 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test2 };
+            var testForms4 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test2 };
+            var testForms5 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test3 };
+            var testForms6 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test3 };
+            var testForms7 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test4 };
+            var testForms8 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test4 };
+            var testForms9 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test5 };
+            var testForms10 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test5 };
+            var testForms11 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test6 };
+            var testForms12 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test6 };
 
             //Create Questions
             var question1 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 5, Answers = new List<Answer>() };
@@ -299,95 +299,7 @@ namespace Testverktyg
             test6.Questions.Add(question20);
             test6.Questions.Add(question22);
             test6.Questions.Add(question24);
-
-
-            //Create AnswerQuestions
-            var ansque1 = new AnsweredQuestion { Question = question25, Answers = question25.Answers };
-            var ansque2 = new AnsweredQuestion { Question = question26, Answers = question26.Answers };
-            var ansque3 = new AnsweredQuestion { Question = question27, Answers = question27.Answers };
-            var ansque4 = new AnsweredQuestion { Question = question28, Answers = question28.Answers };
-            var ansque5 = new AnsweredQuestion { Question = question29, Answers = question29.Answers };
-            var ansque6 = new AnsweredQuestion { Question = question30, Answers = question30.Answers };
-            var ansque7 = new AnsweredQuestion { Question = question31, Answers = question31.Answers };
-            var ansque8 = new AnsweredQuestion { Question = question32, Answers = question32.Answers };
-            var ansque9 = new AnsweredQuestion { Question = question33, Answers = question33.Answers };
-            var ansque10 = new AnsweredQuestion { Question = question34, Answers = question34.Answers };
-            var ansque11 = new AnsweredQuestion { Question = question35, Answers = question35.Answers };
-            var ansque12 = new AnsweredQuestion { Question = question36, Answers = question36.Answers };
-            var ansque13 = new AnsweredQuestion { Question = question37, Answers = question37.Answers };
-            var ansque14 = new AnsweredQuestion { Question = question38, Answers = question38.Answers };
-            var ansque15 = new AnsweredQuestion { Question = question39, Answers = question39.Answers };
-            var ansque16 = new AnsweredQuestion { Question = question40, Answers = question40.Answers };
-            var ansque17 = new AnsweredQuestion { Question = question41, Answers = question41.Answers };
-            var ansque18 = new AnsweredQuestion { Question = question42, Answers = question42.Answers };
-            var ansque19 = new AnsweredQuestion { Question = question43, Answers = question43.Answers };
-            var ansque20 = new AnsweredQuestion { Question = question44, Answers = question44.Answers };
-            var ansque21 = new AnsweredQuestion { Question = question45, Answers = question45.Answers };
-            var ansque22 = new AnsweredQuestion { Question = question46, Answers = question46.Answers };
-            var ansque23 = new AnsweredQuestion { Question = question47, Answers = question47.Answers };
-            var ansque24 = new AnsweredQuestion { Question = question48, Answers = question48.Answers };
-
-            testForms1.AnsweredQuestions.Add(ansque1);
-            testForms1.AnsweredQuestions.Add(ansque3);
-            testForms1.AnsweredQuestions.Add(ansque5);
-            testForms1.AnsweredQuestions.Add(ansque7);
-
-            testForms2.AnsweredQuestions.Add(ansque1);
-            testForms2.AnsweredQuestions.Add(ansque3);
-            testForms2.AnsweredQuestions.Add(ansque5);
-            testForms2.AnsweredQuestions.Add(ansque7);
-
-            testForms3.AnsweredQuestions.Add(ansque2);
-            testForms3.AnsweredQuestions.Add(ansque4);
-            testForms3.AnsweredQuestions.Add(ansque6);
-            testForms3.AnsweredQuestions.Add(ansque8);
-
-            testForms4.AnsweredQuestions.Add(ansque2);
-            testForms4.AnsweredQuestions.Add(ansque4);
-            testForms4.AnsweredQuestions.Add(ansque6);
-            testForms4.AnsweredQuestions.Add(ansque8);
-
-            testForms5.AnsweredQuestions.Add(ansque9);
-            testForms5.AnsweredQuestions.Add(ansque11);
-            testForms5.AnsweredQuestions.Add(ansque13);
-            testForms5.AnsweredQuestions.Add(ansque15);
-
-            testForms6.AnsweredQuestions.Add(ansque9);
-            testForms6.AnsweredQuestions.Add(ansque11);
-            testForms6.AnsweredQuestions.Add(ansque13);
-            testForms6.AnsweredQuestions.Add(ansque15);
-
-            testForms7.AnsweredQuestions.Add(ansque10);
-            testForms7.AnsweredQuestions.Add(ansque12);
-            testForms7.AnsweredQuestions.Add(ansque14);
-            testForms7.AnsweredQuestions.Add(ansque16);
-
-            testForms8.AnsweredQuestions.Add(ansque10);
-            testForms8.AnsweredQuestions.Add(ansque12);
-            testForms8.AnsweredQuestions.Add(ansque14);
-            testForms8.AnsweredQuestions.Add(ansque16);
-
-            testForms9.AnsweredQuestions.Add(ansque17);
-            testForms9.AnsweredQuestions.Add(ansque19);
-            testForms9.AnsweredQuestions.Add(ansque21);
-            testForms9.AnsweredQuestions.Add(ansque23);
-
-            testForms10.AnsweredQuestions.Add(ansque17);
-            testForms10.AnsweredQuestions.Add(ansque19);
-            testForms10.AnsweredQuestions.Add(ansque21);
-            testForms10.AnsweredQuestions.Add(ansque23);
-
-            testForms11.AnsweredQuestions.Add(ansque18);
-            testForms11.AnsweredQuestions.Add(ansque20);
-            testForms11.AnsweredQuestions.Add(ansque22);
-            testForms11.AnsweredQuestions.Add(ansque24);
-
-            testForms12.AnsweredQuestions.Add(ansque18);
-            testForms12.AnsweredQuestions.Add(ansque20);
-            testForms12.AnsweredQuestions.Add(ansque22);
-            testForms12.AnsweredQuestions.Add(ansque24);
-
-
+            
             //Add Answers to Questions
 
 
