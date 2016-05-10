@@ -97,73 +97,53 @@ namespace Testverktyg.Controllers
             return neededforms;
         }
 
-        public static IList<Tuple<string, GradeType, int, int>> GetResults(IList<TestForm> testForms)
-        {
-            string name;
-            int testTime = 0;
-            int testScore = 0;
-            GradeType grade = GradeType.IG;
-            Tuple<string, GradeType, int, int> tup;
-            IList<Tuple<string, GradeType, int, int>> list = new List<Tuple<string, GradeType, int, int>>();
-            IList<StudentAccount> stud = Repository<StudentAccount>.Instance.GetAll();
-
-            foreach (var item in testForms)
-            {
-                name = stud.First(x => x.Id == item.StudentAccountId).Name;
-                grade = CalcGrade(item);
-                TimeSpan duration = (DateTime)item.FinishedDate - (DateTime)item.StartDate;
-                testTime = (int)duration.TotalMinutes;
-                testScore = item.Score;
-                tup = Tuple.Create(name, grade, testScore, testTime);
-                list.Add(tup);
-            }
-
-            return list;
+        public static IList<Tuple<string, GradeType, int, int>> GetResults(IList<TestForm> testForms) {
+            return testForms.Select(tf => Tuple.Create(
+                Repository<StudentAccount>.Instance.Get(tf.StudentAccountId).Name,
+                CalcGrade(tf),
+                tf.FinishedDate.HasValue && tf.StartDate.HasValue
+                    ? tf.FinishedDate.Value.Minute - tf.StartDate.Value.Minute
+                    : 0,
+                tf.Score)).ToList();
         }
 
-        public static Tuple<int, int, int, int, int, int, int> CalcStatistics(IList<Tuple<string, GradeType, int, int>> result)
-        {
+        public static Tuple<int, int, int, int, int, int> CalcStatistics(IList<TestForm> testForms) {
             int totPoints = 0;
             int totTime = 0;
             int G = 0;
             int IG = 0;
             int VG = 0;
-            int median;
-            List<int> listofpoints = new List<int>();
-            foreach (var item in result)
-            {
-                totPoints += item.Item3;
-                listofpoints.Add(item.Item3);
-                totTime += item.Item4;
-                switch (item.Item2)
-                {
-                    case GradeType.G:
-                        G++;
-                        break;
-                    case GradeType.IG:
-                        IG++;
-                        break;
-                    case GradeType.VG:
-                        VG++;
-                        break;
-                    default:
-                        break;
+            int nCompleted = 0;
+            List<int> scores = new List<int>();
+
+            foreach (TestForm tf in testForms) {
+                if(tf.IsCompleted) {
+                    nCompleted++;
+                    GradeType grade = CalcGrade(tf);
+                    switch (grade) {
+                        case GradeType.G:
+                            G++;
+                            break;
+                        case GradeType.VG:
+                            VG++;
+                            break;
+                        case GradeType.IG:
+                            IG++;
+                            break;
+                    }
+                    totTime += tf.FinishedDate.Value.Minute - tf.StartDate.Value.Minute;
+                    totPoints += tf.Score;
+                    scores.Add(tf.Score);
                 }
             }
-            listofpoints.Sort();
-            if (listofpoints.Count % 2 == 0)
-            {
-                int x = listofpoints.Count / 2;
-                median = listofpoints[x] + listofpoints[x + 1] / 2;
-            }
-            else
-            {
-                median = listofpoints[listofpoints.Count / 2 + 1];
-            }
-            int avgPoints = totPoints / result.Count();
-            int avgTime = totTime / result.Count();
 
-            return Tuple.Create(avgPoints, avgTime, median, G, IG, VG, result.Count);
+            scores.Sort();
+
+            int median = scores.Count % 2 == 0
+                ? scores[scores.Count / 2 + 1]
+                : scores[scores.Count / 2];
+            
+            return Tuple.Create(totPoints / nCompleted, median, totTime / nCompleted, G, VG, IG);
         }
 
         public static TeacherAccount GetTestDefinitionAuthor(TestDefinition testDefinition)
@@ -224,8 +204,8 @@ namespace Testverktyg.Controllers
         }
 
         public static GradeType CalcGrade(TestForm testform) {
-            double G = testform.TestDefinition.MaxScore * 0.5;
-            double Vg = testform.TestDefinition.MaxScore * 0.75;
+            double G = Repository<TestDefinition>.Instance.Get(testform.TestDefinitionId).MaxScore * 0.5;
+            double Vg = Repository<TestDefinition>.Instance.Get(testform.TestDefinitionId).MaxScore * 0.75;
 
             if (testform.Score > Vg)
                 return GradeType.VG;
