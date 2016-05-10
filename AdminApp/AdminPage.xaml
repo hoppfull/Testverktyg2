@@ -528,8 +528,8 @@
 
                                 <Grid Grid.Row="1">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="50" />
-                                        <RowDefinition Height="50" />
+                                        <RowDefinition Height="40" />
+                                        <RowDefinition Height="40" />
                                         <RowDefinition Height="50" />
                                     </Grid.RowDefinitions>
 
@@ -546,7 +546,7 @@
                                                Style="{StaticResource Key_tbl_AdminRepeatChangePassword}" />
 
                                     <StackPanel Grid.Row="2" HorizontalAlignment="Left">
-                                        <Button x:Name="btn_AcceptChangePassword" Content="Byt lösenord"
+                                        <Button x:Name="btn_AcceptChangePassword" Content="Byt lösenord" Margin="0,5"
                                                 Click="btn_AcceptChangePassword_Click" IsEnabled="False"/>
                                     </StackPanel>
                                 </Grid>
@@ -555,7 +555,7 @@
 
                                 <Grid Grid.Row="3">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="50" />
+                                        <RowDefinition Height="40" />
                                         <RowDefinition Height="50" />
                                     </Grid.RowDefinitions>
 
@@ -566,7 +566,7 @@
                                                Text="Ny email" />
 
                                     <StackPanel Grid.Row="1" HorizontalAlignment="Left">
-                                        <Button x:Name="btn_AcceptChangeEmail" Content="Byt email"
+                                        <Button x:Name="btn_AcceptChangeEmail" Content="Byt email" Margin="0,5"
                                                 Click="btn_AcceptChangeEmail_Click" IsEnabled="False" />
                                     </StackPanel>
                                 </Grid>
