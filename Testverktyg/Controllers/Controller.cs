@@ -139,11 +139,15 @@ namespace Testverktyg.Controllers
 
             scores.Sort();
 
-            int median = scores.Count % 2 == 0
-                ? scores[scores.Count / 2 + 1]
-                : scores[scores.Count / 2];
+            int median = scores.Count == 0
+                ? 0
+                : scores.Count % 2 == 0
+                    ? (scores[scores.Count / 2] + scores[(scores.Count / 2) - 1]) / 2
+                    : scores[(scores.Count - 1) / 2];
             
-            return Tuple.Create(totPoints / nCompleted, median, totTime / nCompleted, G, VG, IG);
+            return nCompleted == 0
+                ? null
+                : Tuple.Create(totPoints / nCompleted, median, totTime / nCompleted, G, VG, IG);
         }
 
         public static TeacherAccount GetTestDefinitionAuthor(TestDefinition testDefinition)

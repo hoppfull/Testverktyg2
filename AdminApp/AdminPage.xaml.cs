@@ -209,8 +209,17 @@ namespace AdminApp {
                 IList<TestForm> tfs = Repository<TestForm>.Instance.GetAll()
                     .Where(tf => tf.TestDefinitionId == td.Id).ToList();
                 lvw_TestStatisticsDetails.ItemsSource = Testverktyg.Controllers.Controller.GetResults(tfs);
+
+                Tuple<int, int, int, int, int, int> statistics =
+                    Testverktyg.Controllers.Controller.CalcStatistics(tfs);
+                if (statistics != null)
+                    grd_SummaryStatistics.DataContext = statistics;
+                else
+                    grd_SummaryStatistics.DataContext =
+                        Tuple.Create("N/A", "N/A", "N/A", "N/A", "N/A", "N/A");
             } else {
                 lvw_TestStatisticsDetails.ItemsSource = null;
+                grd_SummaryStatistics.DataContext = null;
             }
         }
 
