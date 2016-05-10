@@ -97,73 +97,63 @@ namespace Testverktyg.Controllers
             return neededforms;
         }
 
-        public static IList<Tuple<string, GradeType, int, int>> GetResults(IList<TestForm> testForms)
-        {
-            string name;
-            int testTime = 0;
-            int testScore = 0;
-            GradeType grade = GradeType.IG;
-            Tuple<string, GradeType, int, int> tup;
-            IList<Tuple<string, GradeType, int, int>> list = new List<Tuple<string, GradeType, int, int>>();
-            IList<StudentAccount> stud = Repository<StudentAccount>.Instance.GetAll();
-
-            foreach (var item in testForms)
-            {
-                name = stud.First(x => x.Id == item.StudentAccountId).Name;
-                grade = CalcGrade(item);
-                TimeSpan duration = (DateTime)item.FinishedDate - (DateTime)item.StartDate;
-                testTime = (int)duration.TotalMinutes;
-                testScore = item.Score;
-                tup = Tuple.Create(name, grade, testScore, testTime);
-                list.Add(tup);
-            }
-
-            return list;
+        public static IList<Tuple<string, string, int, int>> GetResults(IList<TestForm> testForms) {
+            return testForms.Select(tf => Tuple.Create(
+                Repository<StudentAccount>.Instance.Get(tf.StudentAccountId).Name,
+                tf.IsCompleted
+                    ? CalcGrade(tf).ToString()
+                    : "Ej slutfört",
+                tf.FinishedDate.HasValue && tf.StartDate.HasValue
+                    ? tf.FinishedDate.Value.Minute - tf.StartDate.Value.Minute
+                    : 0,
+                tf.Score)).ToList();
         }
 
-        public static Tuple<int, int, int, int, int, int, int> CalcStatistics(IList<Tuple<string, GradeType, int, int>> result)
-        {
+        public static Tuple<double, double, double, int, int, int, int> CalcStatistics(IList<TestForm> testForms) {
             int totPoints = 0;
             int totTime = 0;
             int G = 0;
             int IG = 0;
             int VG = 0;
-            int median;
-            List<int> listofpoints = new List<int>();
-            foreach (var item in result)
-            {
-                totPoints += item.Item3;
-                listofpoints.Add(item.Item3);
-                totTime += item.Item4;
-                switch (item.Item2)
-                {
-                    case GradeType.G:
-                        G++;
-                        break;
-                    case GradeType.IG:
-                        IG++;
-                        break;
-                    case GradeType.VG:
-                        VG++;
-                        break;
-                    default:
-                        break;
+            int nCompleted = 0;
+            List<int> scores = new List<int>();
+
+            foreach (TestForm tf in testForms) {
+                if (tf.IsCompleted) {
+                    nCompleted++;
+                    GradeType grade = CalcGrade(tf);
+                    switch (grade) {
+                        case GradeType.G:
+                            G++;
+                            break;
+                        case GradeType.VG:
+                            VG++;
+                            break;
+                        case GradeType.IG:
+                            IG++;
+                            break;
+                    }
+                    totTime += tf.FinishedDate.Value.Minute - tf.StartDate.Value.Minute;
+                    totPoints += tf.Score;
+                    scores.Add(tf.Score);
                 }
             }
-            listofpoints.Sort();
-            if (listofpoints.Count % 2 == 0)
-            {
-                int x = listofpoints.Count / 2;
-                median = listofpoints[x] + listofpoints[x + 1] / 2;
-            }
-            else
-            {
-                median = listofpoints[listofpoints.Count / 2 + 1];
-            }
-            int avgPoints = totPoints / result.Count();
-            int avgTime = totTime / result.Count();
 
-            return Tuple.Create(avgPoints, avgTime, median, G, IG, VG, result.Count);
+            scores.Sort();
+
+            double median = scores.Count == 0
+                ? 0
+                : scores.Count % 2 == 0
+                    ? (double)(scores[scores.Count / 2] + scores[(scores.Count / 2) - 1]) / 2
+                    : scores[(scores.Count - 1) / 2];
+
+            return nCompleted == 0
+                ? null
+                : Tuple.Create(
+                    ((double)totPoints / nCompleted),
+                    median,
+                    ((double)totTime / nCompleted),
+                    G, VG, IG, nCompleted);
         }
 
         public static TeacherAccount GetTestDefinitionAuthor(TestDefinition testDefinition)
@@ -176,15 +166,15 @@ namespace Testverktyg.Controllers
             return Repository<Subject>.Instance.Get(testDefinition.SubjectId);
         }
 
-        public static bool ValidateTestDefinition(TestDefinition testDefinition, IList<StudentAccount> studentAccounts, int time, DateTime finalDate)
-        {
-
-            foreach (var item in studentAccounts)
-            {
-                item.TestForms.Add(new TestForm { TimeLimit = time, FinalDate = finalDate, TestDefinition = testDefinition });
-                Repository.Repository<StudentAccount>.Instance.Update(item);
+        public static bool ValidateTestDefinition(TestDefinition testDefinition, int time, DateTime finalDate) {
+            foreach (StudentAccount student in Repository<StudentAccount>.Instance.GetAll()) {
+                Repository<TestForm>.Instance.Add(new TestForm {
+                    TimeLimit = time,
+                    FinalDate = finalDate,
+                    TestDefinitionId = testDefinition.Id,
+                    StudentAccountId = student.Id
+                });
             }
-
             return true;
         }
 
@@ -194,83 +184,32 @@ namespace Testverktyg.Controllers
             return true;
         }
 
-        public static bool IsEmailValid(string email)
-        {
-
-            if (!new EmailAddressAttribute().IsValid(email))
-            {
-                return false;
-            }
-            List<string> emails = new List<string>();
-            foreach (var item in Repository.Repository<AdminAccount>.Instance.GetAll()) { emails.Add(item.Email); }
-            foreach (var item in Repository.Repository<StudentAccount>.Instance.GetAll()) { emails.Add(item.Email); }
-            foreach (var item in Repository.Repository<TeacherAccount>.Instance.GetAll()) { emails.Add(item.Email); }
-            return !(emails.Any(x => x == email));
+        public static bool IsEmailValid(string email) {
+            return new EmailAddressAttribute().IsValid(email) &&
+                !Repository<AdminAccount>.Instance.GetAll().Any(admin => admin.Email == email) &&
+                !Repository<StudentAccount>.Instance.GetAll().Any(student => student.Email == email) &&
+                !Repository<TeacherAccount>.Instance.GetAll().Any(teacher => teacher.Email == email);
         }
-
-        public static bool UpdateEmail(AbstractUser user, string email)
-        {
-            if (IsEmailValid(email))
-            {
+        public static bool UpdateEmail(AbstractUser user, string email) {
+            if(IsEmailValid(email)) {
                 user.Email = email;
-
-                if (user is StudentAccount)
-                {
-                    Repository.Repository<StudentAccount>.Instance.Update(user as StudentAccount);
-                    return true;
-                }
-                else if (user is AdminAccount)
-                {
-                    Repository.Repository<AdminAccount>.Instance.Update(user as AdminAccount);
-                    return true;
-                }
-                else if (user is TeacherAccount)
-                {
-                    Repository.Repository<TeacherAccount>.Instance.Update(user as TeacherAccount);
-                    return true;
-                }
+                Repository<AbstractUser>.Instance.Update(user);
+                return true;
             }
             return false;
         }
 
-        public static bool IsPasswordValid(string password)
-        {
-
-            if (password.Length <= 6)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+        public static bool IsPasswordValid(string password) {
+            return password.Length > 6;
         }
 
-        public static bool UpdatePassword(AbstractUser user, string password)
-        {
-
-            user.Password = password;
-
-            if (user is StudentAccount)
-            {
-                Repository.Repository<StudentAccount>.Instance.Update(user as StudentAccount);
+        public static bool UpdatePassword(AbstractUser user, string password) {
+            if(IsPasswordValid(password)) {
+                user.Password = password;
+                Repository<AbstractUser>.Instance.Update(user);
                 return true;
-
             }
-            else if (user is AdminAccount)
-            {
-                Repository.Repository<AdminAccount>.Instance.Update(user as AdminAccount);
-                return true;
-
-
-            }
-            else if (user is TeacherAccount)
-            {
-                Repository.Repository<TeacherAccount>.Instance.Update(user as TeacherAccount);
-                return true;
-
-            }
-            return true;
+            return false;
         }
 
         public static bool IsUserNameValid(string name)
@@ -278,45 +217,18 @@ namespace Testverktyg.Controllers
             return !string.IsNullOrWhiteSpace(name);
         }
 
-        public static GradeType CalcGrade(TestForm testform)
-        {
-            GradeType grade;
+        public static GradeType CalcGrade(TestForm testform) {
+            double G = Repository<TestDefinition>.Instance.Get(testform.TestDefinitionId).MaxScore * 0.5;
+            double Vg = Repository<TestDefinition>.Instance.Get(testform.TestDefinitionId).MaxScore * 0.75;
 
-            double gradescore = testform.Score / testform.TestDefinition.MaxScore;
-
-            if (gradescore >= 0.5 && gradescore < 0.75)
-            {
-                grade = GradeType.G;
-            }
-            else if (gradescore > 0.75)
-            {
-                grade = GradeType.VG;
-            }
+            if (testform.Score >= Vg)
+                return GradeType.VG;
+            else if (testform.Score >= G)
+                return GradeType.G;
             else
-            {
-                grade = GradeType.IG;
-            }
-
-            return grade;
+                return GradeType.IG;
         }
 
-        public static List<AnsweredQuestion> CreateAnsweredQuestions(TestDefinition td)
-        {
-            List<AnsweredQuestion> aqs = new List<AnsweredQuestion>();
-
-            foreach (var item in td.Questions)
-            {
-                AnsweredQuestion aq = new AnsweredQuestion();
-                aq.Question = item;
-                aq.Answers = new List<Answer>();
-                foreach (var answer in item.Answers)
-                {
-                    answer.CheckedOrRanked = 0;
-                    aq.Answers.Add(answer);
-                }
-                aqs.Add(aq);
-            }
-            return aqs;
-        }
+        
     }
 }
