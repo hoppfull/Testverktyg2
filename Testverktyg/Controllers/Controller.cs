@@ -97,10 +97,12 @@ namespace Testverktyg.Controllers
             return neededforms;
         }
 
-        public static IList<Tuple<string, GradeType, int, int>> GetResults(IList<TestForm> testForms) {
+        public static IList<Tuple<string, string, int, int>> GetResults(IList<TestForm> testForms) {
             return testForms.Select(tf => Tuple.Create(
                 Repository<StudentAccount>.Instance.Get(tf.StudentAccountId).Name,
-                CalcGrade(tf),
+                tf.IsCompleted
+                    ? CalcGrade(tf).ToString()
+                    : "Ej slutfört",
                 tf.FinishedDate.HasValue && tf.StartDate.HasValue
                     ? tf.FinishedDate.Value.Minute - tf.StartDate.Value.Minute
                     : 0,
@@ -117,7 +119,7 @@ namespace Testverktyg.Controllers
             List<int> scores = new List<int>();
 
             foreach (TestForm tf in testForms) {
-                if(tf.IsCompleted) {
+                if (tf.IsCompleted) {
                     nCompleted++;
                     GradeType grade = CalcGrade(tf);
                     switch (grade) {
@@ -144,7 +146,7 @@ namespace Testverktyg.Controllers
                 : scores.Count % 2 == 0
                     ? (scores[scores.Count / 2] + scores[(scores.Count / 2) - 1]) / 2
                     : scores[(scores.Count - 1) / 2];
-            
+
             return nCompleted == 0
                 ? null
                 : Tuple.Create(totPoints / nCompleted, median, totTime / nCompleted, G, VG, IG);
