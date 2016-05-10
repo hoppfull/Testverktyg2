@@ -338,7 +338,8 @@
                                         </Grid.RowDefinitions>
                                         <ListView Grid.Row="1" x:Name="lvw_TestStatisticsMaster"
                                               Style="{StaticResource Key_lvw_Base}"
-                                              ItemContainerStyle="{StaticResource ListViewItemOptionStyle}">
+                                              ItemContainerStyle="{StaticResource ListViewItemOptionStyle}"
+                                                  SelectionChanged="lvw_TestStatisticsMaster_SelectionChanged">
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
                                                     <Grid>
@@ -379,7 +380,9 @@
                                         <Label Style="{StaticResource Key_lbl_Header2}" Content="Resultat" VerticalAlignment="Top" />
                                     </StackPanel>
                                     <!-- Listview detail header items -->
-                                    <Grid Grid.Row="1" Background="{StaticResource color_DarkDarkMain}" Margin="0,7,0,0">
+                                    <Grid Grid.Row="1"
+                                          Background="{StaticResource color_DarkDarkMain}"
+                                          Margin="0,7,0,0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="180" />
                                             <ColumnDefinition Width="100" />
@@ -397,7 +400,8 @@
                                     </Grid>
 
                                     <Grid Grid.Row="2">
-                                        <ListBox x:Name="icl_TestResults" Background="{StaticResource color_MidLightMain}">
+                                        <ListBox x:Name="lvw_TestStatisticsDetails"
+                                                 Background="{StaticResource color_MidLightMain}">
                                             <ListBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <Grid>

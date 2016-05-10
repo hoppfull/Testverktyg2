@@ -202,16 +202,25 @@ namespace AdminApp {
             UpdateTestsMasterListView();
         }
 
+        private void lvw_TestStatisticsMaster_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            TestDefinition td = ((Tuple<TestDefinition, TeacherAccount>)lvw_TestStatisticsMaster.SelectedItem).Item1;
+            // student, tid, betyg och poäng
+            IList<TestForm> tfs = Repository<TestForm>.Instance.GetAll()
+                .Where(tf => tf.TestDefinitionId == td.Id).ToList();
+            lvw_TestStatisticsDetails.ItemsSource = Testverktyg.Controllers.Controller.GetResults(tfs);
+            
+        }
+
         private void UpdateTestsMasterListView() {
-            lvw_TestStatisticsMaster.ItemsSource = FilterTests((Subject)cbx_FilterSubject.SelectedItem, tbx_FilterTestName.Text)
-                .Select(test => Tuple.Create(test,
-                Repository<TeacherAccount>.Instance.Get(test.TeacherAccountId)));
+            lvw_TestStatisticsMaster.ItemsSource = cbx_FilterSubject.SelectedIndex != -1
+                ? FilterTests((Subject)cbx_FilterSubject.SelectedItem, tbx_FilterTestName.Text)
+                    .Select(test => Tuple.Create(test,
+                    Repository<TeacherAccount>.Instance.Get(test.TeacherAccountId)))
+                : null;
         }
 
         private void UpdateSubjectMasterComboBox() {
-            //TODO: Solve this bug!
             cbx_FilterSubject.ItemsSource = Repository<Subject>.Instance.GetAll();
-            cbx_FilterSubject.SelectedIndex = -1;
         }
 
         private IList<TestDefinition> FilterTests(Subject subject, string titleFilter) {
@@ -259,6 +268,5 @@ namespace AdminApp {
         }
 
         #endregion
-        
     }
 }
