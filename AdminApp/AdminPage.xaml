@@ -312,7 +312,7 @@
                                             <TextBox x:Name="tbx_FilterTestName" TextChanged="tbx_FilterTestName_TextChanged"
                                                      Style="{StaticResource Key_tbx_TextField}" IsEnabled="False" />
 
-                                            <TextBlock Text="Filtera efter provnamn"
+                                            <TextBlock Text="Filtrera efter prov"
                                                        Style="{StaticResource Key_tbl_FilterTestName}" />
                                         </Grid>
                                     </StackPanel>
