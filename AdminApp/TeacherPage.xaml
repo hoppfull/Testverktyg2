@@ -89,10 +89,10 @@
                                                 </Style.Triggers>
                                             </Style>
                                         </ItemsControl.Style>
-                                        <Label Grid.Column="0" Content="{Binding Item1}" Style="{StaticResource Key_lvw_Item}" />
-                                        <Label Grid.Column="1" Content="{Binding Item2}" Style="{StaticResource Key_lvw_Item}" />
+                                        <Label Grid.Column="0" Content="{Binding Item1.Title}" Style="{StaticResource Key_lvw_Item}" />
+                                        <Label Grid.Column="1" Content="{Binding Item2.Name}" Style="{StaticResource Key_lvw_Item}" />
                                         <Label Grid.Column="2" Content="{Binding Item3}" Style="{StaticResource Key_lvw_Item}" />
-                                        <Label Grid.Column="3" Content="{Binding Item4}" Style="{StaticResource Key_lvw_Item}" />
+                                        <Label Grid.Column="3" Content="{Binding Item1.MaxScore}" Style="{StaticResource Key_lvw_Item}" />
                                         <Label Grid.Column="4">
                                             <Label.Style>
                                                 <Style TargetType="Label" BasedOn="{StaticResource Key_lvw_Item}">
@@ -112,8 +112,7 @@
 
                         <!--Sent TestDefinitions ListView:-->
                         <ListView Grid.Row="6"
-                                  x:Name="lvw_SentTestDefinitions"
-                                  SelectionChanged="lvw_SentTestDefinitions_SelectionChanged">
+                                  x:Name="lvw_SentTestDefinitions">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ItemsControl Style="{StaticResource Key_grd_ListViewColumnLayout}">
@@ -134,14 +133,21 @@
                                     Click="btn_NewTestDefinition_Click" />
                             <StackPanel x:Name="skp_AddTestDefinitionTools"
                                         Orientation="Horizontal"
-                                        Visibility="Visible">
-                                <Button Content="Spara"
+                                        Visibility="Collapsed">
+                                <Button x:Name="btn_SaveNewTestDefinition"
+                                        Content="Spara" IsEnabled="False"
                                         Click="btn_SaveNewTestDefinition_Click" />
                                 <Button Content="Avbryt"
                                         Click="btn_AbortNewTestDefinition_Click" />
-                                <TextBox x:Name="txb_NewTestDefinitionName" Text="Namn" />
+                                <TextBox x:Name="txb_NewTestDefinitionName" />
                                 <ComboBox x:Name="cbx_NewTestDefinitionSubject"
-                                          SelectionChanged="cbx_NewTestDefinitionSubject_SelectionChanged" />
+                                          SelectionChanged="cbx_NewTestDefinitionSubject_SelectionChanged">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Name}" />
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
                             </StackPanel>
                             <StackPanel x:Name="skp_EditTestDefinitionTools"
                                         Orientation="Horizontal" IsEnabled="False">
