@@ -43,6 +43,8 @@
                                                 <TextBlock Text="Min" Padding="2"/>
                                                 <TextBlock Text="Slutdatum:" Padding="2"/>
                                                 <TextBlock Text="{Binding FinalDate}" Padding="2"/>
+                                                <TextBlock Text="Antal fragor: "/>
+                                                <TextBlock Text="{Binding TestDefinition.Questions.Count}"/>
                                             </WrapPanel>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>

@@ -8,6 +8,8 @@
         mc:Ignorable="d"
         Title="TestPage" Height="300" Width="300">
     <Window.Resources>
+        <CollectionViewSource x:Key="testQuestionBinding" Source="{Binding TestQuestions}"/>
+        <local:RowNumberConverter x:Key="RowNumberConverter"/>
         <DataTemplate x:Key="singleTemplate">
             <StackPanel Orientation="Horizontal">
                 <RadioButton GroupName="SingleGroup"  Checked="RadioButton_Click" Unchecked="RadioButton_Click"/>
@@ -24,7 +26,7 @@
             <TextBlock Text="I am a sranrkede template"/>
         </DataTemplate>
         <DataTemplate x:Key="openTemplate">
-            <TextBlock Text="I am a siopen template"/>
+            <TextBox Text="{Binding Text}" Width="200"/>
         </DataTemplate>
 
         <b:QuestionTemplateSelector x:Key="dataTemplateSelectorDictionary"
@@ -36,26 +38,33 @@
         </b:QuestionTemplateSelector>
     </Window.Resources>
     <StackPanel x:Name="testPageGrid">
-        <ListView ItemsSource="{Binding TestQuestions}" SelectionChanged="ListView_SelectionChanged">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Text}"/>
-                        <ListView ItemsSource="{Binding Answers}">
-                            <!--<ListView.ItemTemplateSelector>
+        <ScrollViewer>
+            <ListView ItemsSource="{Binding Source={StaticResource testQuestionBinding}}" AlternationCount="{Binding Path=TestQuestions.Count}" SelectionChanged="ListView_SelectionChanged" Height="200">
+                
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <!--<TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplatedParent.(ItemsControl.AlternationIndex)}"/>-->
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Fråga "/>
+                                <TextBlock Text="{Binding Converter={StaticResource RowNumberConverter}, ConverterParameter={StaticResource testQuestionBinding}}"/>
+                            </StackPanel>
+                            <ListView ItemsSource="{Binding Answers}">
+                                <!--<ListView.ItemTemplateSelector>
                                 <b:QuestionTemplateSelector></b:QuestionTemplateSelector>
                             </ListView.ItemTemplateSelector>-->
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn CellTemplateSelector="{StaticResource dataTemplateSelectorDictionary}" Header=":(::(" Width="200">
-                                    </GridViewColumn>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn CellTemplateSelector="{StaticResource dataTemplateSelectorDictionary}" Header="{Binding Text}" Width="Auto">
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
         <Button Click="Button_Click">Klar</Button>
     </StackPanel>
 </Window>

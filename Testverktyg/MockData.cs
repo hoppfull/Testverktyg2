@@ -64,8 +64,6 @@ namespace Testverktyg
             var question2 = new Question { QuestionType = QuestionType.Single, Text = "MY TEAM?", Score = 4, Answers = new List<Answer>(), TestDefinition = test2 };
             var question3 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = test1 };
             var question4 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = test2 };
-            var question5 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 1, Answers = new List<Answer>(), TestDefinition = test1 };
-            var question6 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = test2 };
             var question7 = new Question { QuestionType = QuestionType.Open, Text = "i am OPEN LIKE A BOOK xDdpppppp", Score = 3, Answers = new List<Answer>(), TestDefinition = test1 };
             var question8 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 4, Answers = new List<Answer>(), TestDefinition = test2 };
 
@@ -73,8 +71,6 @@ namespace Testverktyg
             var question10 = new Question { QuestionType = QuestionType.Single, Text = "Hello?", Score = 4, Answers = new List<Answer>(), TestDefinition = test4 };
             var question11 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = test3 };
             var question12 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = test4 };
-            var question13 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 1, Answers = new List<Answer>(), TestDefinition = test3 };
-            var question14 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = test4 };
             var question15 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = test3 };
             var question16 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 4, Answers = new List<Answer>(), TestDefinition = test4 };
 
@@ -82,8 +78,6 @@ namespace Testverktyg
             var question18 = new Question { QuestionType = QuestionType.Single, Text = "??", Score = 4, Answers = new List<Answer>(), TestDefinition = test6 };
             var question19 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = test5};
             var question20 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = test6 };
-            var question21 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 1, Answers = new List<Answer>(), TestDefinition = test5 };
-            var question22 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = test6 };
             var question23 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = test5 };
             var question24 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 4, Answers = new List<Answer>(), TestDefinition = test6 };
 
@@ -93,8 +87,6 @@ namespace Testverktyg
             var question26 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 4, Answers = new List<Answer>(), TestDefinition = null };
             var question27 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = null };
             var question28 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = null };
-            var question29 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 1, Answers = new List<Answer>(), TestDefinition = null };
-            var question30 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = null };
             var question31 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = null };
             var question32 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 4, Answers = new List<Answer>(), TestDefinition = null };
 
@@ -102,8 +94,6 @@ namespace Testverktyg
             var question34 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 4, Answers = new List<Answer>(), TestDefinition = null };
             var question35 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = null };
             var question36 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = null };
-            var question37 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 1, Answers = new List<Answer>(), TestDefinition = null };
-            var question38 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = null };
             var question39 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = null };
             var question40 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 4, Answers = new List<Answer>(), TestDefinition = null };
 
@@ -111,8 +101,6 @@ namespace Testverktyg
             var question42 = new Question { QuestionType = QuestionType.Single, Text = "1", Score = 4, Answers = new List<Answer>(), TestDefinition = null };
             var question43 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = null };
             var question44 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = null };
-            var question45 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 1, Answers = new List<Answer>(), TestDefinition = null };
-            var question46 = new Question { QuestionType = QuestionType.Ranked, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = null };
             var question47 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = null };
             var question48 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 4, Answers = new List<Answer>(), TestDefinition = null };
 
@@ -172,25 +160,7 @@ namespace Testverktyg
             question4.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 2 });
             question4.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 3 });
 
-            question5.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 2 });
-            question5.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 3 });
-            question5.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 1 });
-
-            question13.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 2 });
-            question13.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 1 });
-            question13.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 3 });
-
-            question14.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 3 });
-            question14.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 1 });
-            question14.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 2 });
-
-            question21.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 1 });
-            question21.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 2 });
-            question21.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 3 });
-
-            question22.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 2 });
-            question22.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 1 });
-            question22.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 3 });
+           
 
             //Single
             question25.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 1 });
@@ -242,63 +212,33 @@ namespace Testverktyg
             question44.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 0 });
             question44.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 1 });
 
-            //Ranked
-
-            question29.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 2 });
-            question29.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 3 });
-            question29.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 1 });
-
-            question30.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 2 });
-            question30.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 1 });
-            question30.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 3 });
-
-            question37.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 3 });
-            question37.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 2 });
-            question37.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 1 });
-
-            question38.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 1 });
-            question38.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 2 });
-            question38.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 3 });
-
-            question45.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 2 });
-            question45.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 3 });
-            question45.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 1 });
-
-            question46.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 2 });
-            question46.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 3 });
-            question46.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 1 });
-            question7.Answers.Add(new Answer { Text = "84", CheckedOrRanked = 1 });
+            
+            question7.Answers.Add(new Answer { Text = "hej", CheckedOrRanked = 1 });
 
             //Add questions to Test Definitions
 
             test1.Questions.Add(question1);
             test1.Questions.Add(question3);
-            test1.Questions.Add(question5);
             test1.Questions.Add(question7);
 
             test2.Questions.Add(question2);
             test2.Questions.Add(question4);
-            test2.Questions.Add(question6);
             test2.Questions.Add(question8);
 
             test3.Questions.Add(question9);
             test3.Questions.Add(question11);
-            test3.Questions.Add(question13);
             test3.Questions.Add(question15);
 
             test4.Questions.Add(question10);
             test4.Questions.Add(question12);
-            test4.Questions.Add(question14);
             test4.Questions.Add(question16);
 
             test5.Questions.Add(question17);
             test5.Questions.Add(question19);
-            test5.Questions.Add(question21);
             test5.Questions.Add(question23);
 
             test6.Questions.Add(question18);
             test6.Questions.Add(question20);
-            test6.Questions.Add(question22);
             test6.Questions.Add(question24);
             
             //Add Answers to Questions

@@ -46,6 +46,31 @@ namespace StudentApp {
         {
             tbl_LoginWarning.Visibility = Visibility.Collapsed;
         }
+
+        
+    }
+    public class RowNumberConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            CollectionViewSource collectionViewSource = parameter as CollectionViewSource;
+
+            int counter = 1;
+            foreach (object item in collectionViewSource.View)
+            {
+                if (item == value)
+                {
+                    return counter.ToString();
+                }
+                counter++;
+            }
+            return string.Empty;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

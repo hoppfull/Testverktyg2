@@ -32,10 +32,11 @@ namespace StudentApp
             
             using (var db = new Testverktyg.Context.TestverktygContext())
             {
-                testFormsList = db.TestForms.Where(x => x.StudentAccountId == userAccount.Id).Include(q => q.TestDefinition).ToList();
+                testFormsList = db.TestForms.Where(x => x.StudentAccountId == userAccount.Id).Include(q => q.TestDefinition.Questions).ToList();
 
                 foreach (var item in testFormsList)
                 {
+                    
                     if (item.IsCompleted == true)
                     {
                         DonetestFormsList.Add(item);
