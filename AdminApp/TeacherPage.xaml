@@ -111,21 +111,21 @@
                             </ListView>
 
                             <!--Sent TestDefinitions ListView:-->
-                            <ListView Grid.Row="6"
+                            <ListBox Grid.Row="6"
                                           x:Name="lvw_SentTestDefinitions"
-                                          Style="{StaticResource Key_lvw_Base}"
+                                          Background="{StaticResource color_MidLightMain}"
                                           ItemContainerStyle="{StaticResource ListViewItemOptionStyle}">
-                                <ListView.ItemTemplate>
+                                <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <ItemsControl Style="{StaticResource Key_grd_ListViewColumnLayout}">
-                                            <Label Grid.Column="0" Content="{Binding Item1}" Style="{StaticResource Key_lvw_Item}" BorderThickness="0" />
-                                            <Label Grid.Column="1" Content="{Binding Item2}" Style="{StaticResource Key_lvw_Item}" />
-                                            <Label Grid.Column="2" Content="{Binding Item3}" Style="{StaticResource Key_lvw_Item}" />
-                                            <Label Grid.Column="3" Content="{Binding Item4}" Style="{StaticResource Key_lvw_Item}" />
+                                            <Label Grid.Column="0" Content="{Binding Item1}" Foreground="{StaticResource color_DarkDarkMain}" />
+                                            <Label Grid.Column="1" Content="{Binding Item2}" Foreground="{StaticResource color_DarkDarkMain}" />
+                                            <Label Grid.Column="2" Content="{Binding Item3}" Foreground="{StaticResource color_DarkDarkMain}" />
+                                            <Label Grid.Column="3" Content="{Binding Item4}" Foreground="{StaticResource color_DarkDarkMain}" />
                                         </ItemsControl>
                                     </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
                             <!--#endregion-->
 
                             <!--#region Selected TestDefinition EditTools:-->

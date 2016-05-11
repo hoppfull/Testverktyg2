@@ -120,6 +120,11 @@
             </Setter>
         </Style>
 
+        <Style TargetType="{x:Type ListBoxItem}">
+            <!-- Possibly other setters -->
+            <Setter Property="Focusable" Value="False" />
+        </Style>
+        
         <Style x:Key="Key_lvw_Base" TargetType="ListView">
             <Setter Property="BorderThickness" Value="1,1,0,1" />
             <Setter Property="BorderBrush" Value="{StaticResource color_DarkDarkMain}" />
