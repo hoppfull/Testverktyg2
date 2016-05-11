@@ -22,7 +22,7 @@ namespace StudentApp.Controllers
             if (frameworkElement != null)
             {
                 var question = (Answer)item;
-                //question.Question.QuestionType
+
                 switch (question.Question.QuestionType)
                 {
                     case QuestionType.Single:

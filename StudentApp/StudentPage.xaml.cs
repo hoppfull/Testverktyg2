@@ -24,11 +24,32 @@ namespace StudentApp
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            List<TestForm> testFormsList = Repository<TestForm>.Instance.GetAll().Where(x => x.StudentAccountId == userAccount.Id && x.IsCompleted == false).ToList();
-            List<TestForm> DonetestFormsList = Repository<TestForm>.Instance.GetAll().Where(x => x.StudentAccountId == userAccount.Id && x.IsCompleted == true).ToList();
+
+            List<TestForm> testFormsList = new List<TestForm>();
+            List<TestForm> DonetestFormsList = new List<TestForm>();
+            List<TestForm> NotDonetestFormsList = new List<TestForm>();
+
+            
+            using (var db = new Testverktyg.Context.TestverktygContext())
+            {
+                testFormsList = db.TestForms.Where(x => x.StudentAccountId == userAccount.Id).Include(q => q.TestDefinition).ToList();
+
+                foreach (var item in testFormsList)
+                {
+                    if (item.IsCompleted == true)
+                    {
+                        DonetestFormsList.Add(item);
+                    }
+                    else
+                    {
+                        NotDonetestFormsList.Add(item);
+                    }
+                }
+
+            }
 
             UserAccount = userAccount;
-            lvw_NotFinsihedTestForms.ItemsSource = testFormsList;
+            lvw_NotFinsihedTestForms.ItemsSource = NotDonetestFormsList;
             lvw_FinishedTestForms.ItemsSource = DonetestFormsList;
 
         }

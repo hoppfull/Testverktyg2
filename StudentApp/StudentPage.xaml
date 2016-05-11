@@ -34,9 +34,15 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <WrapPanel>
-                                                <TextBlock Text="{Binding Score}" />
-                                                <TextBlock Text=" Space " />
-                                                <TextBlock Text="{Binding Id}"/>
+                                                <TextBlock Text="Titel:" Padding="2"/>
+                                                <TextBlock Text="{Binding TestDefinition.Title}" Padding="2"/>
+                                                <TextBlock Text="Max Poäng:" Padding="2"/>
+                                                <TextBlock Text="{Binding TestDefinition.MaxScore}" Padding="2"/>
+                                                <TextBlock Text="Tid:" Padding="2"/>
+                                                <TextBlock Text="{Binding TimeLimit}" Padding="0,2,0,0"/>
+                                                <TextBlock Text="Min" Padding="2"/>
+                                                <TextBlock Text="Slutdatum:" Padding="2"/>
+                                                <TextBlock Text="{Binding FinalDate}" Padding="2"/>
                                             </WrapPanel>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
@@ -53,13 +59,10 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <WrapPanel>
-                                                <TextBlock Text="{Binding Score}" />
-                                                <TextBlock Text=" Space " />
-                                                <TextBlock Text="{Binding Id}"/>
-                                                <TextBlock Text=" Space " />
-                                                <TextBlock Text="{Binding FinalDate}" />
-                                                <TextBlock Text=" Space " />
-                                                <TextBlock Text="{Binding StartDate}" />
+                                                <TextBlock Text=" Title " />
+                                                <TextBlock Text="{Binding TestDefinition.Title}"/>
+                                                <TextBlock Text=" Poäng " />
+                                                <TextBlock Text="{Binding Score}"/>
 
                                             </WrapPanel>
                                         </DataTemplate>
