@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Testverktyg.Model;
 using Testverktyg.Repository;
+using Testverktyg.Controllers;
 
 namespace AdminApp {
     public partial class TeacherPage : Window {
@@ -93,8 +94,12 @@ namespace AdminApp {
         }
 
         private void btn_SaveNewTestDefinition_Click(object sender, RoutedEventArgs e) {
-
-            ToggleTestDefinitionTools(false);
+            if(Controller.CreateTestDefinition(txb_NewTestDefinitionName.Text, (Subject)cbx_NewTestDefinitionSubject.SelectedItem, LoggedInAccount)) {
+                MessageBox.Show($"Skapade nytt prov med namnet '{txb_NewTestDefinitionName.Text}'");
+                ToggleTestDefinitionTools(false);
+                UpdateCreatedTestDefinitionsListView();
+            } else
+                MessageBox.Show("Kunde inte skapa nytt prov!\nKanske är namnet ogiltigt eller redan taget.");
         }
 
         private void btn_AbortNewTestDefinition_Click(object sender, RoutedEventArgs e) {
