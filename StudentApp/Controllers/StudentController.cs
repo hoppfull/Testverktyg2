@@ -31,7 +31,7 @@ namespace StudentApp.Controllers
                 }
                 else //if question is open
                 {
-                    if (correctAnswers[i].Answers[0].Text != userAnswers[i].Answers[0].Text)
+                    if (correctAnswers[i].Answers[0].Text.ToLower() != userAnswers[i].Answers[0].Text.ToLower())
                     {
                         allCorrect = false;
                     }

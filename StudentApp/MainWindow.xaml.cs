@@ -28,7 +28,7 @@ namespace StudentApp {
         {
             tbl_LoginWarning.Visibility = Visibility.Visible;
 
-            switch (ViewControllerStudent.Login(this, tbx_LoginEmail.Text, tbx_LoginPassword.Text))
+            switch (ViewControllerStudent.Login(this, tbx_LoginEmail.Text.ToLower(), tbx_LoginPassword.Password))
             {
                 case ViewControllerStudent.LoginResponse.InvalidUser:
                     tbl_LoginWarning.Text = "Ingen sådan användare existerar!";
@@ -47,7 +47,10 @@ namespace StudentApp {
             tbl_LoginWarning.Visibility = Visibility.Collapsed;
         }
 
-        
+        private void tbx_LoginPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            tbl_LoginWarning.Visibility = Visibility.Collapsed;
+        }
     }
     public class RowNumberConverter : IValueConverter
     {

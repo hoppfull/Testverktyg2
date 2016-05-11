@@ -41,7 +41,12 @@ namespace StudentApp
 
                 foreach (var item in testFormsList)
                 {
-                    
+                    if (item.FinalDate < DateTime.Now)
+                    {
+                        Repository<TestForm>.Instance.Delete(item);
+                    }
+                    else
+                    {
                     if (item.IsCompleted == true)
                     {
                         DonetestFormsList.Add(item);
@@ -49,6 +54,8 @@ namespace StudentApp
                     else
                     {
                         NotDonetestFormsList.Add(item);
+                    }
+
                     }
                 }
 
@@ -83,6 +90,7 @@ namespace StudentApp
                     }
                     
                 }
+
                     TestPage t = new TestPage(testForm, UserAccount);
                 t.Show();
                 this.Close();

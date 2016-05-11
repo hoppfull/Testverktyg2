@@ -46,7 +46,7 @@ namespace Testverktyg
 
             //Create TestForms
 
-            var testForms1 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test1 };
+            var testForms1 = new TestForm { TimeLimit = 1, FinalDate = new DateTime(2016, 10, 01), TestDefinition = test1 };
             var testForms2 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test1 };
             var testForms3 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test2 };
             var testForms4 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test2 };

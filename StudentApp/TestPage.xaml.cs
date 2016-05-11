@@ -45,7 +45,6 @@ namespace StudentApp
             {
                 testquestions.Add(item);
             }
-            //reset CheckedOrRanked to zero
             foreach (var question in testquestions)
             {
                 if (question.QuestionType == QuestionType.Open)
@@ -69,9 +68,10 @@ namespace StudentApp
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
-            //dispatcherTimer.Start();
             _dispatcherTimer = dispatcherTimer;
             _dispatcherTimer.Start();
+            _testForm.StartDate = DateTime.Now;
+            timer = _testForm.TimeLimit*60;
         }
 
 
@@ -119,11 +119,31 @@ namespace StudentApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _dispatcherTimer.Stop();
-            _dispatcherTimer.IsEnabled = false;
-            _dispatcherTimer = null;
-            Dispatcher.InvokeShutdown();
+            CompleteTest();
+        }
 
+        
+
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan t = TimeSpan.FromSeconds(timer);
+
+            string timetex = string.Format("{0:D2}h:{1:D2}m:{2:D2}s:",
+                t.Hours,
+                t.Minutes,
+                t.Seconds);
+
+            lbTimer.Content = timetex;
+            timer--;
+            if (timer == 0)
+            {
+                CompleteTest();
+            }
+        }
+
+        private void CompleteTest()
+        {
+            _dispatcherTimer.Stop();
             TestDefinition correctTd = new TestDefinition();
             using (var db = new Testverktyg.Context.TestverktygContext())
             {
@@ -131,18 +151,12 @@ namespace StudentApp
             }
             _testForm.Score = StudentApp.Controllers.StudentController.CalculateScore(TestQuestions, correctTd.Questions);
             _testForm.IsCompleted = true;
+            _testForm.FinishedDate = DateTime.Now;
             Repository<TestForm>.Instance.Update(_testForm);
 
             StudentPage s = new StudentPage(_studentAccount);
             s.Show();
             this.Close();
-        }
-
-        
-
-        private void dispatcherTimer_Tick(object sender, EventArgs e)
-        {
-            Console.WriteLine(++timer);
         }
     }
 }

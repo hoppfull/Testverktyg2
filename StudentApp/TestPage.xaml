@@ -65,6 +65,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </ScrollViewer>
+        <Label x:Name="lbTimer" />
         <Button Click="Button_Click">Klar</Button>
     </StackPanel>
 </Window>

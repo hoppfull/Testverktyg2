@@ -15,7 +15,7 @@ namespace StudentApp.Controllers {
         }
         static public LoginResponse Login(Window window, string email, string password) {
             IList<StudentAccount> students = Repository<StudentAccount>.Instance.GetAll();
-            StudentAccount someStudent = students.FirstOrDefault(student => student.Email == email);
+            StudentAccount someStudent = students.FirstOrDefault(student => student.Email.ToLower() == email);
 
             if(someStudent != null) {
                 if(someStudent.Password == password) {
