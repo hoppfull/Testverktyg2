@@ -216,14 +216,14 @@
                                 <TextBox Grid.Row="0" x:Name="tbx_ChangePassword"
                                          Style="{StaticResource Key_tbx_TextField}"
                                          TextChanged="tbx_ChangePassword_TextChanged" />
-                                <!--<TextBlock Grid.Row="0" Text="Nytt lösenord"
-                                               Style="{StaticResource Key_tbl_TeacherChangePassword}" />-->
+                                <TextBlock Grid.Row="0" Text="Nytt lösenord"
+                                               Style="{StaticResource Key_tbl_TeacherChangePassword}" />
 
                                 <TextBox  Grid.Row="1" x:Name="tbx_RepeatChangePassword" 
                                           Style="{StaticResource Key_tbx_TextField}"
                                           TextChanged="tbx_ChangePassword_TextChanged" />
-                                <!--<TextBlock Grid.Row="1" Text="Upprepa lösenord"
-                                               Style="{StaticResource Key_tbl_TeacherRepeatChangePassword}" />-->
+                                <TextBlock Grid.Row="1" Text="Upprepa lösenord"
+                                               Style="{StaticResource Key_tbl_TeacherRepeatChangePassword}" />
 
                                 <StackPanel Grid.Row="2" HorizontalAlignment="Left">
                                     <Button x:Name="btn_AcceptChangePassword" Margin="0,5"
@@ -243,9 +243,9 @@
                                 <TextBox  Grid.Row="0" x:Name="tbx_ChangeEmail"
                                           Style="{StaticResource Key_tbx_TextField}"
                                           TextChanged="tbx_ChangeEmail_TextChanged" />
-                                <!--<TextBlock Grid.Row="0" 
+                                <TextBlock Grid.Row="0" 
                                                Style="{StaticResource Key_tbl_TeacherChangeEmail}" 
-                                               Text="Ny email" />-->
+                                               Text="Ny email" />
 
                                 <StackPanel Grid.Row="1" HorizontalAlignment="Left">
                                     <Button x:Name="btn_AcceptChangeEmail" Margin="0,5"
