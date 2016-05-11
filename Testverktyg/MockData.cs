@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Testverktyg.Context;
 using Testverktyg.Model;
 using Testverktyg.Repository;
+using System.Data.Entity;
 
 namespace Testverktyg
 {
@@ -20,8 +21,8 @@ namespace Testverktyg
         private static void Init() {
             Repository<AdminAccount>.Instance.Add(new AdminAccount {
                 Email = "admin",
-                Name = "Admin",
-                Password = "root"
+                Password = "root",
+                Name = "Admin"
             });
         }
 

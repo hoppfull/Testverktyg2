@@ -200,7 +200,7 @@ namespace Testverktyg.Controllers
         }
 
         public static bool IsPasswordValid(string password) {
-            return password.Length > 6;
+            return password.Length >= 6;
         }
 
         public static bool UpdatePassword(AbstractUser user, string password) {
