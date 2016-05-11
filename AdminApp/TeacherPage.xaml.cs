@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Testverktyg.Model;
+using Testverktyg.Repository;
+using Testverktyg.Controllers;
 
 namespace AdminApp {
     public partial class TeacherPage : Window {
@@ -20,7 +22,9 @@ namespace AdminApp {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             LoggedInAccount = loginAccount;
-            lvw_CreatedTestDefinitions.ItemsSource = new List<Tuple<string, string, string, string, bool>> {
+            cbx_NewTestDefinitionSubject.ItemsSource = Repository<Subject>.Instance.GetAll();
+            UpdateCreatedTestDefinitionsListView();
+            /*lvw_CreatedTestDefinitions.ItemsSource = new List<Tuple<string, string, string, string, bool>> {
                 Tuple.Create("Naturprov", "Naturvetenskap", "5", "23", false),
                 Tuple.Create("Samhällsprov", "Samhällsvetenskap", "7", "75", false),
                 Tuple.Create("Dataprov", "Datavetenskap", "11", "101", false),
@@ -34,7 +38,7 @@ namespace AdminApp {
                 Tuple.Create("Dataprov", "Datavetenskap", "11", "101"),
                 Tuple.Create("Springprov", "Gymnastik", "9", "66"),
                 Tuple.Create("Kemiprov", "Kemi", "2", "25")
-            };
+            };*/
         }
 
         #region Teacher settings tools:
@@ -70,28 +74,49 @@ namespace AdminApp {
         #endregion
 
         #region Test management tools:
-        private void lvw_CreatedTestDefinitions_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-
+        private void UpdateCreatedTestDefinitionsListView() {
+            lvw_CreatedTestDefinitions.ItemsSource = Repository<TestDefinition>.Instance.GetAll()
+                .Where(td => td.IsNotRemoved && td.TeacherAccountId == LoggedInAccount.Id &&
+                    (td.TestDefinitionState == TestDefinitionState.Created || td.TestDefinitionState == TestDefinitionState.Returned))
+                .Select(td => Tuple.Create(td,
+                    Repository<Subject>.Instance.Get(td.SubjectId).Name,
+                    Repository<Question>.Instance.GetAll().Where(q => q.TestDefinitionId == td.Id).Count(),
+                    td.TestDefinitionState == TestDefinitionState.Created));
+            skp_EditTestDefinitionTools.IsEnabled = false;
         }
 
-        private void lvw_SentTestDefinitions_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-
+        private void lvw_CreatedTestDefinitions_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            skp_EditTestDefinitionTools.IsEnabled = true;
         }
 
         private void btn_NewTestDefinition_Click(object sender, RoutedEventArgs e) {
-
+            ToggleTestDefinitionTools(true);
         }
 
         private void btn_SaveNewTestDefinition_Click(object sender, RoutedEventArgs e) {
-
+            if(Controller.CreateTestDefinition(tbx_NewTestDefinitionName.Text, (Subject)cbx_NewTestDefinitionSubject.SelectedItem, LoggedInAccount)) {
+                MessageBox.Show($"Skapade nytt prov med namnet '{tbx_NewTestDefinitionName.Text}'");
+                ToggleTestDefinitionTools(false);
+                UpdateCreatedTestDefinitionsListView();
+            } else
+                MessageBox.Show("Kunde inte skapa nytt prov!\nKanske är namnet ogiltigt eller redan taget.");
         }
 
         private void btn_AbortNewTestDefinition_Click(object sender, RoutedEventArgs e) {
+            ToggleTestDefinitionTools(false);
+        }
 
+        private void ToggleTestDefinitionTools(bool enable) {
+            btn_NewTestDefintion.Visibility = enable
+                ? Visibility.Collapsed : Visibility.Visible;
+            skp_AddTestDefinitionTools.Visibility = enable
+                ? Visibility.Visible : Visibility.Collapsed;
+            tbx_NewTestDefinitionName.Text = "";
+            cbx_NewTestDefinitionSubject.SelectedIndex = -1;
         }
 
         private void cbx_NewTestDefinitionSubject_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-
+            btn_SaveNewTestDefinition.IsEnabled = cbx_NewTestDefinitionSubject.SelectedIndex != -1;
         }
 
         private void btn_EditTestDefinition_Click(object sender, RoutedEventArgs e) {

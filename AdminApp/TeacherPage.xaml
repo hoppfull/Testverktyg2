@@ -6,271 +6,267 @@
         xmlns:local="clr-namespace:AdminApp"
         mc:Ignorable="d"
         Title="TeacherPage" MinHeight="720" Height="720" MinWidth="1024" Width="1024">
-    <Grid>
-        <Grid Background="{StaticResource color_DarkDarkMain}">
-            <TabControl>
-                <!--#region Test management tools:-->
-                <TabItem>
-                    <TabItem.Header>
-                        <Label Style="{StaticResource Key_lbl_TabControl}" Content="Prov" />
-                    </TabItem.Header>
-                    <TabItem.Content>
-                        <Grid Background="{StaticResource color_NormalDarkMain}">
-                            <Grid Margin="25">
-                                <FrameworkElement.Resources>
-                                    <Style x:Key="Key_grd_ListViewColumnLayout" TargetType="ItemsControl">
-                                        <Setter Property="ItemsPanel">
-                                            <Setter.Value>
-                                                <ItemsPanelTemplate>
-                                                    <Grid>
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="200" />
-                                                            <ColumnDefinition Width="200" />
-                                                            <ColumnDefinition Width="200" />
-                                                            <ColumnDefinition Width="200" />
-                                                            <ColumnDefinition Width="*" />
-                                                        </Grid.ColumnDefinitions>
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition Height="Auto" />
-                                                            <RowDefinition Height="*" />
-                                                        </Grid.RowDefinitions>
-                                                    </Grid>
-                                                </ItemsPanelTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </FrameworkElement.Resources>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
+    <Grid Background="{StaticResource color_DarkDarkMain}">
+        <TabControl>
+            <!--#region Test management tools:-->
+            <TabItem>
+                <TabItem.Header>
+                    <Label Style="{StaticResource Key_lbl_TabControl}" Content="Prov" />
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid Background="{StaticResource color_NormalDarkMain}">
+                        <Grid Margin="25">
+                            <FrameworkElement.Resources>
+                                <Style x:Key="Key_grd_ListViewColumnLayout" TargetType="ItemsControl">
+                                    <Setter Property="ItemsPanel">
+                                        <Setter.Value>
+                                            <ItemsPanelTemplate>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="200" />
+                                                        <ColumnDefinition Width="200" />
+                                                        <ColumnDefinition Width="200" />
+                                                        <ColumnDefinition Width="200" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="*" />
+                                                    </Grid.RowDefinitions>
+                                                </Grid>
+                                            </ItemsPanelTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </FrameworkElement.Resources>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
 
-                                <!--Headers:-->
-                                <Label Content="Ej granskade" Grid.Row="0" Padding="12,5" Style="{StaticResource Key_lbl_Header2}" VerticalAlignment="Top" />
-                                <Label Content="Skickade" Grid.Row="4" Padding="12,5" Style="{StaticResource Key_lbl_Header2}" VerticalAlignment="Top" />
+                            <!--Headers:-->
+                            <Label Content="Ej granskade" Grid.Row="0" Padding="12,5" Style="{StaticResource Key_lbl_Header2}" VerticalAlignment="Top" />
+                            <Label Content="Skickade" Grid.Row="4" Padding="12,5" Style="{StaticResource Key_lbl_Header2}" VerticalAlignment="Top" />
 
-                                <!--#region ListView column headers:-->
-                                <!--ListView column headers (CreatedTestDefinitions):-->
-                                <Grid Grid.Row="1" Background="{StaticResource color_DarkDarkMain}" Margin="0,7,0,0">
-                                    <ItemsControl Grid.Row="1" Style="{StaticResource Key_grd_ListViewColumnLayout}">
-                                        <Label Grid.Column="0" Content="Namn" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
-                                        <Label Grid.Column="1" Content="Ämne" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
-                                        <Label Grid.Column="2" Content="#Frågor" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
-                                        <Label Grid.Column="3" Content="Poäng" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
-                                        <Label Grid.Column="4" Content="Returnerad" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
-                                    </ItemsControl>
-                                </Grid>
-                                <!--ListView column headers (SentTestDefinitions):-->
-                                <Grid Grid.Row="5" Background="{StaticResource color_DarkDarkMain}" Margin="0,7,0,0">
-                                    <ItemsControl Grid.Row="5" Style="{StaticResource Key_grd_ListViewColumnLayout}">
-                                        <Label Grid.Column="0" Content="Namn" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
-                                        <Label Grid.Column="1" Content="Ämne" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
-                                        <Label Grid.Column="2" Content="#Frågor" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
-                                        <Label Grid.Column="3" Content="Poäng" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
-                                    </ItemsControl>
-                                </Grid>
-                                <!--#endregion-->
+                            <!--#region ListView column headers:-->
+                            <!--ListView column headers (CreatedTestDefinitions):-->
+                            <Grid Grid.Row="1" Background="{StaticResource color_DarkDarkMain}" Margin="0,7,0,0">
+                                <ItemsControl Grid.Row="1" Style="{StaticResource Key_grd_ListViewColumnLayout}">
+                                    <Label Grid.Column="0" Content="Namn" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="1" Content="Ämne" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="2" Content="#Frågor" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="3" Content="Poäng" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="4" Content="Returnerad" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
+                                </ItemsControl>
+                            </Grid>
+                            <!--ListView column headers (SentTestDefinitions):-->
+                            <Grid Grid.Row="5" Background="{StaticResource color_DarkDarkMain}" Margin="0,7,0,0">
+                                <ItemsControl Style="{StaticResource Key_grd_ListViewColumnLayout}">
+                                    <Label Grid.Column="0" Content="Namn" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="1" Content="Ämne" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="2" Content="#Frågor" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="3" Content="Poäng" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
+                                </ItemsControl>
+                            </Grid>
+                            <!--#endregion-->
 
-                                <!--#region TestDefinition ListViews:-->
-                                <!--Created TestDefinitions ListView:-->
-                                <ListView Grid.Row="2" 
+                            <!--#region TestDefinition ListViews:-->
+
+                            <!--Created TestDefinitions ListView:-->
+                            <ListView Grid.Row="2" 
                                           x:Name="lvw_CreatedTestDefinitions"
                                           Style="{StaticResource Key_lvw_Base}"
                                           ItemContainerStyle="{StaticResource ListViewItemOptionStyle}"
                                           SelectionChanged="lvw_CreatedTestDefinitions_SelectionChanged">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <ItemsControl>
-                                                <ItemsControl.Style>
-                                                    <Style TargetType="ItemsControl" BasedOn="{StaticResource Key_grd_ListViewColumnLayout}">
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding Item5}" Value="False">
-                                                                <!--<Setter Property="Background" Value="{StaticResource color_Returned}" />-->
-                                                            </DataTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </ItemsControl.Style>
-                                                <Label Grid.Column="0" Content="{Binding Item1}" Style="{StaticResource Key_lvw_Item}" BorderThickness="0" />
-                                                <Label Grid.Column="1" Content="{Binding Item2}" Style="{StaticResource Key_lvw_Item}" />
-                                                <Label Grid.Column="2" Content="{Binding Item3}" Style="{StaticResource Key_lvw_Item}" />
-                                                <Label Grid.Column="3" Content="{Binding Item4}" Style="{StaticResource Key_lvw_Item}" />
-                                                <Label Grid.Column="4" 
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ItemsControl Style="{StaticResource Key_grd_ListViewColumnLayout}">
+                                            <Label Grid.Column="0" Content="{Binding Item1.Title}" Style="{StaticResource Key_lvw_Item}" BorderThickness="0" />
+                                            <Label Grid.Column="1" Content="{Binding Item2}" Style="{StaticResource Key_lvw_Item}" />
+                                            <Label Grid.Column="2" Content="{Binding Item3}" Style="{StaticResource Key_lvw_Item}" />
+                                            <Label Grid.Column="3" Content="{Binding Item1.MaxScore}" Style="{StaticResource Key_lvw_Item}" />
+                                            <Label Grid.Column="4" 
                                                        FontFamily="Segoe MDL2 Assets" 
                                                        VerticalAlignment="Bottom" 
                                                        Foreground="{StaticResource color_Returned}">
-                                                    <Label.Style>
-                                                        <Style TargetType="Label" BasedOn="{StaticResource Key_lvw_Item}">
-                                                            <Setter Property="Content" Value="" />
-                                                            <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding Item5}" Value="False">
-                                                                    <Setter Property="Content" Value="&#xE081;" />
-                                                                </DataTrigger>
-                                                            </Style.Triggers>
-                                                        </Style>
-                                                    </Label.Style>
-                                                </Label>
-                                            </ItemsControl>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
+                                                <Label.Style>
+                                                    <Style TargetType="Label" BasedOn="{StaticResource Key_lvw_Item}">
+                                                        <Setter Property="Content" Value="" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Item4}" Value="False">
+                                                                <Setter Property="Content" Value="&#xE081;" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Label.Style>
+                                            </Label>
+                                        </ItemsControl>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
 
-                                <!--Sent TestDefinitions ListView:-->
-                                <ListView Grid.Row="6"
+                            <!--Sent TestDefinitions ListView:-->
+                            <ListView Grid.Row="6"
                                           x:Name="lvw_SentTestDefinitions"
                                           Style="{StaticResource Key_lvw_Base}"
-                                          ItemContainerStyle="{StaticResource ListViewItemOptionStyle}"
-                                          SelectionChanged="lvw_SentTestDefinitions_SelectionChanged">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <ItemsControl Style="{StaticResource Key_grd_ListViewColumnLayout}">
-                                                <Label Grid.Column="0" Content="{Binding Item1}" Style="{StaticResource Key_lvw_Item}" BorderThickness="0" />
-                                                <Label Grid.Column="1" Content="{Binding Item2}" Style="{StaticResource Key_lvw_Item}" />
-                                                <Label Grid.Column="2" Content="{Binding Item3}" Style="{StaticResource Key_lvw_Item}" />
-                                                <Label Grid.Column="3" Content="{Binding Item4}" Style="{StaticResource Key_lvw_Item}" />
-                                            </ItemsControl>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
-                                <!--#endregion-->
+                                          ItemContainerStyle="{StaticResource ListViewItemOptionStyle}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ItemsControl Style="{StaticResource Key_grd_ListViewColumnLayout}">
+                                            <Label Grid.Column="0" Content="{Binding Item1}" Style="{StaticResource Key_lvw_Item}" BorderThickness="0" />
+                                            <Label Grid.Column="1" Content="{Binding Item2}" Style="{StaticResource Key_lvw_Item}" />
+                                            <Label Grid.Column="2" Content="{Binding Item3}" Style="{StaticResource Key_lvw_Item}" />
+                                            <Label Grid.Column="3" Content="{Binding Item4}" Style="{StaticResource Key_lvw_Item}" />
+                                        </ItemsControl>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <!--#endregion-->
 
-                                <!--#region Selected TestDefinition EditTools:-->
-                                <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,10">
-                                    <Button x:Name="btn_NewTestDefintion"
+                            <!--#region Selected TestDefinition EditTools:-->
+                            <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,10">
+                                <Button x:Name="btn_NewTestDefintion"
                                     Content="Nytt prov" Visibility="Visible"
                                     Click="btn_NewTestDefinition_Click" />
-                                    <StackPanel x:Name="skp_AddTestDefinitionTools"
+                                <StackPanel x:Name="skp_AddTestDefinitionTools"
                                         Orientation="Horizontal"
-                                        Visibility="Visible">
-                                        <Button Content="Spara"
+                                        Visibility="Collapsed">
+                                    <Button x:Name="btn_SaveNewTestDefinition"
+                                        Content="Spara" IsEnabled="False"
                                         Click="btn_SaveNewTestDefinition_Click" />
-                                        <Button Content="Avbryt"
+                                    <Button Content="Avbryt"
                                         Click="btn_AbortNewTestDefinition_Click" />
 
-                                        <Grid Margin="2,0,4,0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition />
-                                            </Grid.ColumnDefinitions>
-                                            <TextBox x:Name="tbx_NewTestDefinitionName" 
+                                    <Grid Margin="2,0,4,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="tbx_NewTestDefinitionName" 
                                                  Grid.Column="0"
                                                  Style="{StaticResource Key_tbx_TextField}" />
-                                            <TextBlock Grid.Column="0" 
+                                        <TextBlock Grid.Column="0" 
                                                        Text="Provnamn" 
                                                        Style="{StaticResource key_tbl_NewTestDefinitionName}" />
-                                        </Grid>
+                                    </Grid>
 
-                                        <ComboBox x:Name="cbx_NewTestDefinitionSubject" 
+                                    <ComboBox x:Name="cbx_NewTestDefinitionSubject" 
                                                   Style="{StaticResource Key_cbx_Normal}" 
                                                   MinWidth="150"
                                                   Height="33"
                                                   Margin="0,0,2,0"
-                                          SelectionChanged="cbx_NewTestDefinitionSubject_SelectionChanged" />
-                                    </StackPanel>
-                                    <StackPanel x:Name="skp_EditTestDefinitionTools"
-                                        Orientation="Horizontal" IsEnabled="False">
-                                        <Button Content="Redigera"
-                                        Click="btn_EditTestDefinition_Click" />
-                                        <Button Content="Skicka"
-                                        Click="btn_SendTestDefinition_Click" />
-                                        <Button Content="Ta bort"
-                                        Click="btn_DeleteTestDefinition_Click" />
-                                    </StackPanel>
+                                          SelectionChanged="cbx_NewTestDefinitionSubject_SelectionChanged">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <Label Content="{Binding Name}" Foreground="{StaticResource color_DarkDarkMain}" />
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
                                 </StackPanel>
-                                <!--#endregion-->
-                            </Grid>
+                                <StackPanel x:Name="skp_EditTestDefinitionTools"
+                                        Orientation="Horizontal" IsEnabled="False">
+                                    <Button Content="Redigera"
+                                        Click="btn_EditTestDefinition_Click" />
+                                    <Button Content="Skicka"
+                                        Click="btn_SendTestDefinition_Click" />
+                                    <Button Content="Ta bort"
+                                        Click="btn_DeleteTestDefinition_Click" />
+                                </StackPanel>
+                            </StackPanel>
+                            <!--#endregion-->
                         </Grid>
-                    </TabItem.Content>
-                </TabItem>
-                <!--#endregion-->
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <!--#endregion-->
 
-                <!--#region Teacher settings tools:-->
-                <TabItem>
-                    <TabItem.Header>
-                        <Label Style="{StaticResource Key_lbl_TabControl}" Content="Inställningar" />
-                    </TabItem.Header>
-                    <TabItem.Content>
-                        <Grid Background="{StaticResource color_NormalDarkMain}">
+            <!--#region Teacher settings tools:-->
+            <TabItem>
+                <TabItem.Header>
+                    <Label Style="{StaticResource Key_lbl_TabControl}" Content="Inställningar" />
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid Background="{StaticResource color_NormalDarkMain}">
 
-                            <Grid Margin="25">
+                        <Grid Margin="25">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="160" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Content="Ändra ditt lösenord" VerticalAlignment="Top" Style="{StaticResource Key_lbl_Header2}" />
+
+                            <Grid Grid.Row="1">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="40" />
-                                    <RowDefinition Height="160" />
                                     <RowDefinition Height="40" />
-                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="50" />
                                 </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="300" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
 
-                                <Label Grid.Row="0" Content="Ändra ditt lösenord" VerticalAlignment="Top" Style="{StaticResource Key_lbl_Header2}" />
-
-                                <Grid Grid.Row="1">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="40" />
-                                        <RowDefinition Height="40" />
-                                        <RowDefinition Height="50" />
-                                    </Grid.RowDefinitions>
-
-                                    <TextBox Grid.Row="0" x:Name="tbx_ChangePassword"
+                                <TextBox Grid.Row="0" x:Name="tbx_ChangePassword"
                                          Style="{StaticResource Key_tbx_TextField}"
                                          TextChanged="tbx_ChangePassword_TextChanged" />
-                                    <!--<TextBlock Grid.Row="0" Text="Nytt lösenord"
+                                <!--<TextBlock Grid.Row="0" Text="Nytt lösenord"
                                                Style="{StaticResource Key_tbl_TeacherChangePassword}" />-->
 
-                                    <TextBox  Grid.Row="1" x:Name="tbx_RepeatChangePassword" 
+                                <TextBox  Grid.Row="1" x:Name="tbx_RepeatChangePassword" 
                                           Style="{StaticResource Key_tbx_TextField}"
                                           TextChanged="tbx_ChangePassword_TextChanged" />
-                                    <!--<TextBlock Grid.Row="1" Text="Upprepa lösenord"
+                                <!--<TextBlock Grid.Row="1" Text="Upprepa lösenord"
                                                Style="{StaticResource Key_tbl_TeacherRepeatChangePassword}" />-->
 
-                                    <StackPanel Grid.Row="2" HorizontalAlignment="Left">
-                                        <Button x:Name="btn_AcceptChangePassword" Margin="0,5"
+                                <StackPanel Grid.Row="2" HorizontalAlignment="Left">
+                                    <Button x:Name="btn_AcceptChangePassword" Margin="0,5"
                                             Content="Byt lösenord" IsEnabled="False"
                                             Click="btn_AcceptChangePassword_Click" />
-                                    </StackPanel>
-                                </Grid>
+                                </StackPanel>
+                            </Grid>
 
-                                <Label Grid.Row="2" Content="Ändra din email" VerticalAlignment="Top" Style="{StaticResource Key_lbl_Header2}" />
+                            <Label Grid.Row="2" Content="Ändra din email" VerticalAlignment="Top" Style="{StaticResource Key_lbl_Header2}" />
 
-                                <Grid Grid.Row="3">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="40" />
-                                        <RowDefinition Height="50" />
-                                    </Grid.RowDefinitions>
+                            <Grid Grid.Row="3">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="50" />
+                                </Grid.RowDefinitions>
 
-                                    <TextBox  Grid.Row="0" x:Name="tbx_ChangeEmail"
+                                <TextBox  Grid.Row="0" x:Name="tbx_ChangeEmail"
                                           Style="{StaticResource Key_tbx_TextField}"
                                           TextChanged="tbx_ChangeEmail_TextChanged" />
-                                    <!--<TextBlock Grid.Row="0" 
+                                <!--<TextBlock Grid.Row="0" 
                                                Style="{StaticResource Key_tbl_TeacherChangeEmail}" 
                                                Text="Ny email" />-->
 
-                                    <StackPanel Grid.Row="1" HorizontalAlignment="Left">
-                                        <Button x:Name="btn_AcceptChangeEmail" Margin="0,5"
+                                <StackPanel Grid.Row="1" HorizontalAlignment="Left">
+                                    <Button x:Name="btn_AcceptChangeEmail" Margin="0,5"
                                             Content="Byt email" IsEnabled="False"
                                             Click="btn_AcceptChangeEmail_Click" />
-                                    </StackPanel>
-                                </Grid>
-
+                                </StackPanel>
                             </Grid>
-                        </Grid>
-                    </TabItem.Content>
-                </TabItem>
-                <!--#endregion-->
 
-                <!--#region Logout tools:-->
-                <TabItem>
-                    <TabItem.Header>
-                        <Label Style="{StaticResource Key_lbl_TabControl}" Content="Logga ut" />
-                    </TabItem.Header>
-                </TabItem>
-                <!--#endregion-->
-            </TabControl>
-        </Grid>
+                        </Grid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <!--#endregion-->
+
+            <!--#region Logout tools:-->
+            <TabItem>
+                <TabItem.Header>
+                    <Label Style="{StaticResource Key_lbl_TabControl}" Content="Logga ut" />
+                </TabItem.Header>
+            </TabItem>
+            <!--#endregion-->
+        </TabControl>
     </Grid>
 </Window>

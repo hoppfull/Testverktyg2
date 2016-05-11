@@ -302,7 +302,7 @@
                                                   Style="{StaticResource Key_cbx_Normal}">
                                             <ComboBox.ItemTemplate>
                                                 <DataTemplate>
-                                                    <Label Padding="4, 0" Content="{Binding Name}" />
+                                                    <Label Padding="4, 0" Content="{Binding Name}" Foreground="{StaticResource color_DarkDarkMain}" />
                                                 </DataTemplate>
                                             </ComboBox.ItemTemplate>
                                         </ComboBox>
