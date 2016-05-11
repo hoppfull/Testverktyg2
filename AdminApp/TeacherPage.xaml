@@ -69,8 +69,8 @@
                                 <ItemsControl Style="{StaticResource Key_grd_ListViewColumnLayout}">
                                     <Label Grid.Column="0" Content="Namn" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
                                     <Label Grid.Column="1" Content="Ämne" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
-                                    <Label Grid.Column="2" Content="#Frågor" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
-                                    <Label Grid.Column="3" Content="Poäng" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
+                                    <!--<Label Grid.Column="2" Content="#Frågor" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="3" Content="Poäng" Padding="13,5" Foreground="{StaticResource color_MidLightMain}" />-->
                                 </ItemsControl>
                             </Grid>
                             <!--#endregion-->
@@ -120,8 +120,6 @@
                                         <ItemsControl Style="{StaticResource Key_grd_ListViewColumnLayout}">
                                             <Label Grid.Column="0" Content="{Binding Item1}" Style="{StaticResource Key_lvw_Item}" BorderThickness="0" />
                                             <Label Grid.Column="1" Content="{Binding Item2}" Style="{StaticResource Key_lvw_Item}" />
-                                            <Label Grid.Column="2" Content="{Binding Item3}" Style="{StaticResource Key_lvw_Item}" />
-                                            <Label Grid.Column="3" Content="{Binding Item4}" Style="{StaticResource Key_lvw_Item}" />
                                         </ItemsControl>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
@@ -162,7 +160,7 @@
                                           SelectionChanged="cbx_NewTestDefinitionSubject_SelectionChanged">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
-                                                <Label Content="{Binding Name}" Foreground="{StaticResource color_DarkDarkMain}" />
+                                                <Label Content="{Binding Name}" Foreground="{StaticResource color_DarkDarkMain}" Padding="5, 0" />
                                             </DataTemplate>
                                         </ComboBox.ItemTemplate>
                                     </ComboBox>
