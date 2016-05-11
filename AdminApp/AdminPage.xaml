@@ -33,7 +33,7 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="300" />
                                     </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0" Padding="13,5" Content="Ämnen" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="0" Padding="13,5" Content="Ämnen:" Foreground="{StaticResource color_MidLightMain}" />
                                 </Grid>
 
                                 <Grid Grid.Row="1">
@@ -105,8 +105,12 @@
                                 <Grid  Grid.Row="3" Background="{StaticResource color_DarkDarkMain}" Margin="0,7,0,0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="300" />
+                                        <ColumnDefinition Width="300" />
+                                        <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0" Padding="13,5" Content="Prov" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="0" Padding="13,5" Content="Prov:" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="1" Padding="13,5" Content="Skapad av:" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="2" Padding="13,5" Content="Ämne:" Foreground="{StaticResource color_MidLightMain}" />
                                 </Grid>
 
                                 <Grid Grid.Row="4">
@@ -169,7 +173,7 @@
                                     <ComboBox x:Name="cbx_SelectUserType" HorizontalAlignment="Left" MinWidth="150"
                                           SelectionChanged="cbx_SelectUserType_SelectionChanged"
                                               Style="{StaticResource Key_cbx_Normal}">
-                                        <ComboBoxItem Content="Administratörerg"
+                                        <ComboBoxItem Content="Administratörer"
                                                   Tag="{x:Static users:UserType.Admin}" />
                                         <ComboBoxItem Content="Lärare"
                                                   Tag="{x:Static users:UserType.Teacher}" />
@@ -184,9 +188,9 @@
                                         <ColumnDefinition Width="300" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0" Padding="13,5" Content="Namn" Foreground="{StaticResource color_MidLightMain}" />
-                                    <Label Grid.Column="1" Padding="13,5" Content="Email" Foreground="{StaticResource color_MidLightMain}" />
-                                    <Label Grid.Column="2" Padding="13,5" Content="Lösenord" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="0" Padding="13,5" Content="Namn:" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="1" Padding="13,5" Content="Email:" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="2" Padding="13,5" Content="Lösenord:" Foreground="{StaticResource color_MidLightMain}" />
                                 </Grid>
 
                                 <Grid Grid.Row="3">
