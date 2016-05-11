@@ -112,21 +112,13 @@
 
                             <!--Sent TestDefinitions ListView:-->
                             <ListBox Grid.Row="6"
-                                          x:Name="lvw_SentTestDefinitions"
-                                          Background="{StaticResource color_MidLightMain}"
-                                          ItemContainerStyle="{StaticResource ListViewItemOptionStyle}">
+                                          x:Name="lbx_SentTestDefinitions"
+                                          Background="{StaticResource color_MidLightMain}">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <ItemsControl Style="{StaticResource Key_grd_ListViewColumnLayout}">
-<<<<<<< HEAD
                                             <Label Grid.Column="0" Content="{Binding Item1}" Foreground="{StaticResource color_DarkDarkMain}" />
                                             <Label Grid.Column="1" Content="{Binding Item2}" Foreground="{StaticResource color_DarkDarkMain}" />
-                                            <Label Grid.Column="2" Content="{Binding Item3}" Foreground="{StaticResource color_DarkDarkMain}" />
-                                            <Label Grid.Column="3" Content="{Binding Item4}" Foreground="{StaticResource color_DarkDarkMain}" />
-=======
-                                            <Label Grid.Column="0" Content="{Binding Item1}" Style="{StaticResource Key_lvw_Item}" BorderThickness="0" />
-                                            <Label Grid.Column="1" Content="{Binding Item2}" Style="{StaticResource Key_lvw_Item}" />
->>>>>>> c6e6e677360738d2af167c71819d0a2fb60f8883
                                         </ItemsControl>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
