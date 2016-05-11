@@ -12,6 +12,7 @@
         <SolidColorBrush x:Key="color_DarkDarkMain" Color="#1C536D" />
         <SolidColorBrush x:Key="color_LowDarkMain" Color="#FF376378" />
         <SolidColorBrush x:Key="color_Warning" Color="Orange" />
+        <SolidColorBrush x:Key="color_Returned" Color="Coral" />
 
         <!-- Control Template for ComboBox-->
         <ControlTemplate TargetType="ToggleButton" x:Key="ComboBoxToggleButtonTemplate">

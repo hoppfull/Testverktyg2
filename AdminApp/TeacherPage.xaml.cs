@@ -20,6 +20,21 @@ namespace AdminApp {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             LoggedInAccount = loginAccount;
+            lvw_CreatedTestDefinitions.ItemsSource = new List<Tuple<string, string, string, string, bool>> {
+                Tuple.Create("Naturprov", "Naturvetenskap", "5", "23", false),
+                Tuple.Create("Samhällsprov", "Samhällsvetenskap", "7", "75", false),
+                Tuple.Create("Dataprov", "Datavetenskap", "11", "101", false),
+                Tuple.Create("Springprov", "Gymnastik", "9", "66", true),
+                Tuple.Create("Kemiprov", "Kemi", "2", "25", true)
+            };
+
+            lvw_SentTestDefinitions.ItemsSource = new List<Tuple<string, string, string, string>> {
+                Tuple.Create("Naturprov", "Naturvetenskap", "5", "23"),
+                Tuple.Create("Samhällsprov", "Samhällsvetenskap", "7", "75"),
+                Tuple.Create("Dataprov", "Datavetenskap", "11", "101"),
+                Tuple.Create("Springprov", "Gymnastik", "9", "66"),
+                Tuple.Create("Kemiprov", "Kemi", "2", "25")
+            };
         }
 
         #region Teacher settings tools:
@@ -51,6 +66,44 @@ namespace AdminApp {
                 tbx_ChangeEmail.Text = "";
             } else
                 MessageBox.Show("Kunde inte ändra din email!\nKanske är mailen inte giltig.");
+        }
+        #endregion
+
+        #region Test management tools:
+        private void lvw_CreatedTestDefinitions_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+
+        }
+
+        private void lvw_SentTestDefinitions_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+
+        }
+
+        private void btn_NewTestDefinition_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void btn_SaveNewTestDefinition_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void btn_AbortNewTestDefinition_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void cbx_NewTestDefinitionSubject_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+
+        }
+
+        private void btn_EditTestDefinition_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void btn_SendTestDefinition_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void btn_DeleteTestDefinition_Click(object sender, RoutedEventArgs e) {
+
         }
         #endregion
     }
