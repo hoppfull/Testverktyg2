@@ -27,6 +27,10 @@ namespace AdminApp {
             UpdateSentTestDefinitionListView();
         }
 
+        private void LogoutEvent(object sender, RoutedEventArgs e) {
+            Controllers.ViewController.Logout(this);
+        }
+
         #region Teacher settings tools:
         private void tbx_ChangePassword_TextChanged(object sender, TextChangedEventArgs e) {
             btn_AcceptChangePassword.IsEnabled =

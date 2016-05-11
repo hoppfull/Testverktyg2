@@ -260,7 +260,7 @@
             <!--#region Logout tools:-->
             <TabItem>
                 <TabItem.Header>
-                    <Label Style="{StaticResource Key_lbl_TabControl}" Content="Logga ut" />
+                    <Label Style="{StaticResource Key_lbl_TabControl}" MouseDown="LogoutEvent" Content="Logga ut" />
                 </TabItem.Header>
             </TabItem>
             <!--#endregion-->
