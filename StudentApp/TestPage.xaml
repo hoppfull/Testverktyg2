@@ -10,7 +10,7 @@
     <Window.Resources>
         <DataTemplate x:Key="singleTemplate">
             <StackPanel Orientation="Horizontal">
-                <RadioButton GroupName="SingleGroup" Click="RadioButton_Click"/>
+                <RadioButton GroupName="SingleGroup"  Checked="RadioButton_Click" Unchecked="RadioButton_Click"/>
                 <TextBlock Text="{Binding Text}"/>
             </StackPanel>
         </DataTemplate>
@@ -52,10 +52,10 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <Button Click="Button_Click">knapp</Button>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Button Click="Button_Click">Klar</Button>
     </StackPanel>
 </Window>

@@ -90,11 +90,11 @@ namespace StudentApp
             //_testForm.AnsweredQuestions.
             if (rb.IsChecked == true)
             {
-
+                ctx.CheckedOrRanked = 1;
             }
             if (rb.IsChecked == false)
             {
-
+                ctx.CheckedOrRanked = 0;
             }
         }
 
