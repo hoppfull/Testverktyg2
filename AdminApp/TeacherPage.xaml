@@ -5,8 +5,105 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AdminApp"
         mc:Ignorable="d"
-        Title="TeacherPage" Height="300" Width="300">
+        Title="TeacherPage" Height="720" Width="1024">
     <Grid>
-        
+        <TabControl>
+            <!--#region Test management tools:-->
+            <TabItem>
+                <TabItem.Header>
+                    <Label Content="Prov" />
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <!--#endregion-->
+            
+            <!--#region Teacher settings tools:-->
+            <TabItem>
+                <TabItem.Header>
+                    <Label Content="Inställningar" />
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid Background="{StaticResource color_NormalDarkMain}">
+
+                        <Grid Margin="25">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="160" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Content="Ändra ditt lösenord" VerticalAlignment="Top" Style="{StaticResource Key_lbl_Header2}" />
+
+                            <Grid Grid.Row="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="50" />
+                                </Grid.RowDefinitions>
+
+                                <TextBox Grid.Row="0" x:Name="tbx_ChangePassword"
+                                         Style="{StaticResource Key_tbx_TextField}"
+                                         TextChanged="tbx_ChangePassword_TextChanged" />
+                                <!--<TextBlock Grid.Row="0" Text="Nytt lösenord"
+                                               Style="{StaticResource Key_tbl_TeacherChangePassword}" />-->
+
+                                <TextBox  Grid.Row="1" x:Name="tbx_RepeatChangePassword" 
+                                          Style="{StaticResource Key_tbx_TextField}"
+                                          TextChanged="tbx_ChangePassword_TextChanged" />
+                                <!--<TextBlock Grid.Row="1" Text="Upprepa lösenord"
+                                               Style="{StaticResource Key_tbl_TeacherRepeatChangePassword}" />-->
+
+                                <StackPanel Grid.Row="2" HorizontalAlignment="Left">
+                                    <Button x:Name="btn_AcceptChangePassword" Margin="0,5"
+                                            Content="Byt lösenord" IsEnabled="False"
+                                            Click="btn_AcceptChangePassword_Click" />
+                                </StackPanel>
+                            </Grid>
+
+                            <Label Grid.Row="2" Content="Ändra din email" VerticalAlignment="Top" Style="{StaticResource Key_lbl_Header2}" />
+
+                            <Grid Grid.Row="3">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="50" />
+                                </Grid.RowDefinitions>
+
+                                <TextBox  Grid.Row="0" x:Name="tbx_ChangeEmail"
+                                          Style="{StaticResource Key_tbx_TextField}"
+                                          TextChanged="tbx_ChangeEmail_TextChanged" />
+                                <!--<TextBlock Grid.Row="0" 
+                                               Style="{StaticResource Key_tbl_TeacherChangeEmail}" 
+                                               Text="Ny email" />-->
+
+                                <StackPanel Grid.Row="1" HorizontalAlignment="Left">
+                                    <Button x:Name="btn_AcceptChangeEmail" Margin="0,5"
+                                            Content="Byt email" IsEnabled="False"
+                                            Click="btn_AcceptChangeEmail_Click" />
+                                </StackPanel>
+                            </Grid>
+
+                        </Grid>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <!--#endregion-->
+            
+            <!--#region Logout tools:-->
+            <TabItem>
+                <TabItem.Header>
+                    <Label Content="Logga ut" />
+                </TabItem.Header>
+            </TabItem>
+            <!--#endregion-->
+        </TabControl>
     </Grid>
 </Window>
