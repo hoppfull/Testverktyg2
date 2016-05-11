@@ -16,7 +16,7 @@ namespace Testverktyg.Controllers
             if (IsTestDefinitionTitleValid(title))
                 return Repository<TestDefinition>.Instance.Add(new TestDefinition {
                     Title = title,
-                    Subject = subject,
+                    SubjectId = subject.Id,
                     TeacherAccountId = teacherAccount.Id
                 });
             return false;
