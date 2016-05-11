@@ -12,29 +12,20 @@ namespace Testverktyg.Controllers
 {
     static public class Controller
     {
-        public static bool CreateTest(string name, Subject subject,int teacherId )
-        {
-            if (IsTestDefinitionNameValid(name))
-            {
-                var testdefinition = new TestDefinition { Title = name, Subject = subject, TestDefinitionState = TestDefinitionState.Created, Paragraph = "" };
-                Repository<TestDefinition>.Instance.Add(testdefinition);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+        public static bool CreateTestDefinition(string title, Subject subject, TeacherAccount teacherAccount) {
+            if (IsTestDefinitionTitleValid(title))
+                return Repository<TestDefinition>.Instance.Add(new TestDefinition {
+                    Title = title,
+                    Subject = subject,
+                    TeacherAccountId = teacherAccount.Id
+                });
+            return false;
         }
 
-
-        public static bool IsTestDefinitionNameValid(string name)
-        {
-            IList<TestDefinition> tds = Repository<TestDefinition>.Instance.GetAll();
-            return !(tds.Any(x => x.Title == name) || String.IsNullOrWhiteSpace(name));
+        public static bool IsTestDefinitionTitleValid(string title) {
+            return !string.IsNullOrWhiteSpace(title) && !Repository<TestDefinition>.Instance.GetAll().Any(td => td.Title == title);
         }
-
-
-
+        
         public static bool DeleteTestDefinition(TestDefinition testDefinition)
         {
 
