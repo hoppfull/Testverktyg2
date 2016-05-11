@@ -19,7 +19,12 @@ namespace StudentApp
 {
     public partial class StudentPage : Window
     {
+        public List<DisplayedTest> DisplayedTests
+        { get { return displayedtests; } set { displayedtests = value; } }
+        private List<DisplayedTest> displayedtests = new List<DisplayedTest>();
         public StudentAccount UserAccount { get; }
+        private List<object> _doneTest = new List<object>();
+        
         public StudentPage(StudentAccount userAccount)
         {
             InitializeComponent();
@@ -51,7 +56,12 @@ namespace StudentApp
 
             UserAccount = userAccount;
             lvw_NotFinsihedTestForms.ItemsSource = NotDonetestFormsList;
-            lvw_FinishedTestForms.ItemsSource = DonetestFormsList;
+            foreach (var item in DonetestFormsList)
+            {
+                DisplayedTests.Add(new DisplayedTest(item));
+            }
+            lvw_FinishedTestForms.ItemsSource = DisplayedTests;
+            
 
         }
 
@@ -64,10 +74,14 @@ namespace StudentApp
                 var testForm = new TestForm();
                 using (var db = new Testverktyg.Context.TestverktygContext())
                 {
-                    var selectedTf = (TestForm)lvw_NotFinsihedTestForms.SelectedItem;
-                    testForm = db.TestForms.Where(x => x.Id == selectedTf.Id)
-                         .Include(a => a.TestDefinition.Questions.Select(b => b.Answers))
-                         .FirstOrDefault();
+                    if (lvw_NotFinsihedTestForms.SelectedItem != null)
+                    {
+                        var selectedTf = (TestForm)lvw_NotFinsihedTestForms.SelectedItem;
+                        testForm = db.TestForms.Where(x => x.Id == selectedTf.Id)
+                             .Include(a => a.TestDefinition.Questions.Select(b => b.Answers))
+                             .FirstOrDefault();
+                    }
+                    
                 }
                     TestPage t = new TestPage(testForm, UserAccount);
                 t.Show();

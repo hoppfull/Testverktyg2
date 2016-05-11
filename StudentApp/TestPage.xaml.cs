@@ -26,6 +26,7 @@ namespace StudentApp
         private TestDefinition td;
         private ObservableCollection<Question> testquestions = new ObservableCollection<Question>();
         private TestForm _testForm;
+        private StudentAccount _studentAccount;
 
         public TestPage(TestForm testform, StudentAccount student)
         {
@@ -60,6 +61,7 @@ namespace StudentApp
                 }
             }
             _testForm = testform;
+            _studentAccount = student;
         }
 
 
@@ -112,7 +114,13 @@ namespace StudentApp
             {
                 correctTd = db.TestDefinitions.Where(td => td.Id == _testForm.TestDefinitionId).Include(q => q.Questions.Select(a => a.Answers)).FirstOrDefault();
             }
-            Console.WriteLine(StudentApp.Controllers.StudentController.CalculateScore(TestQuestions, correctTd.Questions));
+            _testForm.Score = StudentApp.Controllers.StudentController.CalculateScore(TestQuestions, correctTd.Questions);
+            _testForm.IsCompleted = true;
+            Repository<TestForm>.Instance.Update(_testForm);
+
+            StudentPage s = new StudentPage(_studentAccount);
+            s.Show();
+            this.Close();
         }
     }
 }

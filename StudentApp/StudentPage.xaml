@@ -61,11 +61,16 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <WrapPanel>
-                                                <TextBlock Text=" Title " />
-                                                <TextBlock Text="{Binding TestDefinition.Title}"/>
-                                                <TextBlock Text=" Poäng " />
-                                                <TextBlock Text="{Binding Score}"/>
-
+                                                <TextBlock Text="Titel:" Padding="2" />
+                                                <TextBlock Text="{Binding Title}" Padding="2"/>
+                                                <TextBlock Text="Poäng:" Padding="2" />
+                                                <TextBlock Text="{Binding Score}" Padding="2"/>
+                                                <TextBlock Text="Betyg:" Padding="2"/>
+                                                <TextBlock Text="{Binding Grade}" Padding="2"/>
+                                                <TextBlock Text="Tid:" Padding="2"/>
+                                                <TextBlock Text="{Binding CompletionTime}" Padding="2"/>
+                                                <TextBlock Text="Min" Padding="2"/>
+                                                
                                             </WrapPanel>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
