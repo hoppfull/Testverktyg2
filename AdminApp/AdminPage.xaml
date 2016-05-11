@@ -29,7 +29,7 @@
 
                                 <!--#region Subject management tool: -->
 
-                                <Grid  Grid.Row="0" Background="{StaticResource color_DarkDarkMain}" Margin="0,7,0,0">
+                                <Grid Grid.Row="0" Background="{StaticResource color_DarkDarkMain}" Margin="0,7,0,0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="300" />
                                     </Grid.ColumnDefinitions>

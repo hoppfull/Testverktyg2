@@ -203,6 +203,15 @@
             <Setter Property="FontSize" Value="16" />
         </Style>
 
+        <Style x:Key="key_tbl_NewTestDefinitionName" TargetType="TextBlock" BasedOn="{StaticResource Key_tbl_AdminAppPlaceholderBase}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=tbx_NewTestDefinitionName}" Value="">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
         <Style x:Key="Key_tbl_AdminChangePassword" TargetType="TextBlock" BasedOn="{StaticResource Key_tbl_AdminAppPlaceholderBase}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
@@ -375,6 +384,9 @@
                             <Trigger Property="IsEnabled" Value="false">
                                 <Setter Property="Foreground" Value="{StaticResource color_MidLightMain}" />
                             </Trigger>
+                            <!--<DataTrigger Binding="{Binding item5}" Value="False">
+                                <Setter Property="Background" Value="Red"></Setter>
+                            </DataTrigger>-->
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -392,7 +404,6 @@
                 </MultiTrigger>
             </Style.Triggers>
         </Style>
-
 
     </Application.Resources>
 </Application>
