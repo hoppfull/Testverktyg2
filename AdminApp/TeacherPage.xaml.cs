@@ -72,7 +72,7 @@ namespace AdminApp {
         }
 
         private void UpdateSentTestDefinitionListView() {
-            lvw_SentTestDefinitions.ItemsSource = Repository<TestDefinition>.Instance.GetAll()
+            lbx_SentTestDefinitions.ItemsSource = Repository<TestDefinition>.Instance.GetAll()
                 .Where(td => td.IsNotRemoved && td.TeacherAccountId == LoggedInAccount.Id && td.TestDefinitionState == TestDefinitionState.Sent)
                 .Select(td => Tuple.Create(td.Title, Repository<Subject>.Instance.Get(td.SubjectId).Name));
         }
