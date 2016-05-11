@@ -126,6 +126,24 @@
             <Setter Property="SelectionMode" Value="Single" />
             <Setter Property="Background" Value="{StaticResource color_LowDarkMain}" />
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListView">
+                        <Border Name="Border" Background="{StaticResource color_LowDarkMain}">
+                            <ScrollViewer>
+                                <ItemsPresenter />
+                            </ScrollViewer>
+
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource color_LowDarkMain}" />
+                                <Setter Property="Foreground" Value="{StaticResource color_LightLightMain}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <Style x:Key="Key_lvw_Item" TargetType="Label">

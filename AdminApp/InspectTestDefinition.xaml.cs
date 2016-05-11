@@ -16,7 +16,7 @@ namespace AdminApp {
             Parent = parent;
             Parent.IsEnabled = false;
             // TODO: Find better solution:
-            parent.Opacity = 0;
+            //parent.Opacity = 0;
         }
 
         private void btn_ValidateTestDefinition_Click(object sender, RoutedEventArgs e) {
@@ -43,7 +43,7 @@ namespace AdminApp {
         private void win_InspectTestDefinition_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
             Parent.IsEnabled = true;
             // TODO: Find better solution:
-            Parent.Opacity = 1;
+            //Parent.Opacity = 1;
         }
     }
 }
