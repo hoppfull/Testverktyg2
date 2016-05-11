@@ -83,7 +83,7 @@
                                             <Style TargetType="ItemsControl" BasedOn="{StaticResource Key_grd_ListViewColumnLayout}">
                                                 <Setter Property="Background" Value="{StaticResource color_DarkDarkMain}" />
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Item5}" Value="False">
+                                                    <DataTrigger Binding="{Binding Item4}" Value="False">
                                                         <Setter Property="Background" Value="{StaticResource color_Returned}" />
                                                     </DataTrigger>
                                                 </Style.Triggers>

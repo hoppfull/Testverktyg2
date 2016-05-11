@@ -22,8 +22,8 @@ namespace AdminApp {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             LoggedInAccount = loginAccount;
             cbx_NewTestDefinitionSubject.ItemsSource = Repository<Subject>.Instance.GetAll();
-
-            lvw_CreatedTestDefinitions.ItemsSource = new List<Tuple<string, string, string, string, bool>> {
+            UpdateCreatedTestDefinitionsListView();
+            /*lvw_CreatedTestDefinitions.ItemsSource = new List<Tuple<string, string, string, string, bool>> {
                 Tuple.Create("Naturprov", "Naturvetenskap", "5", "23", false),
                 Tuple.Create("Samhällsprov", "Samhällsvetenskap", "7", "75", false),
                 Tuple.Create("Dataprov", "Datavetenskap", "11", "101", false),
@@ -37,7 +37,7 @@ namespace AdminApp {
                 Tuple.Create("Dataprov", "Datavetenskap", "11", "101"),
                 Tuple.Create("Springprov", "Gymnastik", "9", "66"),
                 Tuple.Create("Kemiprov", "Kemi", "2", "25")
-            };
+            };*/
         }
 
         #region Teacher settings tools:
@@ -77,7 +77,11 @@ namespace AdminApp {
             lvw_CreatedTestDefinitions.ItemsSource = Repository<TestDefinition>.Instance.GetAll()
                 .Where(td => td.IsNotRemoved && td.TeacherAccountId == LoggedInAccount.Id &&
                     (td.TestDefinitionState == TestDefinitionState.Created || td.TestDefinitionState == TestDefinitionState.Returned))
-                .Select(td => Tuple.Create(td, Repository<Subject>.Instance.Get(td.SubjectId), Repository<Question>.Instance.GetAll().Where(q => q.TestDefinitionId == td.Id), td.TestDefinitionState == TestDefinitionState.Created));
+                .Select(td => Tuple.Create(td,
+                    Repository<Subject>.Instance.Get(td.SubjectId),
+                    Repository<Question>.Instance.GetAll().Where(q => q.TestDefinitionId == td.Id).Count(),
+                    td.TestDefinitionState == TestDefinitionState.Created));
+            skp_EditTestDefinitionTools.IsEnabled = false;
         }
 
         private void lvw_CreatedTestDefinitions_SelectionChanged(object sender, SelectionChangedEventArgs e) {
@@ -89,6 +93,7 @@ namespace AdminApp {
         }
 
         private void btn_SaveNewTestDefinition_Click(object sender, RoutedEventArgs e) {
+
             ToggleTestDefinitionTools(false);
         }
 
