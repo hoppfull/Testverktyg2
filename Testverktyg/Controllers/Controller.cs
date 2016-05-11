@@ -16,7 +16,7 @@ namespace Testverktyg.Controllers
             if (IsTestDefinitionTitleValid(title))
                 return Repository<TestDefinition>.Instance.Add(new TestDefinition {
                     Title = title,
-                    Subject = subject,
+                    SubjectId = subject.Id,
                     TeacherAccountId = teacherAccount.Id
                 });
             return false;
@@ -25,32 +25,20 @@ namespace Testverktyg.Controllers
         public static bool IsTestDefinitionTitleValid(string title) {
             return !string.IsNullOrWhiteSpace(title) && !Repository<TestDefinition>.Instance.GetAll().Any(td => td.Title == title);
         }
-        
-        public static bool DeleteTestDefinition(TestDefinition testDefinition)
-        {
 
-            if (testDefinition.TestDefinitionState == TestDefinitionState.Validated)
-            {
+        public static bool DeleteTestDefinition(TestDefinition testDefinition) {
+            if (testDefinition.TestDefinitionState == TestDefinitionState.Validated) {
                 testDefinition.IsNotRemoved = false;
+                Repository<TestDefinition>.Instance.Update(testDefinition);
                 return true;
             }
-            else
-            {
-                Repository.Repository<TestDefinition>.Instance.Delete(testDefinition);
-                return true;
-            }
+            return Repository<TestDefinition>.Instance.Delete(testDefinition);
 
         }
 
-        public static bool SendTestDefinitionForValidation(TestDefinition testDefinition)
-        {
+        public static bool SendTestDefinitionForValidation(TestDefinition testDefinition) {
             testDefinition.TestDefinitionState = TestDefinitionState.Sent;
-            return true;
-        }
-
-        public static bool UpdateTestDefinition(TestDefinition testDefinition)
-        {
-            Repository.Repository<TestDefinition>.Instance.Update(testDefinition);
+            Repository<TestDefinition>.Instance.Update(testDefinition);
             return true;
         }
 
