@@ -15,6 +15,7 @@ using Testverktyg.Model;
 using Testverktyg.Repository;
 using System.Data.Entity;
 using System.Collections.ObjectModel;
+using System.Windows.Threading;
 
 namespace StudentApp
 {
@@ -27,6 +28,8 @@ namespace StudentApp
         private ObservableCollection<Question> testquestions = new ObservableCollection<Question>();
         private TestForm _testForm;
         private StudentAccount _studentAccount;
+        private DispatcherTimer _dispatcherTimer;
+        private int timer= 0;
 
         public TestPage(TestForm testform, StudentAccount student)
         {
@@ -62,6 +65,13 @@ namespace StudentApp
             }
             _testForm = testform;
             _studentAccount = student;
+
+            DispatcherTimer dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            //dispatcherTimer.Start();
+            _dispatcherTimer = dispatcherTimer;
+            _dispatcherTimer.Start();
         }
 
 
@@ -109,6 +119,11 @@ namespace StudentApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            _dispatcherTimer.Stop();
+            _dispatcherTimer.IsEnabled = false;
+            _dispatcherTimer = null;
+            Dispatcher.InvokeShutdown();
+
             TestDefinition correctTd = new TestDefinition();
             using (var db = new Testverktyg.Context.TestverktygContext())
             {
@@ -121,6 +136,13 @@ namespace StudentApp
             StudentPage s = new StudentPage(_studentAccount);
             s.Show();
             this.Close();
+        }
+
+        
+
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            Console.WriteLine(++timer);
         }
     }
 }
