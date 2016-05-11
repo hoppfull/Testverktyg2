@@ -24,21 +24,7 @@ namespace AdminApp {
             LoggedInAccount = loginAccount;
             cbx_NewTestDefinitionSubject.ItemsSource = Repository<Subject>.Instance.GetAll();
             UpdateCreatedTestDefinitionsListView();
-            /*lvw_CreatedTestDefinitions.ItemsSource = new List<Tuple<string, string, string, string, bool>> {
-                Tuple.Create("Naturprov", "Naturvetenskap", "5", "23", false),
-                Tuple.Create("Samhällsprov", "Samhällsvetenskap", "7", "75", false),
-                Tuple.Create("Dataprov", "Datavetenskap", "11", "101", false),
-                Tuple.Create("Springprov", "Gymnastik", "9", "66", true),
-                Tuple.Create("Kemiprov", "Kemi", "2", "25", true)
-            };
-
-            lvw_SentTestDefinitions.ItemsSource = new List<Tuple<string, string, string, string>> {
-                Tuple.Create("Naturprov", "Naturvetenskap", "5", "23"),
-                Tuple.Create("Samhällsprov", "Samhällsvetenskap", "7", "75"),
-                Tuple.Create("Dataprov", "Datavetenskap", "11", "101"),
-                Tuple.Create("Springprov", "Gymnastik", "9", "66"),
-                Tuple.Create("Kemiprov", "Kemi", "2", "25")
-            };*/
+            UpdateSentTestDefinitionListView();
         }
 
         #region Teacher settings tools:
@@ -85,6 +71,12 @@ namespace AdminApp {
             skp_EditTestDefinitionTools.IsEnabled = false;
         }
 
+        private void UpdateSentTestDefinitionListView() {
+            lvw_SentTestDefinitions.ItemsSource = Repository<TestDefinition>.Instance.GetAll()
+                .Where(td => td.IsNotRemoved && td.TeacherAccountId == LoggedInAccount.Id && td.TestDefinitionState == TestDefinitionState.Sent)
+                .Select(td => Tuple.Create(td.Title, Repository<Subject>.Instance.Get(td.SubjectId).Name));
+        }
+
         private void lvw_CreatedTestDefinitions_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             skp_EditTestDefinitionTools.IsEnabled = true;
         }
@@ -94,8 +86,7 @@ namespace AdminApp {
         }
 
         private void btn_SaveNewTestDefinition_Click(object sender, RoutedEventArgs e) {
-            if(Controller.CreateTestDefinition(tbx_NewTestDefinitionName.Text, (Subject)cbx_NewTestDefinitionSubject.SelectedItem, LoggedInAccount)) {
-                MessageBox.Show($"Skapade nytt prov med namnet '{tbx_NewTestDefinitionName.Text}'");
+            if (Controller.CreateTestDefinition(tbx_NewTestDefinitionName.Text, (Subject)cbx_NewTestDefinitionSubject.SelectedItem, LoggedInAccount)) {
                 ToggleTestDefinitionTools(false);
                 UpdateCreatedTestDefinitionsListView();
             } else
@@ -120,15 +111,27 @@ namespace AdminApp {
         }
 
         private void btn_EditTestDefinition_Click(object sender, RoutedEventArgs e) {
-
+            DefineTestDefinition w = new DefineTestDefinition(this, GetSelectedTestDefinition());
+            w.Show();
         }
 
         private void btn_SendTestDefinition_Click(object sender, RoutedEventArgs e) {
-
+            if (Controller.SendTestDefinitionForValidation(GetSelectedTestDefinition())) {
+                UpdateCreatedTestDefinitionsListView();
+                UpdateSentTestDefinitionListView();
+            } else
+                MessageBox.Show("Kunde inte skicka prov för validering!\nNågot gick fel.");
         }
 
         private void btn_DeleteTestDefinition_Click(object sender, RoutedEventArgs e) {
+            if (Controller.DeleteTestDefinition(GetSelectedTestDefinition())) {
+                UpdateCreatedTestDefinitionsListView();
+            } else
+                MessageBox.Show("Kunde inte ta bort prov!\nNågot gick fel.");
+        }
 
+        private TestDefinition GetSelectedTestDefinition() {
+            return ((Tuple<TestDefinition, string, int, bool>)lvw_CreatedTestDefinitions.SelectedItem).Item1;
         }
         #endregion
     }
