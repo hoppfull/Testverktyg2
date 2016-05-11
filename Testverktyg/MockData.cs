@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Testverktyg.Context;
 using Testverktyg.Model;
-using System.Data.Entity;
+using Testverktyg.Repository;
 
 namespace Testverktyg
 {
@@ -15,6 +15,14 @@ namespace Testverktyg
                 db.Database.Delete();
                 db.Database.CreateIfNotExists();
             }
+        }
+
+        private static void Init() {
+            Repository<AdminAccount>.Instance.Add(new AdminAccount {
+                Email = "admin",
+                Name = "Admin",
+                Password = "root"
+            });
         }
 
         private static void Seed()
@@ -384,7 +392,8 @@ namespace Testverktyg
         public static void Reset()
         {
             DeleteAndRecreate();
-            Seed();
+            //Seed();
+            Init();
         }
     }
 }
