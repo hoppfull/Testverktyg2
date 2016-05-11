@@ -45,20 +45,7 @@ namespace Testverktyg
             var test6 = new TestDefinition { Title = "TestProv", Subject = sub1, Paragraph = "1", TestDefinitionState = TestDefinitionState.Created, Questions = new List<Question>() };
 
             //Create TestForms
-<<<<<<< HEAD
-            var testForms1 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test1, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms2 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test1, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms3 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test2, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms4 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test2, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms5 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test3, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms6 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test3, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms7 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test4, AnsweredQuestions = new List<AnsweredQuestion>(), IsCompleted = true, Score = 5 };
-            var testForms8 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test4, AnsweredQuestions = new List<AnsweredQuestion>(), IsCompleted = true, Score = 5 };
-            var testForms9 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test5, AnsweredQuestions = new List<AnsweredQuestion>(), IsCompleted = true, Score = 5 };
-            var testForms10 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test5, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms11 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test6, AnsweredQuestions = new List<AnsweredQuestion>() };
-            var testForms12 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test6, AnsweredQuestions = new List<AnsweredQuestion>(), IsCompleted = true, Score = 5 };
-=======
+
             var testForms1 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test1 };
             var testForms2 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test1 };
             var testForms3 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test2 };
@@ -71,7 +58,6 @@ namespace Testverktyg
             var testForms10 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test5 };
             var testForms11 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test6 };
             var testForms12 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test6 };
->>>>>>> AdminAppWPF
 
             //Create Questions
             var question1 = new Question { QuestionType = QuestionType.Single, Text = "Adele?", Score = 5, Answers = new List<Answer>(), TestDefinition = test1};

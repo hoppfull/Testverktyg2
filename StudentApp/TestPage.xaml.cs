@@ -53,7 +53,6 @@ namespace StudentApp
 
 
             _testForm = testform;
-            _testForm.AnsweredQuestions = Testverktyg.Controllers.Controller.CreateAnsweredQuestions(testform.TestDefinition);
             Console.WriteLine();
         }
 

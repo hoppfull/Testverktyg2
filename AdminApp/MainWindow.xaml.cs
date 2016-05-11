@@ -1,24 +1,15 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-<<<<<<< HEAD
 using Testverktyg;
 using Testverktyg.Model;
 using Testverktyg.Context;
 using Testverktyg.Repository;
-using AdminApp.Controller;
-=======
 using AdminApp.Controllers;
->>>>>>> AdminAppWPF
 
 namespace AdminApp {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
-<<<<<<< HEAD
-            //Console.WriteLine(Controller.Controller.GenerateNewPassword());
-            MockData.Reset();
-=======
->>>>>>> AdminAppWPF
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             Testverktyg.MockData.Reset();
         }
