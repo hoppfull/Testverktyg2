@@ -24,8 +24,15 @@ namespace AdminApp {
         public AnswerUIElement(Answer answer, Question question) {
             Answer = answer;
             IsNotRemoved = true;
-            StackPanel skp = new StackPanel { Orientation = Orientation.Horizontal };
-            TextBox tbx_Answer = new TextBox { Width = 100, Text = answer.Text };
+            StackPanel skp = new StackPanel {
+                Orientation = Orientation.Horizontal,
+                Margin = new Thickness { Bottom = 5, Left = 10 }
+            };
+            TextBox tbx_Answer = new TextBox {
+                Width = 300,
+                Text = answer.Text,
+                Style = (Style)FindResource("Key_tbx_TextField")
+            };
             Button btn_RemoveAnswer = new Button {
                 Content = "-",
                 HorizontalAlignment = HorizontalAlignment.Left
@@ -35,6 +42,7 @@ namespace AdminApp {
                 case QuestionType.Single:
                     RadioButton rdb = new RadioButton {
                         GroupName = question.Id.ToString(),
+                        VerticalAlignment = VerticalAlignment.Center,
                         IsChecked = answer.CheckedOrRanked == 1
                     };
                     rdb.Checked += (s, e) => answer.CheckedOrRanked = 1;
