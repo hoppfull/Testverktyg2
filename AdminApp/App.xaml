@@ -14,6 +14,38 @@
         <SolidColorBrush x:Key="color_Warning" Color="Orange" />
         <SolidColorBrush x:Key="color_Returned" Color="Coral" />
 
+        <!-- Datepicker style -->
+        <Style TargetType="{x:Type DatePickerTextBox}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Text" Value="" />
+            <Setter Property="Padding" Value="0,7,0,0" />
+            <Setter Property="Foreground" Value="{StaticResource color_MidDarkMain}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate x:Name="dptext" TargetType="{x:Type DatePickerTextBox}">
+                        <Grid>
+                            <Grid x:Name="WatermarkContent" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                <ScrollViewer x:Name="PART_ContentHost" Margin="0" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Grid>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource color_LowDarkMain}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="DatePicker">
+            <Setter Property="Background" Value="{StaticResource color_MidLightMain}" />
+            <Setter Property="Foreground" Value="{StaticResource color_LowDarkMain}" />
+            <Setter Property="Margin" Value="0,0,4,0" />
+            <Setter Property="Height" Value="35" />
+        </Style>
+        
         <!-- Control Template for ComboBox-->
         <ControlTemplate TargetType="ToggleButton" x:Key="ComboBoxToggleButtonTemplate">
             <Grid>

@@ -7,9 +7,34 @@
         mc:Ignorable="d"
         Title="InspectTestDefinition" Height="200" Width="480" ResizeMode="NoResize" Closing="win_InspectTestDefinition_Closing">
     <Grid Background="{StaticResource color_NormalDarkMain}">
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="40">
-            <DatePicker x:Name="dpk_FinalDate" SelectedDateChanged="dpk_FinalDate_SelectedDateChanged" />
-            <ComboBox x:Name="cbx_TimeLimit" MinWidth="150"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" VerticalAlignment="Top" Background="{StaticResource color_DarkDarkMain}">
+            <Label Content="Granska prov" Style="{StaticResource Key_lbl_Header2}" 
+                   HorizontalContentAlignment="Center" />
+        </StackPanel>
+        <Grid Grid.Row="1" Margin="10,10,10,0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Välj datum:" Style="{StaticResource Key_lbl_Header2}" Padding="0" />
+            <Label Grid.Column="1" Content="Välj provtid:" Style="{StaticResource Key_lbl_Header2}" Padding="0" />
+        </Grid>
+        <Grid Margin="10" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <DatePicker Grid.Column="0" x:Name="dpk_FinalDate" SelectedDateChanged="dpk_FinalDate_SelectedDateChanged" />
+            <ComboBox Grid.Column="1" x:Name="cbx_TimeLimit" Width="Auto"  Margin="0,0,2,0"
                       Style="{StaticResource Key_cbx_Normal}"
                       SelectionChanged="cbx_TimeLimit_SelectionChanged">
                 <ComboBoxItem Content="10" />
@@ -18,12 +43,12 @@
                 <ComboBoxItem Content="45" />
                 <ComboBoxItem Content="60" />
             </ComboBox>
-            <Button x:Name="btn_ValidateTestDefinition"
+            <Button Grid.Column="2" x:Name="btn_ValidateTestDefinition"
                     Content="Godkänn" IsEnabled="False"
                     Click="btn_ValidateTestDefinition_Click" />
-            <Button x:Name="btn_ReturnTestDefinition"
+            <Button Grid.Column="3" x:Name="btn_ReturnTestDefinition"
                     Content="Avslå"
                     Click="btn_ReturnTestDefinition_Click" />
-        </StackPanel>
+        </Grid>
     </Grid>
 </Window>
