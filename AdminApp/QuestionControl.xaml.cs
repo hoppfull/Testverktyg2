@@ -42,7 +42,6 @@ namespace AdminApp {
                 case QuestionType.Single:
                     RadioButton rdb = new RadioButton {
                         GroupName = question.Id.ToString(),
-                        VerticalAlignment = VerticalAlignment.Center,
                         IsChecked = answer.CheckedOrRanked == 1
                     };
                     rdb.Checked += (s, e) => answer.CheckedOrRanked = 1;
