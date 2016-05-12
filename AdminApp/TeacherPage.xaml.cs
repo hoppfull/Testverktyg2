@@ -21,5 +21,23 @@ namespace AdminApp {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             UserAccount = userAccount;
         }
+
+        #region Teacher settings tools:
+        private void tbx_TeacherChangePassword_TextChanged(object sender, TextChangedEventArgs e) {
+
+        }
+
+        private void btn_AcceptChangePassword_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void tbx_TeacherChangeEmail_TextChanged(object sender, TextChangedEventArgs e) {
+
+        }
+
+        private void btn_AcceptChangeEmail_Click(object sender, RoutedEventArgs e) {
+
+        }
+        #endregion
     }
 }

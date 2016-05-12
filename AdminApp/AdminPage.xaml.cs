@@ -164,7 +164,7 @@ namespace AdminApp {
         private void btn_InspectTestDefinition_Click(object sender, RoutedEventArgs e) {
             var selectedItem = lvw_TestDefinitions.SelectedItem as Tuple<TestDefinition, TeacherAccount, Subject>;
             if (selectedItem != null && selectedItem.Item1 != null) {
-                InspectTestDefinition w = new InspectTestDefinition(selectedItem.Item1);
+                InspectTestDefinition w = new InspectTestDefinition(this, selectedItem.Item1);
                 w.Show();
             }
         }

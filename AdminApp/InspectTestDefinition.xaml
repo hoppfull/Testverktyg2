@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AdminApp"
         mc:Ignorable="d"
-        Title="InspectTestDefinition" Height="200" Width="400" ResizeMode="NoResize">
+        Title="InspectTestDefinition" Height="200" Width="400" ResizeMode="NoResize" Closing="win_InspectTestDefinition_Closing">
     <Grid Background="{StaticResource color_NormalDarkMain}">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="40">
             <DatePicker x:Name="dpk_FinalDate" SelectedDateChanged="dpk_FinalDate_SelectedDateChanged" />
