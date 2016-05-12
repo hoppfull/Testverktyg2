@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:StudentApp"
         xmlns:b="clr-namespace:StudentApp.Controllers"
         mc:Ignorable="d"
-        Title="TestPage" Height="300" Width="300">
+        Title="TestPage" Height="500" Width="400">
     <Window.Resources>
         <CollectionViewSource x:Key="testQuestionBinding" Source="{Binding TestQuestions}"/>
         <local:RowNumberConverter x:Key="RowNumberConverter"/>
@@ -39,15 +39,15 @@
     </Window.Resources>
     <StackPanel x:Name="testPageGrid">
         <ScrollViewer>
-            <ListView ItemsSource="{Binding Source={StaticResource testQuestionBinding}}" AlternationCount="{Binding Path=TestQuestions.Count}" SelectionChanged="ListView_SelectionChanged" Height="200">
-                
+            <ListView ItemsSource="{Binding Source={StaticResource testQuestionBinding}}" AlternationCount="{Binding Path=TestQuestions.Count}" SelectionChanged="ListView_SelectionChanged" Height="400">
+
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
                             <!--<TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplatedParent.(ItemsControl.AlternationIndex)}"/>-->
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Fråga "/>
-                                <TextBlock Text="{Binding Converter={StaticResource RowNumberConverter}, ConverterParameter={StaticResource testQuestionBinding}}"/>
+                                <TextBlock Text="Fråga " FontSize="18"/>
+                                <TextBlock Text="{Binding Converter={StaticResource RowNumberConverter}, ConverterParameter={StaticResource testQuestionBinding}}" FontSize="18"/>
                             </StackPanel>
                             <ListView ItemsSource="{Binding Answers}">
                                 <!--<ListView.ItemTemplateSelector>
@@ -65,7 +65,11 @@
                 </ListView.ItemTemplate>
             </ListView>
         </ScrollViewer>
-        <Label x:Name="lbTimer" />
-        <Button Click="Button_Click">Klar</Button>
+        <Grid Height="auto">
+            <StackPanel>
+                <Label x:Name="lbTimer" />
+                <Button Click="Button_Click">Klar</Button>
+            </StackPanel>
+        </Grid>
     </StackPanel>
 </Window>

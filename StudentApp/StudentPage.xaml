@@ -35,16 +35,16 @@
                                         <DataTemplate>
                                             <WrapPanel>
                                                 <TextBlock Text="Titel:" Padding="2"/>
-                                                <TextBlock Text="{Binding TestDefinition.Title}" Padding="2"/>
+                                                <TextBlock Text="{Binding TestDefinition.Title}" Padding="2" Width="150"/>
                                                 <TextBlock Text="Max Poäng:" Padding="2"/>
-                                                <TextBlock Text="{Binding TestDefinition.MaxScore}" Padding="2"/>
+                                                <TextBlock Text="{Binding TestDefinition.MaxScore}" Padding="2" Width="30"/>
                                                 <TextBlock Text="Tid:" Padding="2"/>
                                                 <TextBlock Text="{Binding TimeLimit}" Padding="0,2,0,0"/>
-                                                <TextBlock Text="Min" Padding="2"/>
+                                                <TextBlock Text="Min" Padding="2" Width="40"/>
                                                 <TextBlock Text="Slutdatum:" Padding="2"/>
-                                                <TextBlock Text="{Binding FinalDate}" Padding="2"/>
-                                                <TextBlock Text="Antal fragor: "/>
-                                                <TextBlock Text="{Binding TestDefinition.Questions.Count}"/>
+                                                <TextBlock Text="{Binding FinalDate}" Padding="2" Width="160"/>
+                                                <TextBlock Text="Antal frågor:" Padding="2"/>
+                                                <TextBlock Text="{Binding TestDefinition.Questions.Count}" Padding="2"/>
                                             </WrapPanel>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
