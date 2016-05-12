@@ -222,7 +222,7 @@
         <Style x:Key="Key_tbl_AdminRepeatChangePassword" TargetType="TextBlock" BasedOn="{StaticResource Key_tbl_AdminAppPlaceholderBase}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding Text, ElementName=tbx_AdminRepeatChangePassword}" Value="">
+                <DataTrigger Binding="{Binding Text, ElementName=tbx_StudentRepeatChangePassword}" Value="">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
@@ -231,7 +231,7 @@
         <Style x:Key="Key_tbl_AdminChangeEmail" TargetType="TextBlock" BasedOn="{StaticResource Key_tbl_AdminAppPlaceholderBase}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding Text, ElementName=tbx_AdminChangeEmail}" Value="">
+                <DataTrigger Binding="{Binding Text, ElementName=tbx_StudentChangeEmail}" Value="">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
