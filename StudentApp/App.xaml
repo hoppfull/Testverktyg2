@@ -276,7 +276,7 @@
         <Style x:Key="Key_tbl_PasswordPlaceholder" TargetType="TextBlock" BasedOn="{StaticResource Key_tbl_AdminAppPlaceholderBase}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding Text, ElementName=tbx_LoginPassword}" Value="">
+                <DataTrigger Binding="{Binding Password, ElementName=tbx_LoginPassword}" Value="">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
