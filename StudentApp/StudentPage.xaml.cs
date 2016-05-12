@@ -76,7 +76,7 @@ namespace StudentApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Är det säkert att du vill påbörja provet tiden börjar om du trycker JA", "Starta Prvo", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Är det säkert att du vill påbörja provet tiden börjar om du trycker Ja", "Starta Prov", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 //Starta provet
                 var testForm = new TestForm();
