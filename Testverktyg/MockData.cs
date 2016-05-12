@@ -60,11 +60,11 @@ namespace Testverktyg
             var testForms12 = new TestForm { TimeLimit = 30, FinalDate = new DateTime(2016, 08, 01), TestDefinition = test6 };
 
             //Create Questions
-            var question1 = new Question { QuestionType = QuestionType.Single, Text = "Adele?", Score = 5, Answers = new List<Answer>(), TestDefinition = test1};
+            var question1 = new Question { QuestionType = QuestionType.Single, Text = "Vad heter Goofy på Svenska?", Score = 5, Answers = new List<Answer>(), TestDefinition = test1};
             var question2 = new Question { QuestionType = QuestionType.Single, Text = "MY TEAM?", Score = 4, Answers = new List<Answer>(), TestDefinition = test2 };
-            var question3 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 3, Answers = new List<Answer>(), TestDefinition = test1 };
+            var question3 = new Question { QuestionType = QuestionType.Multi, Text = "Hur fungerar Tinder?", Score = 3, Answers = new List<Answer>(), TestDefinition = test1 };
             var question4 = new Question { QuestionType = QuestionType.Multi, Text = "1", Score = 2, Answers = new List<Answer>(), TestDefinition = test2 };
-            var question7 = new Question { QuestionType = QuestionType.Open, Text = "i am OPEN LIKE A BOOK xDdpppppp", Score = 3, Answers = new List<Answer>(), TestDefinition = test1 };
+            var question7 = new Question { QuestionType = QuestionType.Open, Text = "Vem vann årets SuperBowl", Score = 3, Answers = new List<Answer>(), TestDefinition = test1 };
             var question8 = new Question { QuestionType = QuestionType.Open, Text = "1", Score = 4, Answers = new List<Answer>(), TestDefinition = test2 };
 
             var question9 = new Question { QuestionType = QuestionType.Single, Text = "Katt?", Score = 5, Answers = new List<Answer>(), TestDefinition = test3 };
@@ -85,9 +85,9 @@ namespace Testverktyg
 
            
             //Single
-            question1.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 1 });
-            question1.Answers.Add(new Answer { Text = "2", CheckedOrRanked = 0 });
-            question1.Answers.Add(new Answer { Text = "3", CheckedOrRanked = 0 });
+            question1.Answers.Add(new Answer { Text = "Janne Långben", CheckedOrRanked = 1 });
+            question1.Answers.Add(new Answer { Text = "Musse Pig", CheckedOrRanked = 0 });
+            question1.Answers.Add(new Answer { Text = "Jan Kortben", CheckedOrRanked = 0 });
 
             question2.Answers.Add(new Answer { Text = "4", CheckedOrRanked = 0 });
             question2.Answers.Add(new Answer { Text = "5", CheckedOrRanked = 1 });
@@ -110,9 +110,9 @@ namespace Testverktyg
             question18.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 1 });
 
             //Multi
-            question3.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 1 });
-            question3.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 1 });
-            question3.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 0 });
+            question3.Answers.Add(new Answer { Text = "Inte alls", CheckedOrRanked = 0 });
+            question3.Answers.Add(new Answer { Text = "Bra", CheckedOrRanked = 1 });
+            question3.Answers.Add(new Answer { Text = "Jättebra", CheckedOrRanked = 1 });
 
             question4.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 1 });
             question4.Answers.Add(new Answer { Text = "1", CheckedOrRanked = 0 });
@@ -146,7 +146,7 @@ namespace Testverktyg
            
 
             
-            question7.Answers.Add(new Answer { Text = "hej", CheckedOrRanked = 1 });
+            question7.Answers.Add(new Answer { Text = "Denver Broncos", CheckedOrRanked = 1 });
             question8.Answers.Add(new Answer { Text = "hejsan", CheckedOrRanked = 1 });
             question15.Answers.Add(new Answer { Text = "hej", CheckedOrRanked = 1 });
             question16.Answers.Add(new Answer { Text = "hej", CheckedOrRanked = 1 });

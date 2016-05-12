@@ -83,7 +83,8 @@ namespace StudentApp
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            var lv = (ListView)sender;
+            lv.SelectedIndex = -1;
         }
 
         private void CheckBox_Click(object sender, RoutedEventArgs e)
