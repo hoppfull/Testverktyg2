@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentApp"
         mc:Ignorable="d"
-        Title="StudentPage" Height="600" Width="800" MinHeight="600" MinWidth="800">
+        Title="StudentPage" Height="600" Width="900" MinHeight="600" MinWidth="900">
 
     <Grid>
         <Grid Background="{StaticResource color_DarkDarkMain}">
@@ -49,8 +49,6 @@
                                                         <ColumnDefinition Width="*"/>
                                                         <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <Label Grid.Column="0" Content="Titel"
-                                                       Style="{StaticResource Key_lvw_Item}"  BorderThickness="0" />
                                                     <Label Grid.Column="1" Content="{Binding TestDefinition.Title}"
                                                        Style="{StaticResource Key_lvw_Item}"  BorderThickness="0" />
                                                     <Label Grid.Column="2" Content="Tid"
@@ -105,8 +103,6 @@
                                                         <ColumnDefinition Width="*" />
 
                                                     </Grid.ColumnDefinitions>
-                                                    <Label Grid.Column="0" Content="Title: "
-                                                           Style="{StaticResource Key_lvw_Item}" BorderThickness="0"/>
                                                     <Label Grid.Column="1" Content="{Binding Title}"
                                                            Style="{StaticResource Key_lvw_Item}" BorderThickness="0"/>
                                                     <Label Grid.Column="2" Content="Score: "
