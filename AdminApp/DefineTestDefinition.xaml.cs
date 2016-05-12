@@ -21,6 +21,12 @@ namespace AdminApp {
             TestDefinition = testDefinition;
             parentWindow.IsEnabled = false;
             Closing += (s, e) => parentWindow.IsEnabled = true;
+            icl_QuestionsList.ItemsSource = new List<Button> {
+            };
+        }
+        
+        private QuestionControl CreateQuestionUI(string text, int score) {
+            QuestionControl qc = new QuestionControl();
         }
     }
 }

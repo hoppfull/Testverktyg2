@@ -74,6 +74,9 @@
     <Compile Include="InspectTestDefinition.xaml.cs">
       <DependentUpon>InspectTestDefinition.xaml</DependentUpon>
     </Compile>
+    <Compile Include="QuestionControl.xaml.cs">
+      <DependentUpon>QuestionControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TeacherPage.xaml.cs">
       <DependentUpon>TeacherPage.xaml</DependentUpon>
     </Compile>
@@ -105,6 +108,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="QuestionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TeacherPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

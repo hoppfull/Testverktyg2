@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="DefineTestDefinition" MinHeight="480" Height="480" MinWidth="800" Width="800"
         Background="{StaticResource color_NormalDarkMain}">
-    <Grid Margin="25">
+    <Grid Margin="25,25,25,10">
         <Grid.Resources>
             <Style x:Key="Key_cbx_Standard" TargetType="ComboBox" BasedOn="{StaticResource Key_cbx_Normal}">
                 <Setter Property="MinWidth" Value="150" />
@@ -16,34 +16,56 @@
         </Grid.Resources>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+
+        <ScrollViewer Grid.Row="0" Background="{StaticResource color_LowDarkMain}">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource Key_tbx_TextField}" />
+                    <Label Grid.Column="0" Grid.Row="1" Content="Ämne:" Style="{StaticResource Key_lbl_Header2}" />
+                    <ComboBox Grid.Column="1" Grid.Row="1" Style="{StaticResource Key_cbx_Standard}" />
+
+                    <TextBox Grid.Column="2" Grid.Row="0" Grid.RowSpan="2"
+                             TextWrapping="Wrap" Height="72" Margin="8,0,0,0"
+                             ScrollViewer.CanContentScroll="True"
+                             Style="{StaticResource Key_tbx_TextField}" />
+                </Grid>
+                <ItemsControl Grid.Row="1" x:Name="icl_QuestionsList"
+                              BorderThickness="0,1,0,0"
+                              BorderBrush="{StaticResource color_NormalLightMain}" />
+            </Grid>
+        </ScrollViewer>
+
+        <Grid Grid.Row="1" Margin="0,5,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" Width="200" Style="{StaticResource Key_tbx_TextField}" />
-            <Label Grid.Column="1" Content="Ämne:" Style="{StaticResource Key_lbl_Header2}" />
-            <ComboBox Grid.Column="2" Style="{StaticResource Key_cbx_Standard}" />
-            <Button Grid.Column="4" Content="Spara" />
-            <Button Grid.Column="5" Content="Avbryt" />
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <Button Content="Ny fråga" />
+                <ComboBox Style="{StaticResource Key_cbx_Standard}" />
+            </StackPanel>
+            <StackPanel Grid.Column="2" Orientation="Horizontal">
+                <Button Content="Spara" />
+                <Button Content="Avbryt" />
+            </StackPanel>
         </Grid>
-        <TextBox Grid.Row="2" Margin="0, 10"
-                 Height="50" TextWrapping="Wrap"
-                 ScrollViewer.CanContentScroll="True"
-                 Style="{StaticResource Key_tbx_TextField}" />
-
-        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right">
-        </StackPanel>
-
     </Grid>
 </Window>
