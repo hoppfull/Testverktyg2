@@ -64,7 +64,7 @@ namespace AdminApp {
         #endregion
 
         #region Test management tools:
-        private void UpdateCreatedTestDefinitionsListView() {
+        public void UpdateCreatedTestDefinitionsListView() {
             lvw_CreatedTestDefinitions.ItemsSource = Repository<TestDefinition>.Instance.GetAll()
                 .Where(td => td.IsNotRemoved && td.TeacherAccountId == LoggedInAccount.Id &&
                     (td.TestDefinitionState == TestDefinitionState.Created || td.TestDefinitionState == TestDefinitionState.Returned))

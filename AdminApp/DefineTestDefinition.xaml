@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AdminApp"
+        xmlns:model="clr-namespace:Testverktyg.Model;assembly=Testverktyg"
         mc:Ignorable="d"
         Title="DefineTestDefinition" MinHeight="480" Height="480" MinWidth="800" Width="800"
         Background="{StaticResource color_NormalDarkMain}">
@@ -37,18 +38,25 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <TextBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource Key_tbx_TextField}" />
+                    <TextBox Grid.Column="0" x:Name="tbx_TestDefinitionTitle" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource Key_tbx_TextField}" />
                     <Label Grid.Column="0" Grid.Row="1" Content="Ämne:" Style="{StaticResource Key_lbl_Header2}" />
-                    <ComboBox Grid.Column="1" Grid.Row="1" Style="{StaticResource Key_cbx_Standard}" />
+                    <ComboBox Grid.Column="1" x:Name="cbx_Subjects"
+                              Grid.Row="1" Style="{StaticResource Key_cbx_Standard}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Name}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
 
                     <TextBox Grid.Column="2" Grid.Row="0" Grid.RowSpan="2"
+                             x:Name="tbx_TestDefinitionParagraph"
                              TextWrapping="Wrap" Height="72" Margin="8,0,0,0"
                              ScrollViewer.CanContentScroll="True"
                              Style="{StaticResource Key_tbx_TextField}" />
                 </Grid>
-                <ItemsControl Grid.Row="1" x:Name="icl_QuestionsList"
-                              BorderThickness="0,1,0,0"
-                              BorderBrush="{StaticResource color_NormalLightMain}" />
+                <StackPanel Grid.Row="1" x:Name="skp_QuestionsList"
+                            Background="{StaticResource color_MidDarkMain}" />
             </Grid>
         </ScrollViewer>
 
@@ -59,12 +67,19 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Orientation="Horizontal">
-                <Button Content="Ny fråga" />
-                <ComboBox Style="{StaticResource Key_cbx_Standard}" />
+                <Button x:Name="btn_NewQuestion" Content="Ny fråga" />
+                <ComboBox x:Name="cbx_QuestionType" Style="{StaticResource Key_cbx_Standard}" SelectedIndex="0">
+                    <ComboBoxItem Content="Ensvarsalternativ"
+                                      Tag="{x:Static model:QuestionType.Single}" />
+                    <ComboBoxItem Content="Flersvarsalternativ"
+                                      Tag="{x:Static model:QuestionType.Multi}" />
+                    <ComboBoxItem Content="Fritext"
+                                      Tag="{x:Static model:QuestionType.Open}" />
+                </ComboBox>
             </StackPanel>
             <StackPanel Grid.Column="2" Orientation="Horizontal">
-                <Button Content="Spara" />
-                <Button Content="Avbryt" />
+                <Button Content="Spara" Click="btn_SaveTestDefinition_Click" />
+                <Button Content="Avbryt" Click="btn_Abort_Click" />
             </StackPanel>
         </Grid>
     </Grid>
