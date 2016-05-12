@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Testverktyg.Model;
 using Testverktyg.Repository;
 using System.Data.Entity;
+using StudentApp.Controllers;
 
 namespace StudentApp
 {
@@ -24,7 +25,7 @@ namespace StudentApp
         private List<DisplayedTest> displayedtests = new List<DisplayedTest>();
         public StudentAccount UserAccount { get; }
         private List<object> _doneTest = new List<object>();
-        
+
         public StudentPage(StudentAccount userAccount)
         {
             InitializeComponent();
@@ -34,7 +35,7 @@ namespace StudentApp
             List<TestForm> DonetestFormsList = new List<TestForm>();
             List<TestForm> NotDonetestFormsList = new List<TestForm>();
 
-            
+
             using (var db = new Testverktyg.Context.TestverktygContext())
             {
                 testFormsList = db.TestForms.Where(x => x.StudentAccountId == userAccount.Id).Include(q => q.TestDefinition.Questions).ToList();
@@ -47,14 +48,14 @@ namespace StudentApp
                     }
                     else
                     {
-                    if (item.IsCompleted == true)
-                    {
-                        DonetestFormsList.Add(item);
-                    }
-                    else
-                    {
-                        NotDonetestFormsList.Add(item);
-                    }
+                        if (item.IsCompleted == true)
+                        {
+                            DonetestFormsList.Add(item);
+                        }
+                        else
+                        {
+                            NotDonetestFormsList.Add(item);
+                        }
 
                     }
                 }
@@ -68,7 +69,7 @@ namespace StudentApp
                 DisplayedTests.Add(new DisplayedTest(item));
             }
             lvw_FinishedTestForms.ItemsSource = DisplayedTests;
-            
+
 
         }
 
@@ -88,13 +89,59 @@ namespace StudentApp
                              .Include(a => a.TestDefinition.Questions.Select(b => b.Answers))
                              .FirstOrDefault();
                     }
-                    
+
                 }
 
-                    TestPage t = new TestPage(testForm, UserAccount);
+                TestPage t = new TestPage(testForm, UserAccount);
                 t.Show();
                 this.Close();
             }
+
+    }
+        private void btn_Logout_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ViewControllerStudent.Logout(this);
         }
+
+        private void tbx_StudentChangePassword_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            btn_AcceptChangePassword.IsEnabled =
+                tbx_StudentChangePassword.Text == tbx_StudentRepeatChangePassword.Text &&
+                !string.IsNullOrWhiteSpace(((TextBox)sender).Text);
+        }
+
+        private void btn_AcceptChangePassword_Click(object sender, RoutedEventArgs e)
+        {
+            if (Testverktyg.Controllers.Controller.UpdatePassword(UserAccount, tbx_StudentChangePassword.Text))
+            {
+                btn_AcceptChangePassword.IsEnabled = false;
+                tbx_StudentChangePassword.Text = "";
+                tbx_StudentRepeatChangePassword.Text = "";
+                MessageBox.Show($"Lösenord ändrat till '{UserAccount.Password}'");
+            }
+            else
+                MessageBox.Show("Kunde inte ändra lösenordet!\nKanske är lösenordet inte giltigt.");
+
+        }
+
+        private void tbx_StudentChangeEmail_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            btn_AcceptChangeEmail.IsEnabled =
+                !string.IsNullOrWhiteSpace(tbx_StudentChangeEmail.Text) &&
+                tbx_StudentChangeEmail.Text != UserAccount.Email;
+        }
+
+        private void btn_AcceptChangeEmail_Click(object sender, RoutedEventArgs e)
+        {
+            if (Testverktyg.Controllers.Controller.UpdateEmail(UserAccount, tbx_StudentChangeEmail.Text))
+            {
+                btn_AcceptChangeEmail.IsEnabled = false;
+                tbx_StudentChangeEmail.Text = "";
+                MessageBox.Show($"Email ändrat till '{UserAccount.Email}'");
+            }
+            else
+                MessageBox.Show("Kunde inte ändra din email!\nKanske är mailen inte giltig.");
+        }
+
     }
 }
