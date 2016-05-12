@@ -1,21 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Testverktyg.Model;
 using Testverktyg.Repository;
-using Testverktyg.Context;
 
 namespace AdminApp {
     public class AnswerUIElement : Grid {
@@ -24,8 +11,16 @@ namespace AdminApp {
         public AnswerUIElement(Answer answer, Question question) {
             Answer = answer;
             IsNotRemoved = true;
-            StackPanel skp = new StackPanel { Orientation = Orientation.Horizontal };
-            TextBox tbx_Answer = new TextBox { Width = 100, Text = answer.Text };
+
+            StackPanel skp = new StackPanel {
+                Orientation = Orientation.Horizontal,
+                Margin = new Thickness { Bottom = 5, Left = 10 }
+            };
+            TextBox tbx_Answer = new TextBox {
+                Width = 300,
+                Text = answer.Text,
+                Style = (Style)FindResource("Key_tbx_TextField")
+            };
             Button btn_RemoveAnswer = new Button {
                 Content = "-",
                 HorizontalAlignment = HorizontalAlignment.Left
@@ -46,8 +41,6 @@ namespace AdminApp {
                     cbx.Checked += (s, e) => answer.CheckedOrRanked = 1;
                     cbx.Unchecked += (s, e) => answer.CheckedOrRanked = 0;
                     skp.Children.Add(cbx);
-                    break;
-                case QuestionType.Open:
                     break;
             }
 

@@ -159,6 +159,7 @@ namespace AdminApp {
 
         private void lvw_TestDefinitions_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             btn_InspectTestDefinition.IsEnabled = true;
+            ;
         }
         
         private void btn_InspectTestDefinition_Click(object sender, RoutedEventArgs e) {
@@ -169,11 +170,12 @@ namespace AdminApp {
             }
         }
 
-        private void UpdateTestDefinitionListView() {
+        public void UpdateTestDefinitionListView() {
             lvw_TestDefinitions.ItemsSource = Repository<TestDefinition>.Instance.GetAll()
-                .Select(TD => Tuple.Create(TD,
-                    Testverktyg.Controllers.Controller.GetTestDefinitionAuthor(TD),
-                    Testverktyg.Controllers.Controller.GetTestDefinitionSubject(TD)));
+                .Where(td => td.TestDefinitionState == TestDefinitionState.Sent || td.TestDefinitionState == TestDefinitionState.Validated)
+                .Select(td => Tuple.Create(td,
+                    Testverktyg.Controllers.Controller.GetTestDefinitionAuthor(td),
+                    Testverktyg.Controllers.Controller.GetTestDefinitionSubject(td)));
             btn_InspectTestDefinition.IsEnabled = false;
             lvw_TestDefinitions.SelectedIndex = -1;
         }

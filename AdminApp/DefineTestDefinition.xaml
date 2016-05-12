@@ -73,8 +73,8 @@
                                       Tag="{x:Static model:QuestionType.Single}" />
                     <ComboBoxItem Content="Flersvarsalternativ"
                                       Tag="{x:Static model:QuestionType.Multi}" />
-                    <ComboBoxItem Content="Fritext"
-                                      Tag="{x:Static model:QuestionType.Open}" />
+                    <!--<ComboBoxItem Content="Fritext"
+                                      Tag="{x:Static model:QuestionType.Open}" />-->
                 </ComboBox>
             </StackPanel>
             <StackPanel Grid.Column="2" Orientation="Horizontal">

@@ -4,9 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AdminApp"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+             mc:Ignorable="d">
+    <Grid Margin="7">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -19,9 +18,11 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" x:Name="tbx_QuestionText" />
+            <TextBox Grid.Column="0" x:Name="tbx_QuestionText"
+                     Style="{StaticResource Key_tbx_TextField}" />
             <ComboBox Grid.Column="1" x:Name="cbx_QuestionScore"
-                      SelectedIndex="0">
+                      SelectedIndex="0" Width="50"
+                      Style="{StaticResource Key_cbx_Normal}">
                 <ComboBoxItem Content="1" />
                 <ComboBoxItem Content="2" />
                 <ComboBoxItem Content="3" />
@@ -31,13 +32,12 @@
                 <ComboBoxItem Content="20" />
             </ComboBox>
             <Button Grid.Column="2" x:Name="btn_QuestionDelete"
-                    Content="Ta bort" />
+                    Content="-" />
         </Grid>
 
         <StackPanel Grid.Row="1" x:Name="skp_Answers" />
 
         <Button Grid.Row="2" x:Name="btn_AddAnswer"
-                Content="Lägg till svarsalternativ"
-                HorizontalAlignment="Left" />
+                Content="+" HorizontalAlignment="Left" />
     </Grid>
 </UserControl>

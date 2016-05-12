@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Data.Entity;
 using System.Linq;
-using Testverktyg.Context;
 using Testverktyg.Model;
 using Testverktyg.Repository;
 
-namespace Testverktyg.Controllers
-{
-    static public class Controller
-    {
+namespace Testverktyg.Controllers {
+    static public class Controller {
         public static bool CreateTestDefinition(string title, Subject subject, TeacherAccount teacherAccount) {
             if (IsTestDefinitionTitleValid(title))
                 return Repository<TestDefinition>.Instance.Add(new TestDefinition {
@@ -42,38 +37,17 @@ namespace Testverktyg.Controllers
             return true;
         }
 
-        public static IList<TestDefinition> FindTestDefinitions(string name = "", Subject subject = null)
-        {
-
-            IList<TestDefinition> list = Repository.Repository<TestDefinition>.Instance.GetAll();
+        public static IList<TestDefinition> FindTestDefinitions(string name = "", Subject subject = null) {
             IList<TestDefinition> sortedList = new List<TestDefinition>();
-            string nametolower = name.ToLower();
-
-            foreach (var item in list)
-            {
-
-                if (item.Title.ToLower().Contains(name))
-                {
-                    if (subject == item.Subject)
-                    {
-                        sortedList.Add(item);
-                    }
-                    else if (subject == null)
-                    {
-                        sortedList.Add(item);
-                    }
-                }
-            }
-
+            foreach (var item in Repository<TestDefinition>.Instance.GetAll())
+                if (item.Title.ToLower().Contains(name.ToLower()) && (subject == item.Subject || subject == null))
+                    sortedList.Add(item);
             return sortedList;
         }
 
-        public static IList<TestForm> GetTestFormResults(TestDefinition testDefinition)
-        {
-            //hämta alla test forms som finns på en test definition
-            IList<TestForm> forms = Repository<TestForm>.Instance.GetAll();
-            IList<TestForm> neededforms = forms.Where(x => x.TestDefinitionId == testDefinition.Id).ToList();
-            return neededforms;
+        public static IList<TestForm> GetTestFormResults(TestDefinition testDefinition) {
+            return Repository<TestForm>.Instance.GetAll()
+                .Where(tf => tf.TestDefinitionId == testDefinition.Id).ToList();
         }
 
         public static IList<Tuple<string, string, int, int>> GetResults(IList<TestForm> testForms) {
@@ -135,31 +109,29 @@ namespace Testverktyg.Controllers
                     G, VG, IG, nCompleted);
         }
 
-        public static TeacherAccount GetTestDefinitionAuthor(TestDefinition testDefinition)
-        {
+        public static TeacherAccount GetTestDefinitionAuthor(TestDefinition testDefinition) {
             return Repository<TeacherAccount>.Instance.Get(testDefinition.TeacherAccountId);
         }
 
-        public static Subject GetTestDefinitionSubject(TestDefinition testDefinition)
-        {
+        public static Subject GetTestDefinitionSubject(TestDefinition testDefinition) {
             return Repository<Subject>.Instance.Get(testDefinition.SubjectId);
         }
 
-        public static bool ValidateTestDefinition(TestDefinition testDefinition, int time, DateTime finalDate) {
-            foreach (StudentAccount student in Repository<StudentAccount>.Instance.GetAll()) {
-                Repository<TestForm>.Instance.Add(new TestForm {
-                    TimeLimit = time,
-                    FinalDate = finalDate,
-                    TestDefinitionId = testDefinition.Id,
-                    StudentAccountId = student.Id
-                });
-            }
+        public static bool ValidateTestDefinition(TestDefinition testDefinition, StudentAccount student, int time, DateTime finalDate) {
+            testDefinition.TestDefinitionState = TestDefinitionState.Validated;
+            Repository<TestDefinition>.Instance.Update(testDefinition);
+            Repository<TestForm>.Instance.Add(new TestForm {
+                TimeLimit = time,
+                FinalDate = finalDate,
+                TestDefinitionId = testDefinition.Id,
+                StudentAccountId = student.Id
+            });
             return true;
         }
 
-        public static bool ReturnTestDefinition(TestDefinition testDefinition)
-        {
+        public static bool ReturnTestDefinition(TestDefinition testDefinition) {
             testDefinition.TestDefinitionState = TestDefinitionState.Returned;
+            Repository<TestDefinition>.Instance.Update(testDefinition);
             return true;
         }
 
@@ -170,7 +142,7 @@ namespace Testverktyg.Controllers
                 !Repository<TeacherAccount>.Instance.GetAll().Any(teacher => teacher.Email == email);
         }
         public static bool UpdateEmail(AbstractUser user, string email) {
-            if(IsEmailValid(email)) {
+            if (IsEmailValid(email)) {
                 user.Email = email;
                 Repository<AbstractUser>.Instance.Update(user);
                 return true;
@@ -183,7 +155,7 @@ namespace Testverktyg.Controllers
         }
 
         public static bool UpdatePassword(AbstractUser user, string password) {
-            if(IsPasswordValid(password)) {
+            if (IsPasswordValid(password)) {
                 user.Password = password;
                 Repository<AbstractUser>.Instance.Update(user);
                 return true;
@@ -191,8 +163,7 @@ namespace Testverktyg.Controllers
             return false;
         }
 
-        public static bool IsUserNameValid(string name)
-        {
+        public static bool IsUserNameValid(string name) {
             return !string.IsNullOrWhiteSpace(name);
         }
 
