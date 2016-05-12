@@ -22,7 +22,7 @@ namespace StudentApp {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
-           MockData.Reset();
+           //MockData.Reset();
         }
         private void btn_Login_Click(object sender, RoutedEventArgs e)
         {

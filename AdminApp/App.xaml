@@ -12,6 +12,7 @@
         <SolidColorBrush x:Key="color_DarkDarkMain" Color="#1C536D" />
         <SolidColorBrush x:Key="color_LowDarkMain" Color="#FF376378" />
         <SolidColorBrush x:Key="color_Warning" Color="Orange" />
+        <SolidColorBrush x:Key="color_Returned" Color="Coral" />
 
         <!-- Control Template for ComboBox-->
         <ControlTemplate TargetType="ToggleButton" x:Key="ComboBoxToggleButtonTemplate">
@@ -119,12 +120,53 @@
             </Setter>
         </Style>
 
+        <Style TargetType="{x:Type ListBoxItem}">
+            <!-- Possibly other setters -->
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="BorderThickness" Value="1,1,0,1" />
+            <Setter Property="Background" Value="{StaticResource color_LightLightMain}" />
+            <Setter Property="BorderBrush" Value="{StaticResource color_NormalDarkMain}" />
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="Border" Padding="2" SnapsToDevicePixels="true" BorderThickness="1,0,0,1" Margin="0,0,0,4" BorderBrush="{StaticResource color_NormalLightMain}" Background="{StaticResource color_LightLightMain}">
+                            <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource color_LightLightMain}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
         <Style x:Key="Key_lvw_Base" TargetType="ListView">
             <Setter Property="BorderThickness" Value="1,1,0,1" />
             <Setter Property="BorderBrush" Value="{StaticResource color_DarkDarkMain}" />
             <Setter Property="SelectionMode" Value="Single" />
             <Setter Property="Background" Value="{StaticResource color_LowDarkMain}" />
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListView">
+                        <Border Name="Border" Background="{StaticResource color_LowDarkMain}">
+                            <ScrollViewer>
+                                <ItemsPresenter />
+                            </ScrollViewer>
+
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource color_LowDarkMain}" />
+                                <Setter Property="Foreground" Value="{StaticResource color_LightLightMain}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <Style x:Key="Key_lvw_Item" TargetType="Label">
@@ -184,6 +226,42 @@
             <Setter Property="FontSize" Value="16" />
         </Style>
 
+        <Style x:Key="key_tbl_NewTestDefinitionName" TargetType="TextBlock" BasedOn="{StaticResource Key_tbl_AdminAppPlaceholderBase}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=tbx_NewTestDefinitionName}" Value="">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="Key_tbl_TeacherChangePassword" TargetType="TextBlock" BasedOn="{StaticResource Key_tbl_AdminAppPlaceholderBase}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=tbx_ChangePassword}" Value="">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style x:Key="Key_tbl_TeacherRepeatChangePassword" TargetType="TextBlock" BasedOn="{StaticResource Key_tbl_AdminAppPlaceholderBase}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=tbx_RepeatChangePassword}" Value="">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="Key_tbl_TeacherChangeEmail" TargetType="TextBlock" BasedOn="{StaticResource Key_tbl_AdminAppPlaceholderBase}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, ElementName=tbx_ChangeEmail}" Value="">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
         <Style x:Key="Key_tbl_AdminChangePassword" TargetType="TextBlock" BasedOn="{StaticResource Key_tbl_AdminAppPlaceholderBase}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
@@ -356,6 +434,9 @@
                             <Trigger Property="IsEnabled" Value="false">
                                 <Setter Property="Foreground" Value="{StaticResource color_MidLightMain}" />
                             </Trigger>
+                            <!--<DataTrigger Binding="{Binding item5}" Value="False">
+                                <Setter Property="Background" Value="Red"></Setter>
+                            </DataTrigger>-->
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -373,7 +454,6 @@
                 </MultiTrigger>
             </Style.Triggers>
         </Style>
-
 
     </Application.Resources>
 </Application>

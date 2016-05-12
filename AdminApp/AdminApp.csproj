@@ -68,13 +68,23 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controllers\ViewController.cs" />
+    <Compile Include="DefineTestDefinition.xaml.cs">
+      <DependentUpon>DefineTestDefinition.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InspectTestDefinition.xaml.cs">
       <DependentUpon>InspectTestDefinition.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuestionControl.xaml.cs">
+      <DependentUpon>QuestionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="TeacherPage.xaml.cs">
       <DependentUpon>TeacherPage.xaml</DependentUpon>
     </Compile>
     <Page Include="AdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DefineTestDefinition.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -98,6 +108,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="QuestionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TeacherPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
