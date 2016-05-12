@@ -204,7 +204,7 @@
         <Style x:Key="Key_tbl_AdminChangePassword" TargetType="TextBlock" BasedOn="{StaticResource Key_tbl_AdminAppPlaceholderBase}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding Text, ElementName=tbx_AdminChangePassword}" Value="">
+                <DataTrigger Binding="{Binding Text, ElementName=tbx_StudentChangePassword}" Value="">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
