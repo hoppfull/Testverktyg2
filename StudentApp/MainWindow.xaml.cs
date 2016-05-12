@@ -23,6 +23,7 @@ namespace StudentApp {
         public MainWindow() {
             InitializeComponent();
            MockData.Reset();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         private void btn_Login_Click(object sender, RoutedEventArgs e)
         {

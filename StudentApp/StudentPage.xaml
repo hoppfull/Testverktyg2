@@ -23,15 +23,21 @@
                                     <RowDefinition Height="40" />
                                     <RowDefinition Height="40" />
                                     <RowDefinition Height="5*" />
-                                    <RowDefinition Height="40" />
                                 </Grid.RowDefinitions>
 
                                 <Grid  Grid.Row="0" Background="{StaticResource color_DarkDarkMain}" Margin="0,7,0,0">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="300" />
+                                        <ColumnDefinition Width="300"/>
+                                        <ColumnDefinition Width="170"/>
+                                        <ColumnDefinition Width="170"/>
+                                        <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0" Padding="13,5" Content="Prov" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="0" Padding="13,5" Content="Tillgänliga prov:" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="1" Padding="13,5" Content="Tid:" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="2" Padding="13,5" Content="Slutdatum:" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="3" Padding="13,5" Content="Antal frågor:" Foreground="{StaticResource color_MidLightMain}" />
                                 </Grid>
+                                
                                 <Grid Grid.Row="1">
                                     <ListView x:Name="lvw_NotFinsihedTestForms"
                                               Style="{StaticResource Key_lvw_Base}"
@@ -40,29 +46,19 @@
                                             <DataTemplate>
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="*"/>
                                                         <ColumnDefinition Width="300"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="50"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="100"/>
-                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="170"/>
+                                                        <ColumnDefinition Width="170"/>
                                                         <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <Label Grid.Column="1" Content="{Binding TestDefinition.Title}"
-                                                       Style="{StaticResource Key_lvw_Item}"  BorderThickness="0" />
-                                                    <Label Grid.Column="2" Content="Tid"
+                                                    <Label Grid.Column="0" Content="{Binding TestDefinition.Title}"
+                                                       Style="{StaticResource Key_lvw_Item}" BorderThickness="0" />
+                                                    <Label Grid.Column="1" Content="{Binding TimeLimit}"
+                                                       Style="{StaticResource Key_lvw_Item}"  />
+                                                    <Label Grid.Column="2" Content="{Binding FinalDate}"
                                                        Style="{StaticResource Key_lvw_Item}" />
-                                                    <Label Grid.Column="3" Content="{Binding TimeLimit}"
-                                                       Style="{StaticResource Key_lvw_Item}"  BorderThickness="0" />
-                                                    <Label Grid.Column="4" Content="SlutDatum"
+                                                    <Label  Grid.Column="3" Content="{Binding TestDefinition.Questions.Count}"
                                                        Style="{StaticResource Key_lvw_Item}" />
-                                                    <Label Grid.Column="5" Content="{Binding FinalDate}"
-                                                       Style="{StaticResource Key_lvw_Item}"  BorderThickness="0" />
-                                                    <Label Grid.Column="6" Content="Antal Frågor"
-                                                       Style="{StaticResource Key_lvw_Item}"/>
-                                                    <Label  Grid.Column="7" Content="{Binding TestDefinition.Questions.Count}"
-                                                       Style="{StaticResource Key_lvw_Item}"  BorderThickness="0" />
                                                 </Grid>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
@@ -80,49 +76,45 @@
                                 <Grid  Grid.Row="3" Background="{StaticResource color_DarkDarkMain}" Margin="0,7,0,0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="300" />
+                                        <ColumnDefinition Width="170" />
+                                        <ColumnDefinition Width="170" />
+                                        <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0" Padding="13,5" Content="Avklarade Prov" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="0" Padding="13,5" Content="Avklarade Prov:" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="1" Padding="13,5" Content="Poäng:" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="2" Padding="13,5" Content="Betyg:" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="3" Padding="13,5" Content="Tid:" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="4" Padding="13,5" Content="" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="5" Padding="13,5" Content="" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="6" Padding="13,5" Content="" Foreground="{StaticResource color_MidLightMain}" />
+                                    <Label Grid.Column="7" Padding="13,5" Content="" Foreground="{StaticResource color_MidLightMain}" />
                                 </Grid>
 
                                 <Grid Grid.Row="4">
-                                    <ListView x:Name="lvw_FinishedTestForms"
-                                              Style="{StaticResource Key_lvw_Base}"
-                                              ItemContainerStyle="{StaticResource ListViewItemOptionStyle}">
-                                        <ListView.ItemTemplate>
+                                    <ListBox x:Name="lvw_FinishedTestForms"
+                                             Background="{StaticResource color_MidLightMain}">
+                                        <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="*" />
                                                         <ColumnDefinition Width="300" />
+                                                        <ColumnDefinition Width="170" />
+                                                        <ColumnDefinition Width="170" />
                                                         <ColumnDefinition Width="*" />
-                                                        <ColumnDefinition Width="50" />
-                                                        <ColumnDefinition Width="*" />
-                                                        <ColumnDefinition Width="50" />
-                                                        <ColumnDefinition Width="*" />
-                                                        <ColumnDefinition Width="*" />
-                                                        <ColumnDefinition Width="*" />
-
                                                     </Grid.ColumnDefinitions>
-                                                    <Label Grid.Column="1" Content="{Binding Title}"
-                                                           Style="{StaticResource Key_lvw_Item}" BorderThickness="0"/>
-                                                    <Label Grid.Column="2" Content="Score: "
-                                                           Style="{StaticResource Key_lvw_Item}"/>
-                                                    <Label Grid.Column="3" Content="{Binding Score}"
-                                                           Style="{StaticResource Key_lvw_Item}" BorderThickness="0" />
-                                                    <Label Grid.Column="4" Content="Betyg: "
-                                                           Style="{StaticResource Key_lvw_Item}" />
-                                                    <Label Grid.Column="5" Content="{Binding Grade}"
-                                                           Style="{StaticResource Key_lvw_Item}" BorderThickness="0"/>
-                                                    <Label Grid.Column="6" Content="Tid: "
-                                                           Style="{StaticResource Key_lvw_Item}"/>
-                                                    <Label Grid.Column="7" Content="{Binding CompletionTime}"
-                                                           Style="{StaticResource Key_lvw_Item}" BorderThickness="0"/>
-                                                    <Label Grid.Column="8" Content="min"
-                                                           Style="{StaticResource Key_lvw_Item}" BorderThickness="0"/>
+                                                    <Label Grid.Column="0" Content="{Binding Title}"
+                                                           Foreground="{StaticResource color_DarkDarkMain}" 
+                                                           BorderThickness="0"/>
+                                                    <Label Grid.Column="1" Content="{Binding Score}"
+                                                           Foreground="{StaticResource color_DarkDarkMain}"  />
+                                                    <Label Grid.Column="2" Content="{Binding Grade}"
+                                                           Foreground="{StaticResource color_DarkDarkMain}"  />
+                                                    <Label Grid.Column="3" Content="{Binding CompletionTime}"
+                                                           Foreground="{StaticResource color_DarkDarkMain}"  />
                                                 </Grid>
                                             </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
                                 </Grid>
                             </Grid>
                         </Grid>
