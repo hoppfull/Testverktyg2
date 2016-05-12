@@ -159,6 +159,7 @@ namespace AdminApp {
 
         private void lvw_TestDefinitions_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             btn_InspectTestDefinition.IsEnabled = true;
+            ;
         }
         
         private void btn_InspectTestDefinition_Click(object sender, RoutedEventArgs e) {

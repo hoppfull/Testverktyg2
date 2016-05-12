@@ -14,6 +14,8 @@ namespace AdminApp {
             TestDefinition = testDefinition;
             AdminPage = adminPage;
             AdminPage.IsEnabled = false;
+            btn_ReturnTestDefinition.IsEnabled =
+                testDefinition.TestDefinitionState != TestDefinitionState.Validated;
         }
 
         private void btn_ValidateTestDefinition_Click(object sender, RoutedEventArgs e) {

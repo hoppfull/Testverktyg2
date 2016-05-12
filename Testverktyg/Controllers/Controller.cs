@@ -118,6 +118,8 @@ namespace Testverktyg.Controllers {
         }
 
         public static bool ValidateTestDefinition(TestDefinition testDefinition, StudentAccount student, int time, DateTime finalDate) {
+            testDefinition.TestDefinitionState = TestDefinitionState.Validated;
+            Repository<TestDefinition>.Instance.Update(testDefinition);
             Repository<TestForm>.Instance.Add(new TestForm {
                 TimeLimit = time,
                 FinalDate = finalDate,
